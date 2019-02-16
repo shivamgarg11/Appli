@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ADMIN.admin"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADMIN"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:textStyle="bold"
+            android:textColor="#2E6D30"
+            android:background="#8a0a1556"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logoo"/>
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:background="#84ffffff"
+        android:id="@+id/useroil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:background="@drawable/oil"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OIL"
+            android:textSize="35dp"
+            android:textColor="#000"
+            android:padding="5dp"
+            android:layout_marginLeft="19dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:background="#84ffffff"
+        android:id="@+id/usergas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:background="@drawable/gas"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GAS"
+            android:textSize="35dp"
+            android:textColor="#000"
+            android:padding="5dp"
+            android:layout_marginLeft="19dp"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:background="#84ffffff"
+        android:id="@+id/userelectricity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <ImageView
+            android:background="@drawable/electricity"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ELECTRICITY"
+            android:textSize="30dp"
+            android:textColor="#000"
+            android:padding="2dp"
+            android:layout_marginLeft="19dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/goback"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:background="#89eae3e3"
+        android:text="GO BACK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+</LinearLayout>

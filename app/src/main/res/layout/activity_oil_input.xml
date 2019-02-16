@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".User.oil_input"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/path"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:background="#8a0a1556"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logoo"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DATE AND TIME "
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:textStyle="bold"
+        android:background="#a7ffffff"
+        android:padding="2dp"/>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/datetime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:textStyle="bold"
+        android:background="#84ffffff"
+        android:padding="2dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#bfffffff"
+        android:layout_marginTop="10dp">
+        <android.support.design.widget.TextInputLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/oilinput1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ENTER INPUT 1"
+                android:gravity="center"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:paddingBottom="10dp"
+            android:layout_gravity="bottom"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#a70c0c"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" RANGE ( A TO B ) "/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#bfffffff"
+        android:layout_marginTop="10dp">
+        <android.support.design.widget.TextInputLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/oilinput2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ENTER INPUT 2"
+                android:gravity="center"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:paddingBottom="10dp"
+            android:layout_gravity="bottom"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#a70c0c"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" RANGE ( A TO B ) "/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#bfffffff"
+        android:layout_marginTop="10dp">
+        <android.support.design.widget.TextInputLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/oilinput3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ENTER INPUT 3"
+                android:gravity="center"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:paddingBottom="10dp"
+            android:layout_gravity="bottom"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#a70c0c"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" RANGE ( A TO B ) "/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#bfffffff"
+        android:layout_marginTop="10dp">
+        <android.support.design.widget.TextInputLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/oilinput4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ENTER INPUT 4"
+                android:gravity="center"
+                android:inputType="number"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:paddingBottom="10dp"
+            android:layout_gravity="bottom"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="#a70c0c"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" RANGE ( A TO B ) "/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:background="#88a19797"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4">
+
+        <Button
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/close"/>
+
+
+        <Button
+            android:layout_marginLeft="100dp"
+            android:layout_weight="1"
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/done"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:background="#88a19797"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4">
+
+        <TextView
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_marginLeft="70dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:text="CLOSE" />
+
+
+        <TextView
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_marginLeft="120dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"/>
+
+    </LinearLayout>
+
+</LinearLayout>

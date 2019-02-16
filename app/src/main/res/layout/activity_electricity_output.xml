@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ADMIN.electricity_output"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/path"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:background="#8a0a1556"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logoo"/>
+
+        </LinearLayout>
+
+
+        <HorizontalScrollView
+            android:background="#6bffffff"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/today"
+                    android:background="#d9ece6e6"
+                    android:text="today"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/yesterday"
+                    android:background="#d9ece6e6"
+                    android:text="yesterday"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/summary"
+                    android:background="#d9ece6e6"
+                    android:text="Choose date"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/month"
+                    android:background="#d9ece6e6"
+                    android:text="summary"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/download"
+                    android:background="#d9ece6e6"
+                    android:text="DOWNLOAD"
+                    android:textStyle="bold"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:padding="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+
+
+        <FrameLayout
+            android:layout_marginBottom="50dp"
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_gravity="right|bottom"
+        android:id="@+id/setting"
+        android:background="#d9ece6e6"
+        android:text="SETTINGS"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:layout_gravity="bottom"
+        android:id="@+id/goback"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:background="#d9ece6e6"
+        android:text="GO BACK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</FrameLayout>

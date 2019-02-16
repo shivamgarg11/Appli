@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "23391957752",
+    "firebase_url": "https://appli-7ecc5.firebaseio.com",
+    "project_id": "appli-7ecc5",
+    "storage_bucket": "appli-7ecc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23391957752:android:317c430f8f250cd9",
+        "android_client_info": {
+          "package_name": "com.shivam.appli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23391957752-3olkssq1j0ftu0rglokb4ivlfef6gb41.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shivam.appli",
+            "certificate_hash": "73b95d1dfae420e03dad6dff2d89ca279acc5995"
+          }
+        },
+        {
+          "client_id": "23391957752-9a2ko4emf8fd8d3ac60rkpi3uq7vt47a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcw5Thzrmd7luw_Uy-zil9bK5-AZdWDoc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23391957752-9a2ko4emf8fd8d3ac60rkpi3uq7vt47a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

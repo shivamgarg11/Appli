@@ -10,12 +10,13 @@ public class electricity_object {
     double gcal_pf;
     double hamount1;
     double iamount2;
+    String aatime;
 
     public electricity_object(){
 
     }
 
-    public electricity_object(double akwh, double ckvah, double bdiffkwh, double ddiffkvah, double empf, double fppf, double gcal_pf, double hamount1, double iamount2) {
+    public electricity_object(double akwh, double ckvah, double bdiffkwh, double ddiffkvah, double empf, double fppf, double gcal_pf, double hamount1, double iamount2,String aatime) {
         this.akwh = akwh;
         this.ckvah = ckvah;
         this.bdiffkwh = bdiffkwh;
@@ -25,6 +26,7 @@ public class electricity_object {
         this.gcal_pf = gcal_pf;
         this.hamount1 = hamount1;
         this.iamount2 = iamount2;
+        this.aatime=aatime;
     }
 
 
@@ -98,5 +100,13 @@ public class electricity_object {
 
     public void setIamount2(double iamount2) {
         this.iamount2 = iamount2;
+    }
+
+    public String getTime() {
+        return aatime;
+    }
+
+    public void setTime(String aatime) {
+        this.aatime = aatime;
     }
 }

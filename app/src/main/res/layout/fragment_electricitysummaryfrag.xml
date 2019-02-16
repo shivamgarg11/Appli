@@ -37,6 +37,35 @@
         android:padding="2dp"/>
 
 
+        <LinearLayout
+            android:background="#bcffffff"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#FF4081"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:textSize="20dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="TIME :"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_weight="1"
+                android:textColor="#100006"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:layout_marginRight="5dp"
+                android:textSize="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+        </LinearLayout>
+
     <LinearLayout
         android:background="#bcffffff"
         android:layout_marginTop="10dp"
@@ -46,7 +75,7 @@
         <TextView
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -57,7 +86,8 @@
             android:layout_weight="1"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,18 +104,19 @@
         <TextView
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="DIFFERENCE KWH :"/>
+            android:text="Difference KWH :"/>
 
         <TextView
             android:id="@+id/diffKWH"
             android:layout_weight="1"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,7 +133,7 @@
         <TextView
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -112,7 +143,8 @@
             android:id="@+id/KVAH"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -130,18 +162,19 @@
         <TextView
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="DIFFERENCE KVAH :"/>
+            android:text="Difference KVAH :"/>
 
         <TextView
             android:id="@+id/diffKVAH"
             android:layout_weight="1"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -158,17 +191,18 @@
         <TextView
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="CALCULATED PF :"/>
+            android:text="Calculated PF :"/>
 
         <TextView
             android:id="@+id/CALPF"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -186,7 +220,7 @@
         <TextView
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+           android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -196,7 +230,8 @@
             android:id="@+id/MPF"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -214,7 +249,7 @@
         <TextView
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -224,7 +259,8 @@
             android:id="@+id/PF"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -244,17 +280,18 @@
             android:id="@+id/amount11"
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="AMOUNT@ :"/>
+            android:text="Amount@ :"/>
 
         <TextView
             android:id="@+id/amount1"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -276,17 +313,18 @@
             android:id="@+id/amount21"
             android:textColor="#FF4081"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="AMOUNT@ :"/>
+            android:text="Amount@ :"/>
 
         <TextView
             android:id="@+id/amount2"
             android:textColor="#100006"
             android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
             android:textSize="17dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"

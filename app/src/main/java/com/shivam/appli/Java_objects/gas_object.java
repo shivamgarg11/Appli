@@ -7,18 +7,20 @@ public class gas_object {
     double dmmbto;
     double eride;
     double fbill;
+    String aatime;
 
     public gas_object(){
 
     }
 
-    public gas_object(double ainput, double bdifference, double cscm, double dmmbto, double eride, double fbill) {
+    public gas_object(double ainput, double bdifference, double cscm, double dmmbto, double eride, double fbill,String aatime) {
         this.ainput = ainput;
         this.bdifference = bdifference;
         this.cscm = cscm;
         this.dmmbto = dmmbto;
         this.eride = eride;
         this.fbill = fbill;
+        this.aatime=aatime;
     }
 
 
@@ -68,5 +70,13 @@ public class gas_object {
 
     public void setFbill(double fbill) {
         this.fbill = fbill;
+    }
+
+    public String getTime() {
+        return aatime;
+    }
+
+    public void setTime(String aatime) {
+        this.aatime = aatime;
     }
 }

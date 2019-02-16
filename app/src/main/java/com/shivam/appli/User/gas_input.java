@@ -136,6 +136,26 @@ public class gas_input extends AppCompatActivity {
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference("GAS" + pathway).child(year + "").child(month + "");
 
+///////////////////////////////////////////////////////
+                            SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
+                            String inputString1 = lastvalue[0].getDate();
+                            String inputString2 = timegas;
+
+                            try {
+                                Date date1 = myFormat.parse(inputString1);
+                                Date date2 = myFormat.parse(inputString2);
+                                long diff = TimeUnit.MILLISECONDS.toHours(date2.getTime() - date1.getTime());
+                                if(diff<24){
+                                    FancyToast.makeText(gas_input.this,"YOU HAVE ALREADY ENTERED THE DATA", Toast.LENGTH_SHORT,FancyToast.INFO,false).show();
+                                    startActivity(new Intent(gas_input.this, MainActivity.class));
+                                    finish();
+                                }
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+///////////////////////////////////////////////////////
+
 
 
                             //Writing lastvalue
@@ -173,13 +193,11 @@ public class gas_input extends AppCompatActivity {
                                         FancyToast.makeText(gas_input.this, "THANK YOU FOR UPDATING \n\n YOU HAVE BEEN LOGGED OUT", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                                         gaslastvalue obj1 = new gaslastvalue(timegas, Double.valueOf(data));
                                         myRef1.setValue(obj1);
-
-                                    }else{
-                                      FancyToast.makeText(gas_input.this,"YOU HAVE ALREADY ENTERED THE DATA", Toast.LENGTH_SHORT,FancyToast.INFO,false).show();
+                                        startActivity(new Intent(gas_input.this, MainActivity.class));
+                                        finish();
                                     }
 
-                                    startActivity(new Intent(gas_input.this, MainActivity.class));
-                                    finish();
+
                                 }
 
                                 @Override
@@ -290,7 +308,7 @@ public class gas_input extends AppCompatActivity {
            obj.setCscm(obj.getBdifference()*constant[0].getC1());
            obj.setDmmbto((obj.getCscm()*constant[0].getC2()*constant[0].getC3())/constant[0].getC5());
            obj.setEride(obj.getDmmbto()*constant[0].getC4());
-
+           obj.setTime(timegas.substring(10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
         String inputString1 = lastvalue[0].getDate();
@@ -361,7 +379,8 @@ public class gas_input extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat dateformat = new SimpleDateFormat("dd MM yyyy HH:mm");
         timegas = dateformat.format(c.getTime());
-                    datetime.setText(timegas);
+        String str=timegas.substring(0,2)+"/"+timegas.substring(3,5)+"/"+timegas.substring(6,10)+"   -  "+timegas.substring(10);
+                    datetime.setText(str);
                     loader.setVisibility(View.GONE);}
 
 

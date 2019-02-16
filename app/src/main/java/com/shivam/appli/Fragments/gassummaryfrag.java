@@ -61,6 +61,7 @@ double from,to;
         final TextView mmbto=rootview.findViewById(R.id.mmbto);
         final TextView ride=rootview.findViewById(R.id.ride);
         final TextView bill=rootview.findViewById(R.id.bill);
+        final TextView time=rootview.findViewById(R.id.time);
 
 
 
@@ -99,6 +100,7 @@ double from,to;
                     mmbto.setText((float)obj.getDmmbto() + "");
                     ride.setText((float)obj.getEride() + "");
                     bill.setText((float)obj.getFbill() + "");
+                    time.setText(obj.getTime());
                     if((float)obj.getFbill()>=from&&(float)obj.getFbill()<=to){
                         input.setTextColor(Color.GREEN);
                         bill.setTextColor(Color.GREEN);

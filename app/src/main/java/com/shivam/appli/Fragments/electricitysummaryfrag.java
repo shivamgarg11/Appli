@@ -72,6 +72,7 @@ double from,to;
         final TextView amount1=rootview.findViewById(R.id.amount1);
         final TextView amount21=rootview.findViewById(R.id.amount21);
         final TextView amount2=rootview.findViewById(R.id.amount2);
+        final TextView time=rootview.findViewById(R.id.time);
 
 
 
@@ -136,6 +137,7 @@ double from,to;
                     PF.setText((float)obj.getFppf()+"");
                     amount1.setText((float)obj.getHamount1()+"");
                     amount2.setText((float)obj.getIamount2()+"");
+                    time.setText(obj.getTime());
 
                     if((float)obj.getGcal_pf()>=from&&(float)obj.getGcal_pf()<=to){
                         CALPF.setTextColor(Color.GREEN);

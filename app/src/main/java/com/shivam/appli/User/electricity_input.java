@@ -148,6 +148,30 @@ getrange();
                             final DatabaseReference myRef = database.getReference("ELECTRICITY" + pathway).child(year + "").child(month + "");
 
 
+///////////////////////////////////////////////////////
+                            SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
+                            String inputString1 = lastvalue[0].getDate();
+                            String inputString2 = timeelectricity;
+
+                            try {
+                                Date date1 = myFormat.parse(inputString1);
+                                Date date2 = myFormat.parse(inputString2);
+                                long diff = TimeUnit.MILLISECONDS.toHours(date2.getTime() - date1.getTime());
+                                if(diff<24){
+                                    FancyToast.makeText(electricity_input.this,"YOU HAVE ALREADY ENTERED THE DATA", Toast.LENGTH_SHORT,FancyToast.INFO,false).show();
+                                    startActivity(new Intent(electricity_input.this, MainActivity.class));
+                                    finish();
+                                }
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+///////////////////////////////////////////////////////
+
+
+
+
+
                             //Writing lastvalue
                             FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef1 = database1.getReference("ELECTRICITY" + pathway).child("LASTVALUE");
@@ -160,8 +184,7 @@ getrange();
                                         myRef.child(date + "").setValue(obj);
 
 
-
-                                        if(obj.getGcal_pf()<from||obj.getGcal_pf()>to) {
+                                        if (obj.getGcal_pf() < from || obj.getGcal_pf() > to) {
                                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                                             final DatabaseReference myRef = database.getReference("NOTIFY");
                                             myRef.addValueEventListener(new ValueEventListener() {
@@ -182,26 +205,12 @@ getrange();
                                         }
 
 
-
-
-
-
-
-
-
-
-
                                         FancyToast.makeText(electricity_input.this, "THANK YOU FOR UPDATING \n\n YOU HAVE BEEN LOGGED OUT", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                                         electricitylastvalue obj1 = new electricitylastvalue(timeelectricity, data1, data2);
                                         myRef1.setValue(obj1);
-
-                                    } else{
-                                        FancyToast.makeText(electricity_input.this,"YOU HAVE ALREADY ENTERED THE DATA", Toast.LENGTH_SHORT,FancyToast.INFO,false).show();
-
+                                        startActivity(new Intent(electricity_input.this, MainActivity.class));
+                                        finish();
                                     }
-
-                                    startActivity(new Intent(electricity_input.this, MainActivity.class));
-                                    finish();
                                 }
 
                                 @Override
@@ -315,6 +324,7 @@ getrange();
         obj.setBdiffkwh(input1-lastvalue[0].getKwh());
         double diffkvah=input2-lastvalue[0].getKvah();
         obj.setDdiffkvah(diffkvah);
+        obj.setTime(timeelectricity.substring(10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
         String inputString1 = lastvalue[0].getDate();
@@ -387,7 +397,8 @@ getrange();
         Calendar c = Calendar.getInstance();
         SimpleDateFormat dateformat = new SimpleDateFormat("dd MM yyyy HH:mm");
         timeelectricity = dateformat.format(c.getTime());
-                    datetime.setText(timeelectricity);
+        String str=timeelectricity.substring(0,2)+"/"+timeelectricity.substring(3,5)+"/"+timeelectricity.substring(6,10)+"   -  "+timeelectricity.substring(10);
+                    datetime.setText(str);
                     loader.setVisibility(View.GONE);}
 
 

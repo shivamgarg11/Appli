@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ADMIN.electricity_output"
+    android:background="@drawable/background"
     android:orientation="vertical"
-    android:background="@drawable/background">
+    tools:context=".ADMIN.electricity_output">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,30 +18,30 @@
             android:layout_height="40dp">
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/path"
-                android:layout_weight="1"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#8a0a1556"
+                android:gravity="center"
                 android:text=""
-                style="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold"
                 android:textColor="#fff"
-                android:background="#8a0a1556"/>
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/logoo"/>
+                android:src="@drawable/logoo" />
 
         </LinearLayout>
 
 
         <HorizontalScrollView
-            android:background="#6bffffff"
-            android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#6bffffff"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,59 +50,59 @@
 
 
                 <Button
-                    android:layout_marginLeft="10dp"
                     android:id="@+id/today"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:background="#d9ece6e6"
+                    android:padding="5dp"
                     android:text="today"
-                    style="@style/TextAppearance.AppCompat.Headline"
-                    android:padding="5dp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textStyle="bold" />
 
                 <Button
-                    android:layout_marginLeft="10dp"
                     android:id="@+id/yesterday"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:background="#d9ece6e6"
+                    android:padding="5dp"
                     android:text="yesterday"
-                    style="@style/TextAppearance.AppCompat.Headline"
-                    android:padding="5dp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textStyle="bold" />
 
                 <Button
-                    android:layout_marginLeft="10dp"
                     android:id="@+id/summary"
-                    android:background="#d9ece6e6"
-                    android:text="Choose date"
-                    style="@style/TextAppearance.AppCompat.Headline"
-                    android:padding="5dp"
-                    android:textStyle="bold"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#d9ece6e6"
+                    android:padding="5dp"
+                    android:text="Choose date"
+                    android:textStyle="bold" />
 
                 <Button
-                    android:layout_marginLeft="10dp"
                     android:id="@+id/month"
-                    android:background="#d9ece6e6"
-                    android:text="summary"
-                    style="@style/TextAppearance.AppCompat.Headline"
-                    android:padding="5dp"
-                    android:textStyle="bold"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#d9ece6e6"
+                    android:padding="5dp"
+                    android:text="summary"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/download"
-                    android:background="#d9ece6e6"
-                    android:text="DOWNLOAD"
-                    android:textStyle="bold"
-                    style="@style/TextAppearance.AppCompat.Headline"
-                    android:padding="5dp"
-                    android:layout_marginLeft="15dp"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="#d9ece6e6"
+                    android:padding="5dp"
+                    android:text="DOWNLOAD"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -112,36 +112,36 @@
 
 
         <FrameLayout
-            android:layout_marginBottom="50dp"
             android:id="@+id/frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"></FrameLayout>
 
 
     </LinearLayout>
 
     <Button
-        android:layout_gravity="right|bottom"
         android:id="@+id/setting"
-        android:background="#d9ece6e6"
-        android:text="SETTINGS"
-        android:padding="5dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:background="#d9ece6e6"
+        android:padding="5dp"
+        android:text="SETTINGS"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
 
     <Button
-        android:layout_gravity="bottom"
         android:id="@+id/goback"
-        android:padding="5dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:background="#d9ece6e6"
-        android:text="GO BACK"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#d9ece6e6"
+        android:padding="5dp"
+        android:text="GO BACK"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
 
 </FrameLayout>

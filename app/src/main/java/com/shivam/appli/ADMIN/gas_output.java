@@ -436,7 +436,7 @@ public class gas_output extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
-                writeCSV[0] += "DATE,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
+                writeCSV[0] += "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
                 final DatabaseReference myRef1 = database1.getReference("GASMUKTA").child(String.valueOf(spinner.getSelectedItem().toString()));
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -529,7 +529,7 @@ public class gas_output extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String csvWrite = "DATE,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
+                            String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
                             String str="";
                             str += " / "+spinner2.getSelectedItem().toString() ;
                             str += " / "+spinner.getSelectedItem().toString() ;
@@ -578,7 +578,7 @@ public class gas_output extends AppCompatActivity {
     String dateStart = "";
 
     String dateEnd = "";
-    String csvWrite = "DATE,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
+    String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
 
     public void selRange() {
         Toast.makeText(this, "" + gasDownload[selected], Toast.LENGTH_SHORT).show();

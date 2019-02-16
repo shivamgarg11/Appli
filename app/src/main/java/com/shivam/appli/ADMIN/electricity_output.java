@@ -269,7 +269,7 @@ public class electricity_output extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
-                writeCSV[0] += "DATE,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
+                writeCSV[0] += "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
                 final DatabaseReference myRef1 = database1.getReference("ELECTRICITY"+pathway).child(String.valueOf(spinner.getSelectedItem().toString()));
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -360,7 +360,7 @@ public class electricity_output extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String csvWrite = "DATE,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
+                            String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
                             String str="";
                             str += " / "+spinner2.getSelectedItem().toString() ;
                             str += " / "+spinner.getSelectedItem().toString() ;
@@ -409,7 +409,7 @@ public class electricity_output extends AppCompatActivity {
     String dateStart = "";
 
     String dateEnd = "";
-    String csvWrite = "DATE,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
+    String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
 
     public void selRange() {
         Toast.makeText(this, "" + gasDownload[selected], Toast.LENGTH_SHORT).show();

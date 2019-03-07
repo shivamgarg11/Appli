@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -49,9 +48,11 @@ public class electricitymonthfrag extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public electricitymonthfrag(Context context,String path) {
+    public electricitymonthfrag(Context context,String path,int year,int month) {
         this.context=context;
         this.path=path;
+        this.year=year;
+        this.month=month;
     }
 
 
@@ -60,16 +61,6 @@ public class electricitymonthfrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        final View rootview= inflater.inflate(R.layout.fragment_electricitymonthfrag, container, false);
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE,0);
-        SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
-        final String strdate = dateformat.format(c.getTime());
-
-         year=Integer.valueOf(strdate.substring(0,4));
-         month=Integer.valueOf(strdate.substring(4,6));
-
-
-
 
         final FirebaseDatabase database11 = FirebaseDatabase.getInstance();
         final DatabaseReference myRef11 = database11.getReference(path).child("RANGE");

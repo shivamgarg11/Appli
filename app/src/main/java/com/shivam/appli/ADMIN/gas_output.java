@@ -131,9 +131,56 @@ public class gas_output extends AppCompatActivity {
         month.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.app.FragmentManager fragmentManager = getFragmentManager();
-                gasMonthfrag frag = new gasMonthfrag(gas_output.this);
-                fragmentManager.beginTransaction().replace(R.id.frame, frag).commit();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(gas_output.this);
+                View view = getLayoutInflater().inflate(R.layout.two_spinner_dialog, null);
+                builder.setTitle("Select Year and Month to View Report");
+                final Spinner spinner = view.findViewById(R.id.spinner_one);
+                for (int i = year; i != year - 10; i--) {
+                    arr.add(String.valueOf(i));
+                }
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(gas_output.this, android.R.layout.simple_spinner_item, arr);
+                adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+
+                final Spinner spinner2 = view.findViewById(R.id.spinner_two);
+                ArrayList<String> arrayList = new ArrayList<>();
+                arrayList.add("Jan");
+                arrayList.add("Feb");
+                arrayList.add("Mar");
+                arrayList.add("Apr");
+                arrayList.add("May");
+                arrayList.add("June");
+                arrayList.add("July");
+                arrayList.add("Aug");
+                arrayList.add("Sept");
+                arrayList.add("Oct");
+                arrayList.add("Nov");
+                arrayList.add("Dec");
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(gas_output.this, android.R.layout.simple_spinner_item, arrayList);
+                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+                spinner.setAdapter(adapter1);
+                spinner2.setAdapter(adapter2);
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(gas_output.this, spinner.getSelectedItem().toString() + spinner2.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                        final String year=spinner.getSelectedItem().toString();
+                        final int month=spinner2.getSelectedItemPosition() + 1;
+
+                        android.app.FragmentManager fragmentManager = getFragmentManager();
+                        gasMonthfrag frag = new gasMonthfrag(gas_output.this,Integer.valueOf(year),month);
+                        fragmentManager.beginTransaction().replace(R.id.frame, frag).commit();
+
+                    }
+                });
+                builder.setView(view);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
             }
         });
 

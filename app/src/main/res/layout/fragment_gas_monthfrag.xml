@@ -30,6 +30,7 @@
         android:verticalSpacing="10dp"
         android:horizontalSpacing="5dp"
         android:stretchMode="spacingWidthUniform"
+        android:paddingBottom="10dp"
         />
 
 

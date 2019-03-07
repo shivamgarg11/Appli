@@ -43,8 +43,10 @@ Context context;
     }
 
     @SuppressLint("ValidFragment")
-    public gasMonthfrag(Context context) {
+    public gasMonthfrag(Context context ,int year,int month) {
         this.context=context;
+        this.year=year;
+        this.month=month;
     }
 
 
@@ -53,17 +55,6 @@ Context context;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootview= inflater.inflate(R.layout.fragment_gas_monthfrag, container, false);
-
-
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE,0);
-        SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
-        final String strdate = dateformat.format(c.getTime());
-
-         year=Integer.valueOf(strdate.substring(0,4));
-         month=Integer.valueOf(strdate.substring(4,6));
-
-
 
 
         final FirebaseDatabase database11 = FirebaseDatabase.getInstance();
@@ -169,12 +160,8 @@ Context context;
             holder.uLocation.setText((float)listData.get(position).getFbill()+"");
 
             if((float)listData.get(position).getFbill()>=from&&(float)listData.get(position).getFbill()<=to){
-                holder.uDesignation.setTextColor(Color.GREEN);
-                holder.uLocation.setTextColor(Color.GREEN);
                 holder.uName.setTextColor(Color.GREEN);
             }else{
-                holder.uDesignation.setTextColor(Color.RED);
-                holder.uLocation.setTextColor(Color.RED);
                 holder.uName.setTextColor(Color.RED);
             }
 

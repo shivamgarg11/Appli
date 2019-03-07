@@ -156,8 +156,8 @@ Context context;
                 holder = (ViewHolder) v.getTag();
             }
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
-            holder.uDesignation.setText((float)listData.get(position).getAinput()+"");
-            holder.uLocation.setText((float)listData.get(position).getFbill()+"");
+            holder.uDesignation.setText(String.format("%.2f",(float)listData.get(position).getAinput())+"");
+            holder.uLocation.setText(String.format("%.2f",(float)listData.get(position).getFbill())+"");
 
             if((float)listData.get(position).getFbill()>=from&&(float)listData.get(position).getFbill()<=to){
                 holder.uName.setTextColor(Color.GREEN);

@@ -160,8 +160,8 @@ public class electricitymonthfrag extends Fragment {
                 holder = (ViewHolder) v.getTag();
             }
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
-            holder.uDesignation.setText((float)listData.get(position).getGcal_pf()+"");
-            holder.uLocation.setText((float)listData.get(position).getIamount2()+"");
+            holder.uDesignation.setText(String.format("%.2f",(float)listData.get(position).getGcal_pf())+"");
+            holder.uLocation.setText(String.format("%.2f",(float)listData.get(position).getIamount2())+"");
 
             if((float)listData.get(position).getGcal_pf()>=from&&(float)listData.get(position).getGcal_pf()<=to){
                 holder.uLocation.setTextColor(Color.GREEN);

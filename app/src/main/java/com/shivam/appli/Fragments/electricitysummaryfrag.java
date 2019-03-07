@@ -128,15 +128,15 @@ double from,to;
 
                 if(dataSnapshot.exists()) {
                     electricity_object obj=dataSnapshot.getValue(electricity_object.class);
-                    diffKWH.setText((float)obj.getBdiffkwh()+"");
-                    diffKVAH.setText((float)obj.getDdiffkvah()+"");
-                    KWH.setText((float)obj.getAkwh()+"");
-                    KVAH.setText((float)obj.getCkvah()+"");
-                    CALPF.setText((float)obj.getGcal_pf()+"");
-                    MPF.setText((float)obj.getEmpf()+"");
-                    PF.setText((float)obj.getFppf()+"");
-                    amount1.setText((float)obj.getHamount1()+"");
-                    amount2.setText((float)obj.getIamount2()+"");
+                    diffKWH.setText(String.format("%.2f",(float)obj.getBdiffkwh())+"");
+                    diffKVAH.setText(String.format("%.2f",(float)obj.getDdiffkvah())+"");
+                    KWH.setText(String.format("%.2f",(float)obj.getAkwh())+"");
+                    KVAH.setText(String.format("%.2f",(float)obj.getCkvah())+"");
+                    CALPF.setText(String.format("%.2f",(float)obj.getGcal_pf())+"");
+                    MPF.setText(String.format("%.2f",(float)obj.getEmpf())+"");
+                    PF.setText(String.format("%.2f",(float)obj.getFppf())+"");
+                    amount1.setText(String.format("%.2f",(float)obj.getHamount1())+"");
+                    amount2.setText(String.format("%.2f",(float)obj.getIamount2())+"");
                     time.setText(obj.getTime());
 
                     if((float)obj.getGcal_pf()>=from&&(float)obj.getGcal_pf()<=to){

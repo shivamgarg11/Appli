@@ -94,12 +94,12 @@ double from,to;
 
                 if(dataSnapshot.exists()) {
                     gas_object obj=dataSnapshot.getValue(gas_object.class);
-                    input.setText((float)obj.getAinput() + "");
-                    difference.setText((float)obj.getBdifference() + "");
-                    scm.setText((float)obj.getCscm() + "");
-                    mmbto.setText((float)obj.getDmmbto() + "");
-                    ride.setText((float)obj.getEride() + "");
-                    bill.setText((float)obj.getFbill() + "");
+                    input.setText(String.format("%.2f",(float)obj.getAinput()) + "");
+                    difference.setText(String.format("%.2f",(float)obj.getBdifference()) + "");
+                    scm.setText(String.format("%.2f",(float)obj.getCscm()) + "");
+                    mmbto.setText(String.format("%.2f",(float)obj.getDmmbto()) + "");
+                    ride.setText(String.format("%.2f",(float)obj.getEride()) + "");
+                    bill.setText(String.format("%.2f",(float)obj.getFbill()) + "");
                     time.setText(obj.getTime());
                     if((float)obj.getFbill()>=from&&(float)obj.getFbill()<=to){
                         input.setTextColor(Color.GREEN);

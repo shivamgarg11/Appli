@@ -129,7 +129,7 @@ getrange();
 
             alertDialog = new AlertDialog.Builder(electricity_input.this)
                     .setTitle("CONFIRMATION:")
-                    .setMessage("\nDATA 1: " + data1 + "\n\n" + "DATA 2: " + data2 + "\n\n" + "DATA 3: " + data3 + "\n\n" + "DATA 4: " + data4)
+                    .setMessage("\nKWH: " + data1 + "\n\n" + "KVAH: " + data2 + "\n\n" + "Meter P.F: " + data3 + "\n\n" + "Panel P.F: " + data4)
                     .setNegativeButton("BACK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

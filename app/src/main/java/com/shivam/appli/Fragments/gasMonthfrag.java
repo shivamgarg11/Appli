@@ -10,8 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -107,8 +108,8 @@ Context context;
 
                // ArrayAdapter itemsAdapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1,datastr);
 
-                ListView listView = (ListView) rootview.findViewById(R.id.gaslist);
-                listView.setAdapter(new CustomListAdapter(context, dataarray));
+                GridView listView = rootview.findViewById(R.id.gaslist);
+                listView.setAdapter(new gasMonthfrag.CustomListAdapter(context, dataarray));
 
 
             }
@@ -158,6 +159,7 @@ Context context;
                 holder.uName =  v.findViewById(R.id.date);
                 holder.uDesignation =  v.findViewById(R.id.val1);
                 holder.uLocation =  v.findViewById(R.id.val2);
+                holder.layout=v.findViewById(R.id.gasitemlayout);
                 v.setTag(holder);
             } else {
                 holder = (ViewHolder) v.getTag();
@@ -176,6 +178,23 @@ Context context;
                 holder.uName.setTextColor(Color.RED);
             }
 
+             final int pos=position;
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    String mon="";
+                    if(month<10)
+                       mon="0"+month;
+                    else
+                        mon=month+"";
+
+                    android.app.FragmentManager fragmentManager = getFragmentManager();
+                    gassummaryfrag frag = new gassummaryfrag(""+year+mon+dates.get(pos),context);
+                    fragmentManager.beginTransaction().replace(R.id.frame, frag).commit();
+                }
+            });
+
 
             return v;
         }
@@ -183,6 +202,7 @@ Context context;
             TextView uName;
             TextView uDesignation;
             TextView uLocation;
+            LinearLayout layout;
         }
     }
 

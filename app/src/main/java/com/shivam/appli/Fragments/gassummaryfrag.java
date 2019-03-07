@@ -53,7 +53,7 @@ double from,to;
         int month=Integer.valueOf(strdate.substring(4,6));
         int date=Integer.valueOf(strdate.substring(6));
         TextView datetime=rootview.findViewById(R.id.datetime);
-        datetime.setText(date+" "+month+" "+year);
+        datetime.setText(date+"/"+month+"/"+year);
 
         final TextView input=rootview.findViewById(R.id.input);
         final TextView difference=rootview.findViewById(R.id.difference);

@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -110,7 +112,7 @@ public class electricitymonthfrag extends Fragment {
 
                // ArrayAdapter itemsAdapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1,datastr);
 
-                ListView listView = (ListView) rootview.findViewById(R.id.electricitylist);
+                GridView listView = rootview.findViewById(R.id.electricitylist);
                 listView.setAdapter(new electricitymonthfrag.CustomListAdapter(context, dataarray));
 
 
@@ -152,6 +154,7 @@ public class electricitymonthfrag extends Fragment {
         public long getItemId(int position) {
             return position;
         }
+
         public View getView(int position, View v, ViewGroup vg) {
             ViewHolder holder;
             if (v == null) {
@@ -160,6 +163,7 @@ public class electricitymonthfrag extends Fragment {
                 holder.uName =  v.findViewById(R.id.date);
                 holder.uDesignation =  v.findViewById(R.id.val1);
                 holder.uLocation =  v.findViewById(R.id.val2);
+                holder.layout=v.findViewById(R.id.gasitemlayout);
                 v.setTag(holder);
             } else {
                 holder = (ViewHolder) v.getTag();
@@ -169,14 +173,30 @@ public class electricitymonthfrag extends Fragment {
             holder.uLocation.setText((float)listData.get(position).getIamount2()+"");
 
             if((float)listData.get(position).getGcal_pf()>=from&&(float)listData.get(position).getGcal_pf()<=to){
-                holder.uDesignation.setTextColor(Color.GREEN);
                 holder.uLocation.setTextColor(Color.GREEN);
-                holder.uName.setTextColor(Color.GREEN);
             }else{
-                holder.uDesignation.setTextColor(Color.RED);
                 holder.uLocation.setTextColor(Color.RED);
-                holder.uName.setTextColor(Color.RED);
             }
+
+
+
+            final int pos=position;
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    String mon="";
+                    if(month<10)
+                        mon="0"+month;
+                    else
+                        mon=month+"";
+
+
+                    android.app.FragmentManager fragmentManager = getFragmentManager();
+                    electricitysummaryfrag frag = new electricitysummaryfrag(""+year+mon+dates.get(pos),context,path.substring(11));
+                    fragmentManager.beginTransaction().replace(R.id.frame, frag).commit();
+                }
+            });
 
             return v;
         }
@@ -184,6 +204,7 @@ public class electricitymonthfrag extends Fragment {
             TextView uName;
             TextView uDesignation;
             TextView uLocation;
+            LinearLayout layout;
         }
     }
 

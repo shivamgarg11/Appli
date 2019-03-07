@@ -2,54 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".Fragments.electricitymonthfrag"
     android:orientation="vertical"
     android:background="#bcffffff">
 
     <FrameLayout
+        android:padding="10dp"
         android:background="#a6a2a2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
 
-        <TextView
-            android:padding="5dp"
-            android:textStyle="bold"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:text="DATE|"
-            android:layout_gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:layout_marginLeft="-19dp"
-            android:padding="5dp"
-            android:textStyle="bold"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:text="CALCUTAED P.F |"
-            android:layout_gravity="top|center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-
-        <TextView
-            android:padding="5dp"
-            android:textStyle="bold"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:text="AMOUNT"
-            android:layout_gravity="right"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
 
 
     </FrameLayout>
 
-    <ListView
-        android:background="#FFFFFF"
+
+    <GridView
         android:id="@+id/electricitylist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:columnWidth="150dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="spacingWidthUniform"
+        />
+
 
 </LinearLayout>

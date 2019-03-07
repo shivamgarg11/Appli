@@ -37,6 +37,7 @@ import com.shivam.appli.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -182,7 +183,7 @@ getrange();
                                     if (!dataSnapshot.hasChild(date + "")) {
                                         electricity_object obj = insertvalues(data1, data2, data3, data4);
                                         myRef.child(date + "").setValue(obj);
-
+                                        FancyToast.makeText(electricity_input.this, "Calculated P.F : "+obj.getGcal_pf()+" ", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
 
                                         if (obj.getGcal_pf() < from || obj.getGcal_pf() > to) {
                                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -203,7 +204,6 @@ getrange();
                                             });
 
                                         }
-
 
                                         FancyToast.makeText(electricity_input.this, "THANK YOU FOR UPDATING \n\n YOU HAVE BEEN LOGGED OUT", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                                         electricitylastvalue obj1 = new electricitylastvalue(timeelectricity, data1, data2);
@@ -316,14 +316,17 @@ getrange();
     public  electricity_object insertvalues(double input1,double input2,double input3,double input4){
         electricity_object obj = new electricity_object();
 
-        obj.setAkwh(input1);
-        obj.setCkvah(input2);
-        obj.setEmpf(input3);
-        obj.setFppf(input4);
-        obj.setGcal_pf((input1-lastvalue[0].getKwh())/(input2-lastvalue[0].getKvah()));
-        obj.setBdiffkwh(input1-lastvalue[0].getKwh());
+        DecimalFormat df = new DecimalFormat("#.000");
+
+
+        obj.setAkwh( Float.valueOf(df.format(input1)));
+        obj.setCkvah( Float.valueOf(df.format(input2)));
+        obj.setEmpf( Float.valueOf(df.format(input3)));
+        obj.setFppf( Float.valueOf(df.format(input4)));
+        obj.setGcal_pf( Float.valueOf(df.format((input1-lastvalue[0].getKwh())/(input2-lastvalue[0].getKvah()))));
+        obj.setBdiffkwh( Float.valueOf(df.format(input1-lastvalue[0].getKwh())));
         double diffkvah=input2-lastvalue[0].getKvah();
-        obj.setDdiffkvah(diffkvah);
+        obj.setDdiffkvah( Float.valueOf(df.format(diffkvah)));
         obj.setTime(timeelectricity.substring(10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
@@ -337,8 +340,8 @@ getrange();
             if(diff==0)
                 diff=1;
 
-            obj.setHamount1(diffkvah*constant[0].getC1()*constant[0].getC3());
-            obj.setIamount2((diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff);
+            obj.setHamount1( Float.valueOf(df.format(diffkvah*constant[0].getC1()*constant[0].getC3())));
+            obj.setIamount2( Float.valueOf(df.format((diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff)));
 
         } catch (ParseException e) {
             e.printStackTrace();

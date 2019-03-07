@@ -48,6 +48,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.GregorianCalendar;
 
 public class gas_output extends AppCompatActivity {
@@ -312,8 +313,10 @@ public class gas_output extends AppCompatActivity {
                                 }else{
                                     final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                                     final DatabaseReference myRef1 = database1.getReference("GAS"+pathway).child("RANGE");
-                                    myRef1.child("FROM").setValue(Double.valueOf(strc1));
-                                    myRef1.child("TO").setValue(Double.valueOf(strc2));
+
+                                    Formatter fmt = new Formatter();
+                                    myRef1.child("FROM").setValue(Float.valueOf(strc1));
+                                    myRef1.child("TO").setValue(Float.valueOf(strc2));
                                 }
                             }
                         })
@@ -326,7 +329,27 @@ public class gas_output extends AppCompatActivity {
 
         // create alert dialog
         final AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+
+
+        final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef1 = database1.getReference("GAS" + pathway).child("RANGE");
+
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Formatter fmt = new Formatter();
+                c1.setText(dataSnapshot.child("FROM").getValue(Float.class) + "");
+                c2.setText(dataSnapshot.child("TO").getValue(Float.class) + "");
+                alertDialog.show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
 
 
     }
@@ -437,7 +460,8 @@ public class gas_output extends AppCompatActivity {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
                 writeCSV[0] += "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
-                final DatabaseReference myRef1 = database1.getReference("GASMUKTA").child(String.valueOf(spinner.getSelectedItem().toString()));
+                final String spinnerval=String.valueOf(spinner.getSelectedItem().toString());
+                final DatabaseReference myRef1 = database1.getReference("GASMUKTA").child(spinnerval);
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -456,7 +480,7 @@ public class gas_output extends AppCompatActivity {
                                     writeCSV[0] += "\n";
                                 }
 
-                                csvPart(writeCSV[0], "Year");
+                                csvPart(writeCSV[0], "Year"+spinnerval);
                             }
                             Log.d("writecsv", "onDataChange: " + writeCSV[0]);
 
@@ -524,7 +548,10 @@ public class gas_output extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(gas_output.this, spinner.getSelectedItem().toString() + spinner2.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                final DatabaseReference myRef1 = database1.getReference("GASMUKTA").child(String.valueOf(spinner.getSelectedItem().toString())).child(String.valueOf(spinner2.getSelectedItemPosition() + 1).toString());
+               final String spinnerval1=spinner.getSelectedItem().toString();
+               final String spinnerval2=String.valueOf(spinner2.getSelectedItemPosition() + 1);
+
+                final DatabaseReference myRef1 = database1.getReference("GASMUKTA").child(spinnerval1).child(spinnerval2);
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -546,7 +573,7 @@ public class gas_output extends AppCompatActivity {
                             }
 
                             Log.d("csvWrite", "onDataChange: " + csvWrite);
-                            csvPart(csvWrite, "Month");
+                            csvPart(csvWrite, "Month"+spinnerval1+"_"+spinnerval2);
 
 
 
@@ -632,7 +659,7 @@ public class gas_output extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                Date date2, date1;
+                final Date date2, date1;
 
 
                 try {
@@ -695,7 +722,7 @@ public class gas_output extends AppCompatActivity {
                                                 csvWrite += "\n";
 
                                                 Log.d("CSV", "selRange: " + csvWrite);
-                                                csvPart(csvWrite, "Range");
+                                                csvPart(csvWrite, "Range"+date1.toString().substring(4,10)+"-"+date2.toString().substring(4,10));
                                                 sendNotif(android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "App_Ka_Kaam/Gas/" + "Range" + ".csv");
                                             }
 

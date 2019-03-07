@@ -37,6 +37,7 @@ import com.shivam.appli.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -302,12 +303,14 @@ public class gas_input extends AppCompatActivity {
 
     public  gas_object insertvalues(double input){
 
+        DecimalFormat df = new DecimalFormat("#.000");
+
            gas_object obj = new gas_object();
-           obj.setAinput(input);
-           obj.setBdifference(input-lastvalue[0].getValue());
-           obj.setCscm(obj.getBdifference()*constant[0].getC1());
-           obj.setDmmbto((obj.getCscm()*constant[0].getC2()*constant[0].getC3())/constant[0].getC5());
-           obj.setEride(obj.getDmmbto()*constant[0].getC4());
+           obj.setAinput(Float.valueOf(df.format(input)));
+           obj.setBdifference(Float.valueOf(df.format(input-lastvalue[0].getValue())));
+           obj.setCscm(Float.valueOf(df.format(obj.getBdifference()*constant[0].getC1())));
+           obj.setDmmbto(Float.valueOf(df.format((obj.getCscm()*constant[0].getC2()*constant[0].getC3())/constant[0].getC5())));
+           obj.setEride(Float.valueOf(df.format(obj.getDmmbto()*constant[0].getC4())));
            obj.setTime(timegas.substring(10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
@@ -320,7 +323,7 @@ public class gas_input extends AppCompatActivity {
             long diff = TimeUnit.MILLISECONDS.toHours(date2.getTime() - date1.getTime());
            if(diff==0)
             diff=1;
-            obj.setFbill((obj.getEride()*15*24)/diff);
+            obj.setFbill(Float.valueOf(df.format((obj.getEride()*15*24)/diff)));
 
         } catch (ParseException e) {
             e.printStackTrace();

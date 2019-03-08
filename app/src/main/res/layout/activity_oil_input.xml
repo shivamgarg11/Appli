@@ -13,6 +13,7 @@
         android:layout_height="50dp">
 
         <TextView
+            android:gravity="center"
             android:id="@+id/path"
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -53,10 +54,12 @@
 
 
     <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#bfffffff"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="40dp">
         <android.support.design.widget.TextInputLayout
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -66,32 +69,25 @@
                 android:id="@+id/oilinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ENTER INPUT 1"
+                android:hint="ENTER READING"
                 android:gravity="center"
                 android:inputType="number"/>
 
         </android.support.design.widget.TextInputLayout>
 
 
-        <TextView
-            android:paddingBottom="10dp"
-            android:layout_gravity="bottom"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="#a70c0c"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" RANGE ( A TO B ) "/>
     </LinearLayout>
 
 
 
     <LinearLayout
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#bfffffff"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="30dp">
         <android.support.design.widget.TextInputLayout
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -101,124 +97,66 @@
                 android:id="@+id/oilinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ENTER INPUT 2"
+                android:hint="ENTER TROLLY"
                 android:gravity="center"
                 android:inputType="number"/>
 
         </android.support.design.widget.TextInputLayout>
 
-
-        <TextView
-            android:paddingBottom="10dp"
-            android:layout_gravity="bottom"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="#a70c0c"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" RANGE ( A TO B ) "/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#bfffffff"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/oilinput3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ENTER INPUT 3"
-                android:gravity="center"
-                android:inputType="number"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:paddingBottom="10dp"
-            android:layout_gravity="bottom"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="#a70c0c"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" RANGE ( A TO B ) "/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#bfffffff"
-        android:layout_marginTop="10dp">
-        <android.support.design.widget.TextInputLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/oilinput4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ENTER INPUT 4"
-                android:gravity="center"
-                android:inputType="number"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:paddingBottom="10dp"
-            android:layout_gravity="bottom"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="#a70c0c"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" RANGE ( A TO B ) "/>
     </LinearLayout>
 
 
 
+
     <LinearLayout
-        android:background="#88a19797"
-        android:layout_marginTop="10dp"
+        android:background="#88ffffff"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="4">
 
-        <Button
+        <TextView
             android:layout_marginLeft="50dp"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="#555"/>
+
+        <Button
             android:layout_weight="1"
             android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/close"/>
 
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="#555"/>
+
+
+        <TextView
+            android:layout_marginLeft="100dp"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="#555"/>
 
         <Button
-            android:layout_marginLeft="100dp"
             android:layout_weight="1"
             android:id="@+id/done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/done"/>
 
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="#555"/>
+
     </LinearLayout>
 
 
     <LinearLayout
-        android:background="#88a19797"
+        android:background="#88ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="4">
@@ -231,7 +169,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:text="CLOSE" />
+            android:text="CLOSE" />
 
 
         <TextView
@@ -245,5 +183,6 @@
             android:text="SUBMIT"/>
 
     </LinearLayout>
+
 
 </LinearLayout>

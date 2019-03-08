@@ -21,7 +21,8 @@ public class user extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         ////////////getting from firebase/////////////////////////
-        final String[] oilarray={"MAIN TANK","TUNNEL TANK"};
+        final String[] oilarray={"MAIN TANK","TUNNEL TANK 1","TUNNEL TANK 2","TUNNEL TANK 3"};
+        final String[] maintankoilarray={"PURCHASE","ISSUE","VOLUME"};
         final String[] gasarray={"MUKTA"};
         final String[] electricityarray={"MUKTA","MEENA"};
         //////////////////////////////////////////////////////////
@@ -61,11 +62,39 @@ public class user extends AppCompatActivity {
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent i=new Intent(user.this,oil_input.class);
-                                i.putExtra("path",oilarray[selected]);
-                                startActivity(i);
-                                finish();
+                                if(selected!=0) {
+                                    Intent i = new Intent(user.this, oil_input.class);
+                                    i.putExtra("path", oilarray[selected]);
+                                    startActivity(i);
+                                    finish();
+                                }else{
+                                    AlertDialog dialogsub=new AlertDialog.Builder(user.this)
+                                            .setIcon(R.drawable.logoo)
+                                            .setTitle("              OIL/MAIN TANK")
+                                            .setSingleChoiceItems(maintankoilarray, maintankoilarray.length-1, new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    selected = which;
+                                                }
+                                            })
+                                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent i = new Intent(user.this, MainTankOil.class);
+                                                        i.putExtra("path", maintankoilarray[selected]);
+                                                        startActivity(i);
+                                                        finish();
+                                                }
+                                            })
+                                            .setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
 
+                                                }
+                                            })
+                                            .create();
+                                    dialogsub.show();
+                                }
                             }
                         })
                         .setNegativeButton("Back", new DialogInterface.OnClickListener() {

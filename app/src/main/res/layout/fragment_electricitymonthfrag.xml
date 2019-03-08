@@ -24,10 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:columnWidth="150dp"
+        android:columnWidth="100dp"
         android:numColumns="auto_fit"
         android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="5dp"
         android:stretchMode="spacingWidthUniform"
         android:paddingBottom="10dp"
         />

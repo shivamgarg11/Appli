@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.shivam.appli.Java_objects.gas_object;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -28,7 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shashank.sony.fancytoastlib.FancyToast;
-import com.shivam.appli.Java_objects.gas_object;
 import com.shivam.appli.Java_objects.gasconstants;
 import com.shivam.appli.Java_objects.gaslastvalue;
 import com.shivam.appli.MainActivity;

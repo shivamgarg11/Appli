@@ -3,7 +3,6 @@ package com.shivam.appli.Fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,15 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-
+import com.shivam.appli.Java_objects.gas_object;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.shivam.appli.Java_objects.gas_object;
 import com.shivam.appli.R;
 
 /**
@@ -102,8 +99,8 @@ double from,to;
                     bill.setText(String.format("%.2f",(float)obj.getFbill()) + "");
                     time.setText(obj.getTime());
                     if((float)obj.getFbill()>=from&&(float)obj.getFbill()<=to){
-                        input.setTextColor(Color.GREEN);
-                        bill.setTextColor(Color.GREEN);
+                        input.setTextColor(Color.rgb(14,131,19));
+                        bill.setTextColor(Color.rgb(14,131,19));
                     }else{
                         input.setTextColor(Color.RED);
                         bill.setTextColor(Color.RED);

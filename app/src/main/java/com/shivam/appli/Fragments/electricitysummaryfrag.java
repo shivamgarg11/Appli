@@ -140,11 +140,13 @@ double from,to;
                     time.setText(obj.getTime());
 
                     if((float)obj.getGcal_pf()>=from&&(float)obj.getGcal_pf()<=to){
-                        CALPF.setTextColor(Color.GREEN);
-                        amount2.setTextColor(Color.GREEN);
+                        CALPF.setTextColor(Color.rgb(14,131,19));
+                        amount2.setTextColor(Color.rgb(14,131,19));
+                        amount1.setTextColor(Color.rgb(14,131,19));
                     }else{
                         CALPF.setTextColor(Color.RED);
                         amount2.setTextColor(Color.RED);
+                        amount1.setTextColor(Color.RED);
                     }
 
                 }else{

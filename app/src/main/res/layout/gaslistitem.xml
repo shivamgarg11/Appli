@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    android:layout_margin="5dp"
+    android:layout_margin="2dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="100dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
     android:background="#000">
 
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/gasitemlayout"
         android:background="#fff"
-        android:padding="5dp"
-        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:layout_margin="2dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <TextView
-        style="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="10dp"
+        android:textColor="#000"
+        android:gravity="center"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:text="16/03/2019"
@@ -24,18 +27,21 @@
         android:id="@+id/date"/>
 
     <TextView
+        android:gravity="center"
         android:text="vak"
         style="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="#000"
         android:textStyle="bold"
         android:layout_gravity="top|center"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:id="@+id/val1"/>
 
 
     <TextView
+        android:textSize="10dp"
+        android:gravity="center"
         android:text="vak"
-        style="@style/TextAppearance.AppCompat.Subhead"
         android:textStyle="bold"
         android:layout_gravity="right"
         android:layout_width="match_parent"

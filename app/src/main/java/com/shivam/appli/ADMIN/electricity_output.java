@@ -322,7 +322,8 @@ public class electricity_output extends AppCompatActivity {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
                 writeCSV[0] += "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
-                final DatabaseReference myRef1 = database1.getReference("ELECTRICITY"+pathway).child(String.valueOf(spinner.getSelectedItem().toString()));
+                final String spinnerval=String.valueOf(spinner.getSelectedItem().toString());
+                final DatabaseReference myRef1 = database1.getReference("ELECTRICITY"+pathway).child(spinnerval);
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -337,9 +338,11 @@ public class electricity_output extends AppCompatActivity {
                                     for (DataSnapshot dayIter : monthIter.getChildren()) {
                                         writeCSV[0] += dayIter.getValue() + ",";
                                     }
+
+                                    writeCSV[0]=writeCSV[0].substring(0,writeCSV[0].length()-6);
                                     writeCSV[0] += "\n";
                                 }
-                                csvPart(writeCSV[0], "Year");
+                                csvPart(writeCSV[0], "Year"+spinnerval);
                             }
                             Log.d("writecsv", "onDataChange: " + writeCSV[0]);
 
@@ -407,7 +410,11 @@ public class electricity_output extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(electricity_output.this, spinner.getSelectedItem().toString() + spinner2.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                final DatabaseReference myRef1 = database1.getReference("ELECTRICITY"+pathway).child(String.valueOf(spinner.getSelectedItem().toString())).child(String.valueOf(spinner2.getSelectedItemPosition() + 1).toString());
+
+                final String spinnerval1=spinner.getSelectedItem().toString();
+                final String spinnerval2=String.valueOf(spinner2.getSelectedItemPosition() + 1);
+
+                final DatabaseReference myRef1 = database1.getReference("ELECTRICITY"+pathway).child(spinnerval1).child(spinnerval2);
                 myRef1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -424,12 +431,13 @@ public class electricity_output extends AppCompatActivity {
                                     Log.d("dateIter", "onDataChange: " + dayIter.getValue());
 
                                 }
+                                csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                 csvWrite += "\n";
 
                             }
 
                             Log.d("csvWrite", "onDataChange: " + csvWrite);
-                            csvPart(csvWrite, "Month");
+                            csvPart(csvWrite, "Month"+spinnerval1+"_"+spinnerval2);
 
 
 
@@ -515,7 +523,7 @@ public class electricity_output extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                Date date2, date1;
+              final  Date date2, date1;
 
 
                 try {
@@ -571,14 +579,16 @@ public class electricity_output extends AppCompatActivity {
 
 
                                                         }
+                                                        csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                         csvWrite += "\n";
                                                         csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";
                                                     }
                                                 }
+                                                csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                 csvWrite += "\n";
 
                                                 Log.d("CSV", "selRange: " + csvWrite);
-                                                csvPart(csvWrite, "Range");
+                                                csvPart(csvWrite, "Range"+date1.toString().substring(4,10)+"-"+date2.toString().substring(4,10));
                                                 sendNotif(android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "App_Ka_Kaam/Electricity/"+pathway+"/" + "Range" + ".csv");
                                             }
 

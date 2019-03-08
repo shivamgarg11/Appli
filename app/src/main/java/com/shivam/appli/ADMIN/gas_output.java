@@ -144,20 +144,20 @@ public class gas_output extends AppCompatActivity {
 
                 final Spinner spinner2 = view.findViewById(R.id.spinner_two);
                 ArrayList<String> arrayList = new ArrayList<>();
-                arrayList.add("Jan");
-                arrayList.add("Feb");
-                arrayList.add("Mar");
-                arrayList.add("Apr");
-                arrayList.add("May");
-                arrayList.add("June");
-                arrayList.add("July");
-                arrayList.add("Aug");
-                arrayList.add("Sept");
-                arrayList.add("Oct");
-                arrayList.add("Nov");
-                arrayList.add("Dec");
+                arrayList.add("Jan\n");
+                arrayList.add("Feb\n");
+                arrayList.add("Mar\n");
+                arrayList.add("Apr\n");
+                arrayList.add("May\n");
+                arrayList.add("June\n");
+                arrayList.add("July\n");
+                arrayList.add("Aug\n");
+                arrayList.add("Sept\n");
+                arrayList.add("Oct\n");
+                arrayList.add("Nov\n");
+                arrayList.add("Dec\n");
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(gas_output.this, android.R.layout.simple_spinner_item, arrayList);
-                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
 
                 spinner.setAdapter(adapter1);
@@ -506,7 +506,7 @@ public class gas_output extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
-                writeCSV[0] += "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
+                writeCSV[0] += "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n\n";
                 final String spinnerval=String.valueOf(spinner.getSelectedItem().toString());
                 final DatabaseReference myRef1 = database1.getReference("GASMUKTA").child(spinnerval);
                 myRef1.addValueEventListener(new ValueEventListener() {
@@ -524,6 +524,7 @@ public class gas_output extends AppCompatActivity {
 //                                            writeCSV += dayIter.
                                         writeCSV[0] += dayIter.getValue() + ",";
                                     }
+                                    writeCSV[0]=writeCSV[0].substring(0,writeCSV[0].length()-6);
                                     writeCSV[0] += "\n";
                                 }
 
@@ -615,6 +616,7 @@ public class gas_output extends AppCompatActivity {
                                     Log.d("dateIter", "onDataChange: " + dayIter.getValue());
 
                                 }
+                                csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                 csvWrite += "\n";
 
                             }
@@ -762,10 +764,12 @@ public class gas_output extends AppCompatActivity {
 
 
                                                         }
+                                                        csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                         csvWrite += "\n";
                                                         //csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";
                                                     }
                                                 }
+                                                csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                 csvWrite += "\n";
 
                                                 Log.d("CSV", "selRange: " + csvWrite);

@@ -5,13 +5,13 @@
     android:padding="30dp">
 
     <Spinner
-        android:padding="10dp"
+        android:padding="20dp"
         android:layout_width="wrap_content"
         android:id="@+id/spinner_one"
         android:layout_height="wrap_content"/>
 
     <Spinner
-        android:padding="10dp"
+        android:padding="20dp"
         android:layout_width="wrap_content"
         android:id="@+id/spinner_two"
         android:layout_marginStart="30dp"

@@ -52,10 +52,10 @@
                 <Button
                     android:layout_marginLeft="5dp"
                     android:id="@+id/today"
-                    android:background="#d9ece6e6"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="today"
                     style="@style/TextAppearance.AppCompat.Subhead"
-                    android:padding="5dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -63,10 +63,10 @@
                 <Button
                     android:layout_marginLeft="10dp"
                     android:id="@+id/yesterday"
-                    android:background="#d9ece6e6"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="yesterday"
                     style="@style/TextAppearance.AppCompat.Subhead"
-                    android:padding="5dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -74,10 +74,10 @@
                 <Button
                     android:layout_marginLeft="10dp"
                     android:id="@+id/summary"
-                    android:background="#d9ece6e6"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="Choose date"
                     style="@style/TextAppearance.AppCompat.Subhead"
-                    android:padding="5dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -85,21 +85,21 @@
                 <Button
                     android:layout_marginLeft="10dp"
                     android:id="@+id/month"
-                    android:background="#d9ece6e6"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="summary"
                     style="@style/TextAppearance.AppCompat.Subhead"
-                    android:padding="5dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <Button
                     android:id="@+id/download"
-                    android:background="#d9ece6e6"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="DOWNLOAD"
                     android:textStyle="bold"
                     style="@style/TextAppearance.AppCompat.Subhead"
-                    android:padding="5dp"
                     android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -124,9 +124,9 @@
         android:layout_gravity="right|bottom"
         android:layout_marginLeft="10dp"
         android:id="@+id/setting"
-        android:background="#d9ece6e6"
+        android:background="@drawable/btn"
+        android:padding="10dp"
         android:text="SETTINGS"
-        android:padding="5dp"
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
@@ -136,10 +136,10 @@
     <Button
         android:layout_gravity="bottom"
         android:id="@+id/goback"
-        android:padding="5dp"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:background="#d9ece6e6"
+        android:background="@drawable/btn"
+        android:padding="10dp"
         android:text="GO BACK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

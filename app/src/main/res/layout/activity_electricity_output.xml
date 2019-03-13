@@ -55,8 +55,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:background="#d9ece6e6"
-                    android:padding="5dp"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="today"
                     android:textStyle="bold" />
 
@@ -66,8 +66,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:background="#d9ece6e6"
-                    android:padding="5dp"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="yesterday"
                     android:textStyle="bold" />
 
@@ -77,8 +77,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:background="#d9ece6e6"
-                    android:padding="5dp"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="Choose date"
                     android:textStyle="bold" />
 
@@ -88,8 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:background="#d9ece6e6"
-                    android:padding="5dp"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="summary"
                     android:textStyle="bold" />
 
@@ -99,8 +99,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:background="#d9ece6e6"
-                    android:padding="5dp"
+                    android:background="@drawable/btn"
+                    android:padding="10dp"
                     android:text="DOWNLOAD"
                     android:textStyle="bold" />
 
@@ -125,8 +125,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
-        android:background="#d9ece6e6"
-        android:padding="5dp"
+        android:background="@drawable/btn"
+        android:padding="10dp"
         android:text="SETTINGS"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -137,8 +137,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#d9ece6e6"
-        android:padding="5dp"
+        android:background="@drawable/btn"
+        android:padding="10dp"
         android:text="GO BACK"
         android:textSize="20dp"
         android:textStyle="bold" />

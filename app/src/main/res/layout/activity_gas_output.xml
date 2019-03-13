@@ -27,7 +27,7 @@
             style="@style/TextAppearance.AppCompat.Subhead"
             android:textStyle="bold"
             android:textColor="#fff"
-            android:background="#8a0a1556"/>
+            android:background="#8A000000"/>
 
         <ImageView
             android:layout_width="wrap_content"

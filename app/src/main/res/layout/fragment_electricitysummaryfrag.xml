@@ -44,7 +44,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:textColor="#FF4081"
+                android:textColor="#FD180101"
                 android:textStyle="bold"
                 android:layout_marginLeft="5dp"
                 android:textSize="20dp"
@@ -59,7 +59,7 @@
                 android:textStyle="bold"
                 android:gravity="right"
                 android:layout_marginRight="5dp"
-                android:textSize="17dp"
+                android:textSize="14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""/>
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -88,7 +88,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""/>
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -117,7 +117,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""/>
@@ -131,7 +131,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -145,7 +145,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -175,7 +175,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""/>
@@ -189,7 +189,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -203,7 +203,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -218,7 +218,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
            android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -232,7 +232,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -261,7 +261,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -278,7 +278,7 @@
 
         <TextView
             android:id="@+id/amount11"
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -292,7 +292,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -311,7 +311,7 @@
 
         <TextView
             android:id="@+id/amount21"
-            android:textColor="#FF4081"
+            android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
@@ -325,7 +325,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="5dp"
-            android:textSize="17dp"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

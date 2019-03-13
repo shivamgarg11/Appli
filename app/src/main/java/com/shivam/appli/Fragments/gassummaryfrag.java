@@ -99,9 +99,11 @@ double from,to;
                     bill.setText(String.format("%.2f",(float)obj.getFbill()) + "");
                     time.setText(obj.getTime());
                     if((float)obj.getFbill()>=from&&(float)obj.getFbill()<=to){
+                        ride.setTextColor(Color.rgb(14,131,19));
                         input.setTextColor(Color.rgb(14,131,19));
                         bill.setTextColor(Color.rgb(14,131,19));
                     }else{
+                        ride.setTextColor(Color.RED);
                         input.setTextColor(Color.RED);
                         bill.setTextColor(Color.RED);
                     }

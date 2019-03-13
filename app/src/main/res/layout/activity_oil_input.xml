@@ -22,7 +22,7 @@
             style="@style/TextAppearance.AppCompat.Subhead"
             android:textStyle="bold"
             android:textColor="#fff"
-            android:background="#8a0a1556"/>
+            android:background="#8A000000"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -54,8 +54,8 @@
 
 
     <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#bfffffff"
@@ -82,8 +82,8 @@
 
     <LinearLayout
         android:layout_marginBottom="30dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#bfffffff"

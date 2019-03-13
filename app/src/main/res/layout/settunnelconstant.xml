@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CHANGE CONSTANT"
+        android:gravity="center"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#000"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SCM = Difference * "
+            android:textStyle="bold"
+            style="@style/TextAppearance.AppCompat.Subhead"/>
+
+        <EditText
+            android:inputType="numberDecimal"
+            android:hint="  C1"
+            android:id="@+id/c1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
+
+
+</LinearLayout>

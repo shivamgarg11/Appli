@@ -19,6 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shivam.appli.R;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -96,15 +99,17 @@ double from,to;
                     scm.setText(String.format("%.2f",(float)obj.getCscm()) + "");
                     mmbto.setText(String.format("%.2f",(float)obj.getDmmbto()) + "");
                     ride.setText(String.format("%.2f",(float)obj.getEride()) + "");
-                    bill.setText(String.format("%.2f",(float)obj.getFbill()) + "");
+
+                    NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+                    String moneyString = formatter.format((float)obj.getFbill());
+                    bill.setText(moneyString);
+
                     time.setText(obj.getTime());
                     if((float)obj.getFbill()>=from&&(float)obj.getFbill()<=to){
                         ride.setTextColor(Color.rgb(14,131,19));
-                        input.setTextColor(Color.rgb(14,131,19));
                         bill.setTextColor(Color.rgb(14,131,19));
                     }else{
                         ride.setTextColor(Color.RED);
-                        input.setTextColor(Color.RED);
                         bill.setTextColor(Color.RED);
                     }
                 }else{

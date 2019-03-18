@@ -20,6 +20,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.shivam.appli.Java_objects.Tunneltank_object;
 import com.shivam.appli.R;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -97,7 +100,11 @@ public class Tunnelsummaryfrag extends Fragment {
                     difference.setText(String.format("%.2f",(float)obj.getDdiff()) + "");
                     trolly.setText(String.format("%.2f",(float)obj.getCtrolly()) + "");
                     output1.setText(String.format("%.2f",(float)obj.getEoutput1()) + "");
-                    output2.setText(String.format("%.2f",(float)obj.getFoutput2()) + "");
+
+                    NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+                    String moneyString = formatter.format((float)obj.getFoutput2());
+                    output2.setText(moneyString);
+
                     time.setText(obj.getAtime());
 
                     if((float)obj.getFoutput2()>=from&&(float)obj.getFoutput2()<=to){

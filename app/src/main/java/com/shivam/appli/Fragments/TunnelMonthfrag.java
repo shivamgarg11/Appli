@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,7 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.shivam.appli.Java_objects.Tunneltank_object;
 import com.shivam.appli.R;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -149,17 +152,23 @@ public class TunnelMonthfrag extends Fragment {
                 holder.uDesignation =  v.findViewById(R.id.val1);
                 holder.uLocation =  v.findViewById(R.id.val2);
                 holder.layout=v.findViewById(R.id.gasitemlayout);
+                holder.gridframecolor=v.findViewById(R.id.gridframecolor);
                 v.setTag(holder);
             } else {
                 holder = (ViewHolder) v.getTag();
             }
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
             holder.uDesignation.setText(String.format("%.2f",(float)listData.get(position).getBreading())+"");
-            holder.uLocation.setText(String.format("%.2f",(float)listData.get(position).getFoutput2())+"");
+
+            NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+            String moneyString = formatter.format((float)listData.get(position).getFoutput2());
+            holder.uLocation.setText(moneyString);
 
             if((float)listData.get(position).getFoutput2()>=from&&(float)listData.get(position).getFoutput2()<=to){
+                holder.gridframecolor.setBackgroundColor(Color.rgb(14,131,19));
                 holder.uLocation.setTextColor(Color.rgb(14,131,19));
             }else{
+                holder.gridframecolor.setBackgroundColor(Color.RED);
                 holder.uLocation.setTextColor(Color.RED);
             }
 
@@ -188,6 +197,7 @@ public class TunnelMonthfrag extends Fragment {
             TextView uDesignation;
             TextView uLocation;
             LinearLayout layout;
+            FrameLayout gridframecolor;
         }
     }
 

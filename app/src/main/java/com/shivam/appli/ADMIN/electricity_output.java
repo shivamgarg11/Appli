@@ -49,6 +49,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.GregorianCalendar;
 
 
@@ -144,7 +145,7 @@ public class electricity_output extends AppCompatActivity {
                     arr.add(String.valueOf(i));
                 }
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(electricity_output.this, android.R.layout.simple_spinner_item, arr);
-                adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                adapter1.setDropDownViewResource(R.layout.spinnerdropdown);
 
                 final Spinner spinner2 = view.findViewById(R.id.spinner_two);
                 ArrayList<String> arrayList = new ArrayList<>();
@@ -161,7 +162,7 @@ public class electricity_output extends AppCompatActivity {
                 arrayList.add("Nov");
                 arrayList.add("Dec");
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(electricity_output.this, android.R.layout.simple_spinner_item, arrayList);
-                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                adapter1.setDropDownViewResource(R.layout.spinnerdropdown);
 
 
                 spinner.setAdapter(adapter1);
@@ -314,7 +315,7 @@ public class electricity_output extends AppCompatActivity {
             arr.add(String.valueOf(i));
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(electricity_output.this, android.R.layout.simple_spinner_item, arr);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        adapter.setDropDownViewResource(R.layout.spinnerdropdown);
         spinner.setAdapter(adapter);
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
@@ -382,7 +383,7 @@ public class electricity_output extends AppCompatActivity {
             arr.add(String.valueOf(i));
         }
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(electricity_output.this, android.R.layout.simple_spinner_item, arr);
-        adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        adapter1.setDropDownViewResource(R.layout.spinnerdropdown);
 
         final Spinner spinner2 = view.findViewById(R.id.spinner_two);
         ArrayList<String> arrayList = new ArrayList<>();
@@ -399,7 +400,7 @@ public class electricity_output extends AppCompatActivity {
         arrayList.add("Nov");
         arrayList.add("Dec");
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(electricity_output.this, android.R.layout.simple_spinner_item, arrayList);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(R.layout.spinnerdropdown);
 
 
         spinner.setAdapter(adapter1);
@@ -708,7 +709,34 @@ public class electricity_output extends AppCompatActivity {
 
         // create alert dialog
         final AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+
+
+
+        final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef1 = database1.getReference("ELECTRICITY" + pathway).child("RANGE");
+
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Formatter fmt = new Formatter();
+                c1.setText(dataSnapshot.child("FROM").getValue(Float.class) + "");
+                c2.setText(dataSnapshot.child("TO").getValue(Float.class) + "");
+                alertDialog.show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
+
+
+
+
+
+
 
 
     }

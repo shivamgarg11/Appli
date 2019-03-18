@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,7 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.shivam.appli.R;
 import com.shivam.appli.Java_objects.gas_object;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class gasMonthfrag extends Fragment {
 
@@ -148,17 +151,23 @@ Context context;
                 holder.uDesignation =  v.findViewById(R.id.val1);
                 holder.uLocation =  v.findViewById(R.id.val2);
                 holder.layout=v.findViewById(R.id.gasitemlayout);
+                holder.gridframecolor=v.findViewById(R.id.gridframecolor);
                 v.setTag(holder);
             } else {
                 holder = (ViewHolder) v.getTag();
             }
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
             holder.uDesignation.setText(String.format("%.2f",(float)listData.get(position).getAinput())+"");
-            holder.uLocation.setText(String.format("%.2f",(float)listData.get(position).getFbill())+"");
+
+            NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+            String moneyString = formatter.format((float)listData.get(position).getFbill());
+            holder.uLocation.setText(moneyString);
 
             if((float)listData.get(position).getFbill()>=from&&(float)listData.get(position).getFbill()<=to){
+                holder.gridframecolor.setBackgroundColor(Color.rgb(14,131,19));
                 holder.uLocation.setTextColor(Color.rgb(14,131,19));
             }else{
+                holder.gridframecolor.setBackgroundColor(Color.RED);
                 holder.uLocation.setTextColor(Color.RED);
             }
 
@@ -187,6 +196,7 @@ Context context;
             TextView uDesignation;
             TextView uLocation;
             LinearLayout layout;
+             FrameLayout gridframecolor;
         }
     }
 

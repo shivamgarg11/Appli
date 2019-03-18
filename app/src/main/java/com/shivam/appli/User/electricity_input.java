@@ -6,7 +6,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -183,7 +186,26 @@ getrange();
                                     if (!dataSnapshot.hasChild(date + "")) {
                                         electricity_object obj = insertvalues(data1, data2, data3, data4);
                                         myRef.child(date + "").setValue(obj);
-                                        FancyToast.makeText(electricity_input.this, "Calculated P.F : "+obj.getGcal_pf()+" ", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+                                       // FancyToast.makeText(electricity_input.this, "Calculated P.F : "+obj.getGcal_pf()+" ", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+
+
+                                        LayoutInflater inflater = getLayoutInflater();
+                                        // Inflate the Layout
+                                        View layout = inflater.inflate(R.layout.my_custom_toast,
+                                                (ViewGroup) findViewById(R.id.custom_toast_layout));
+
+                                        TextView text = (TextView) layout.findViewById(R.id.textToShow);
+
+                                        text.setText("Calculated P.F : "+String.format("PF: "+"%.2f",obj.getGcal_pf()));
+
+                                        Toast toast = new Toast(getApplicationContext());
+                                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                                        toast.setDuration(Toast.LENGTH_LONG);
+                                        toast.setView(layout);
+                                        toast.show();
+
+
+
 
                                         if (obj.getGcal_pf() < from || obj.getGcal_pf() > to) {
                                             FirebaseDatabase database = FirebaseDatabase.getInstance();

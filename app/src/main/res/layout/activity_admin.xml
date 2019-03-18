@@ -143,12 +143,12 @@
 
     <Button
         android:id="@+id/goback"
-        android:padding="5dp"
+        android:padding="10dp"
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:background="#89eae3e3"
+        android:background="@drawable/btn"
         android:text="GO BACK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

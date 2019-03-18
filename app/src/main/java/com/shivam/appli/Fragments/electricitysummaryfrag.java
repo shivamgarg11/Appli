@@ -25,6 +25,9 @@ import com.shivam.appli.Java_objects.electricity_object;
 import com.shivam.appli.Java_objects.electricityconstants;
 import com.shivam.appli.R;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -135,8 +138,13 @@ double from,to;
                     CALPF.setText(String.format("%.2f",(float)obj.getGcal_pf())+"");
                     MPF.setText(String.format("%.2f",(float)obj.getEmpf())+"");
                     PF.setText(String.format("%.2f",(float)obj.getFppf())+"");
-                    amount1.setText(String.format("%.2f",(float)obj.getHamount1())+"");
-                    amount2.setText(String.format("%.2f",(float)obj.getIamount2())+"");
+
+                    NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+                    String moneyString1 = formatter.format((float)obj.getHamount1());
+                    String moneyString2 = formatter.format((float)obj.getIamount2());
+                    amount1.setText(moneyString1);
+                    amount2.setText(moneyString2);
+
                     time.setText(obj.getTime());
 
                     if((float)obj.getGcal_pf()>=from&&(float)obj.getGcal_pf()<=to){

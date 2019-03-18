@@ -143,7 +143,7 @@ public class oil_output extends AppCompatActivity {
                     arr.add(String.valueOf(i));
                 }
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(oil_output.this, android.R.layout.simple_spinner_item, arr);
-                adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                adapter1.setDropDownViewResource(R.layout.spinnerdropdown);
 
                 final Spinner spinner2 = view.findViewById(R.id.spinner_two);
                 ArrayList<String> arrayList = new ArrayList<>();
@@ -160,7 +160,7 @@ public class oil_output extends AppCompatActivity {
                 arrayList.add("Nov\n");
                 arrayList.add("Dec\n");
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(oil_output.this, android.R.layout.simple_spinner_item, arrayList);
-                adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                adapter1.setDropDownViewResource(R.layout.spinnerdropdown);
 
 
                 spinner.setAdapter(adapter1);
@@ -485,7 +485,7 @@ public class oil_output extends AppCompatActivity {
             arr.add(String.valueOf(i));
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(oil_output.this, android.R.layout.simple_spinner_item, arr);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        adapter.setDropDownViewResource(R.layout.spinnerdropdown);
         spinner.setAdapter(adapter);
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
@@ -553,7 +553,7 @@ public class oil_output extends AppCompatActivity {
             arr.add(String.valueOf(i));
         }
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(oil_output.this, android.R.layout.simple_spinner_item, arr);
-        adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        adapter1.setDropDownViewResource(R.layout.spinnerdropdown);
 
         final Spinner spinner2 = view.findViewById(R.id.spinner_two);
         ArrayList<String> arrayList = new ArrayList<>();
@@ -570,7 +570,7 @@ public class oil_output extends AppCompatActivity {
         arrayList.add("Nov");
         arrayList.add("Dec");
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(oil_output.this, android.R.layout.simple_spinner_item, arrayList);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(R.layout.spinnerdropdown);
 
 
         spinner.setAdapter(adapter1);

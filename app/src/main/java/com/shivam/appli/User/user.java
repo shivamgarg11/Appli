@@ -68,6 +68,8 @@ public class user extends AppCompatActivity {
                                     startActivity(i);
                                     finish();
                                 }else{
+
+                                    selected=maintankoilarray.length-1;
                                     AlertDialog dialogsub=new AlertDialog.Builder(user.this)
                                             .setIcon(R.drawable.logoo)
                                             .setTitle("              OIL/MAIN TANK")
@@ -80,10 +82,21 @@ public class user extends AppCompatActivity {
                                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
-                                                    Intent i = new Intent(user.this, MainTankOil.class);
-                                                        i.putExtra("path", maintankoilarray[selected]);
-                                                        startActivity(i);
-                                                        finish();
+                                                   if(selected==0){
+                                                          Intent i = new Intent(user.this, Maintankpurchase.class);
+                                                          startActivity(i);
+                                                          finish();
+                                                   }
+                                                   if(selected==1){
+                                                       Intent i = new Intent(user.this, Maintankissue.class);
+                                                       startActivity(i);
+                                                       finish();
+                                                   }
+                                                   if(selected==2){
+                                                       Intent i = new Intent(user.this, MaintankCMS.class);
+                                                       startActivity(i);
+                                                       finish();
+                                                   }
                                                 }
                                             })
                                             .setNegativeButton("Back", new DialogInterface.OnClickListener() {

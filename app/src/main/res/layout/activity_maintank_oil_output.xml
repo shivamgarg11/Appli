@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ADMIN.MaintankOil_output"
+    android:background="@drawable/background">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/path"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:background="#8A000000"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logoo"/>
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:background="#92000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
+        <Button
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="bottom|right"
+            android:id="@+id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="summary"
+            android:background="@drawable/btn"/>
+
+
+
+        <Button
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="bottom|right"
+            android:id="@+id/download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="download"
+            android:background="@drawable/btn"
+            />
+
+
+
+    </LinearLayout>
+
+        <github.hotstu.sasuke.SasukeView
+            android:padding="10dp"
+            android:id="@+id/sasuke"
+            android:layout_marginBottom="60dp"
+            android:background="#6AFFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="bottom|left"
+        android:id="@+id/goback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="GO BACK"
+        android:background="@drawable/btn"/>
+
+
+
+    <Button
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="bottom|right"
+        android:id="@+id/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Setting"
+        android:background="@drawable/btn"/>
+
+</FrameLayout>

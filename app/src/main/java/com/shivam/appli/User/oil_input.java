@@ -249,7 +249,7 @@ public class oil_input extends AppCompatActivity {
 
     public  void setnotify(String token){
         final String Legacy_SERVER_KEY = "AIzaSyB-XTKZWELMtRv88aVymt7EOTVWdrJuOnA";
-        String msg = "USER HAS ENTERED OUT OF RANGE DATA";
+        String msg = "USER HAS ENTERED OUT OF RANGE DATA in OIL " + pathway;
         String title = "WARNING";
         JSONObject obj = null;
         JSONObject objData = null;

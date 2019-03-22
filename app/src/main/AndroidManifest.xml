@@ -20,9 +20,16 @@
         android:roundIcon="@drawable/logoo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".User.MaintankCMS"></activity>
-        <activity android:name=".User.Maintankissue" />
-        <activity android:name=".User.Maintankpurchase" />
+        <activity android:name=".ADMIN.MaintankOil_output"></activity>
+        <activity
+            android:name=".User.MaintankCMS"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".User.Maintankissue"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".User.Maintankpurchase"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

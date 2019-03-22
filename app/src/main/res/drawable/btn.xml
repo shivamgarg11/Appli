@@ -4,4 +4,8 @@
     <corners android:radius="1000dp"/> <!-- increasing the value, increases the rounding. And as  TTransmit said, to make it like a capsule make the radius half of your button height -->
     <solid android:color="#CEC7C7"/> <!-- the button color -->
 
+    <stroke
+        android:width="3dp"
+        android:color="#000000" />
+
 </shape>

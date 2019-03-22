@@ -2,7 +2,8 @@ package com.shivam.appli.Java_objects;
 
 public class Maintankobject {
 
-    String adate;
+    String aadate;
+    String abtime;
     String bparticular;
     double cpurchase;
     double dissue;
@@ -14,8 +15,9 @@ public class Maintankobject {
 
     }
 
-    public Maintankobject(String adate, String bparticular, double cpurchase, double dissue, double ebalance, double fCMS, double gdifference) {
-        this.adate = adate;
+    public Maintankobject(String aadate,String abtime, String bparticular, double cpurchase, double dissue, double ebalance, double fCMS, double gdifference) {
+        this.abtime=abtime;
+        this.aadate = aadate;
         this.bparticular = bparticular;
         this.cpurchase = cpurchase;
         this.dissue = dissue;
@@ -25,12 +27,20 @@ public class Maintankobject {
     }
 
 
-    public String getAdate() {
-        return adate;
+    public String getAbtime() {
+        return abtime;
     }
 
-    public void setAdate(String adate) {
-        this.adate = adate;
+    public void setAbtime(String abtime) {
+        this.abtime = abtime;
+    }
+
+    public String getAadate() {
+        return aadate;
+    }
+
+    public void setAadate(String aadate) {
+        this.aadate = aadate;
     }
 
     public String getBparticular() {

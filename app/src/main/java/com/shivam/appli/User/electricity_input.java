@@ -254,7 +254,7 @@ getrange();
 
     public  void setnotify(String token){
         final String Legacy_SERVER_KEY = "AIzaSyAvM2ng-9ZVbHUzR2boRRQyBNnzSd9O1K0";
-        String msg = "USER HAS ENTERED OUT OF RANGE DATA";
+        String msg = "USER HAS ENTERED OUT OF RANGE DATA in ELECTRICITY " + pathway;
         String title = "WARNING";
         JSONObject obj = null;
         JSONObject objData = null;

@@ -12,13 +12,9 @@
         android:layout_height="match_parent"
         android:background="#636B6A6A">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logoo"
-            android:layout_gravity="right"/>
 
         <TextView
+            android:background="#70FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="LOGIN"
@@ -26,6 +22,12 @@
             style="@style/TextAppearance.AppCompat.Headline"
             android:textSize="80dp"
             android:textColor="#000000" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logoo"
+            android:layout_gravity="right"/>
 
         <TextView
             android:layout_marginTop="100dp"
@@ -47,7 +49,7 @@
 
             <EditText
                 android:padding="10dp"
-                android:background="#8fffffff"
+                android:background="#5B070707"
                 android:inputType="numberPassword"
                 android:id="@+id/userpasscode"
                 android:layout_width="match_parent"

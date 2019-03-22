@@ -139,10 +139,10 @@ public class Maintankpurchase extends AppCompatActivity {
                             }
 
 
-                            Maintankobject obj=new Maintankobject(timeoil, finalStroiltype,pur,0,lastvalue+pur,0,0);
+                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), finalStroiltype,pur,0,lastvalue+pur,0,0);
                             final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            final DatabaseReference myRef = database.getReference("OILMAINTANK").child("VALUES");
-                            myRef.child(timeoil).setValue(obj);
+                            final DatabaseReference myRef = database.getReference("OILMAINTANK").child("VALUES").child(timeoil.substring(6,10)).child(timeoil.substring(3,5)).child(timeoil.substring(0,2));
+                            myRef.child(timeoil.substring(10)).setValue(obj);
 
 
                             final DatabaseReference myRef1 = database.getReference("OILMAINTANK").child("LASTVALUE");

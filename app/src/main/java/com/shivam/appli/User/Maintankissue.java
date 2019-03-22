@@ -94,11 +94,11 @@ public class Maintankissue extends AppCompatActivity {
             String strissuetype="";
             int selectedId = tankissue.getCheckedRadioButtonId();
             if (selectedId==R.id.tunnel1)
-                strissuetype="tunnel1";
+                strissuetype="Tunnel Tank 1";
             else if (selectedId==R.id.tunnel2)
-                strissuetype="tunnel2";
+                strissuetype="Tunnel Tank 2";
             else
-                strissuetype="tunnel3";
+                strissuetype="Tunnel Tank 3";
 
             tank=strissuetype;
 

@@ -20,7 +20,8 @@
         android:roundIcon="@drawable/logoo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ADMIN.MaintankOil_output"></activity>
+        <activity android:name=".ADMIN.Tunneloverwrite"></activity>
+        <activity android:name=".ADMIN.MaintankOil_output" />
         <activity
             android:name=".User.MaintankCMS"
             android:screenOrientation="portrait" />

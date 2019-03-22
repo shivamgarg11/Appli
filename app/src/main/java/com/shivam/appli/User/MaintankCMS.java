@@ -102,7 +102,7 @@ public class MaintankCMS extends AppCompatActivity {
                             double pur=lastvalue-c1;
 
 
-                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), "CMS ",0,0,lastvalue,c1,lastvalue-c1);
+                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), "CMS "+lastvalue,0,0,lastvalue,c1,lastvalue-c1);
                             final FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference("OILMAINTANK").child("VALUES").child(timeoil.substring(6,10)).child(timeoil.substring(3,5)).child(timeoil.substring(0,2));
                             myRef.child(timeoil.substring(10)).setValue(obj);

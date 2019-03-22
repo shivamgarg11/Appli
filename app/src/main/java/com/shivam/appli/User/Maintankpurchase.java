@@ -78,10 +78,10 @@ public class Maintankpurchase extends AppCompatActivity {
 
 
         EditText name=findViewById(R.id.name);
-        String strname=name.getText().toString();
+        final String strname=name.getText().toString();
 
         EditText gatepass=findViewById(R.id.gatepassno);
-        String strgatepass=gatepass.getText().toString();
+        final String strgatepass=gatepass.getText().toString();
 
         EditText weight=findViewById(R.id.weight);
         final String strweight=weight.getText().toString();
@@ -116,6 +116,8 @@ public class Maintankpurchase extends AppCompatActivity {
 
             final String finalStroiltype = stroiltype;
             final String finalStrunit = strunit;
+            final String finalStroiltype1 = stroiltype;
+            final String finalStrunit1 = strunit;
             alertDialog = new AlertDialog.Builder(Maintankpurchase.this)
                     .setIcon(R.drawable.logoo)
                     .setTitle("CONFIRMATION")
@@ -139,7 +141,7 @@ public class Maintankpurchase extends AppCompatActivity {
                             }
 
 
-                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), finalStroiltype,pur,0,lastvalue+pur,0,0);
+                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), finalStroiltype1 +" "+strname+" "+strgatepass+" "+strweight+" "+ finalStrunit1,pur,0,lastvalue+pur,0,0);
                             final FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference("OILMAINTANK").child("VALUES").child(timeoil.substring(6,10)).child(timeoil.substring(3,5)).child(timeoil.substring(0,2));
                             myRef.child(timeoil.substring(10)).setValue(obj);

@@ -19,11 +19,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,6 +36,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.shashank.sony.fancytoastlib.FancyToast;
 import com.shivam.appli.Java_objects.Maintankobject;
 import com.shivam.appli.R;
 
@@ -47,6 +50,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 
 import github.hotstu.sasuke.SasukeAdapter;
 import github.hotstu.sasuke.SasukeView;
@@ -59,6 +63,7 @@ public class MaintankOil_output extends AppCompatActivity {
 
 
     final String[] gasDownload = new String[]{"Yearly", "Monthly", "Date Range"};
+    final String[] settingoption = new String[]{"Purchase Constant","Issue  Tunnel Tank 1 Constant","Issue  Tunnel Tank 2 Constant","Issue  Tunnel Tank 3 Constant","CMS Constant"};
     int selected = gasDownload.length - 1;
 
     static String dateStart = "";
@@ -145,11 +150,276 @@ public class MaintankOil_output extends AppCompatActivity {
 
 
 
+        Button setting=findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selected = 0;
+                android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(MaintankOil_output.this)
+                        .setTitle("")
+                        .setSingleChoiceItems(settingoption, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                selected = which;
+                            }
+                        })
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                       changeconstant(selected);
+
+                            }
+                        })
+                        .setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .create();
+                dialog.show();
+
+
+            }
+        });
+
+
     }
 
 
 
 
+
+
+
+    public void changeconstant(final int selected) {
+
+        final int sel=selected;
+
+
+        final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+        DatabaseReference myRef1= database1.getReference("OILMAINTANK").child("PURCHASE").child("CONSTANTS"); ;
+
+        switch (sel){
+
+            case 0:
+                myRef1= database1.getReference("OILMAINTANK").child("PURCHASE").child("CONSTANTS");
+                break;
+            case 1:
+                myRef1= database1.getReference("OILMAINTANK").child("ISSUE").child("tunnel1").child("CONSTANTS");
+                break;
+            case 2:
+                myRef1= database1.getReference("OILMAINTANK").child("ISSUE").child("tunnel2").child("CONSTANTS");
+                break;
+            case 3:
+                myRef1= database1.getReference("OILMAINTANK").child("ISSUE").child("tunnel3").child("CONSTANTS");
+                break;
+            case 4:
+                myRef1= database1.getReference("OILMAINTANK").child("CMS").child("CONSTANTS");
+                break;
+
+        }
+
+
+        final HashMap<String,Integer> map=new HashMap<>();
+
+
+
+
+        // get prompts.xml view
+        LayoutInflater li = LayoutInflater.from(MaintankOil_output.this);
+        View changeconstant = li.inflate(R.layout.maintankconstants, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                MaintankOil_output.this);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(changeconstant);
+
+
+        final EditText c1 = (EditText) changeconstant
+                .findViewById(R.id.edit1);
+        final EditText c2 = (EditText) changeconstant
+                .findViewById(R.id.edit2);
+        final TextView t1 =  changeconstant
+                .findViewById(R.id.text1);
+        final TextView t2 = changeconstant
+                .findViewById(R.id.text2);
+        final TextView head = changeconstant
+                .findViewById(R.id.head);
+
+
+
+
+
+        switch (sel){
+
+            case 0:t1.setText("BLACK OIL:");
+                   t2.setText("BLUE OIL:");
+                myRef1= database1.getReference("OILMAINTANK").child("PURCHASE").child("CONSTANTS");
+                break;
+            case 1:head.setText("( Difference * C1 ) + ( C2 * min )");
+                t1.setText("C1:");
+                t2.setText("C2:");
+                myRef1= database1.getReference("OILMAINTANK").child("ISSUE").child("tunnel1").child("CONSTANTS");
+                break;
+            case 2:head.setText("( Difference * C1 ) + ( C2 * min )");
+                t1.setText("C1:");
+                t2.setText("C2:");
+                myRef1= database1.getReference("OILMAINTANK").child("ISSUE").child("tunnel2").child("CONSTANTS");
+                break;
+            case 3:head.setText("( Difference * C1 ) + ( C2 * min )");
+                t1.setText("C1:");
+                t2.setText("C2:");
+                myRef1= database1.getReference("OILMAINTANK").child("ISSUE").child("tunnel3").child("CONSTANTS");
+                break;
+            case 4:
+                t1.setText("CMS Index :");
+                t2.setVisibility(View.GONE);
+                c2.setVisibility(View.GONE);
+                myRef1= database1.getReference("OILMAINTANK").child("CMS").child("CONSTANTS");
+                break;
+
+
+
+        }
+
+
+        // set dialog message
+        final DatabaseReference finalMyRef = myRef1;
+        final DatabaseReference finalMyRef1 = myRef1;
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                final String strc1 = c1.getText().toString() + "";
+                                final String strc2 = c2.getText().toString() + "";
+
+
+                                if (strc1.length() == 0 ) {
+                                    FancyToast.makeText(MaintankOil_output.this, "INVALID INPUTS", Toast.LENGTH_SHORT, FancyToast.ERROR, false).show();
+                                } else {
+
+
+                                    switch (sel){
+
+                                        case 0:
+                                            finalMyRef.child("BLACKDES").setValue(Double.valueOf(strc1));
+                                            finalMyRef.child("BLUEDES").setValue(Double.valueOf(strc2));
+                                            break;
+                                        case 1:
+                                            finalMyRef.child("C1").setValue(Double.valueOf(strc1));
+                                            finalMyRef.child("C2").setValue(Double.valueOf(strc2));
+                                            break;
+                                        case 2:
+                                            finalMyRef.child("C1").setValue(Double.valueOf(strc1));
+                                            finalMyRef.child("C2").setValue(Double.valueOf(strc2));
+                                            break;
+                                        case 3:
+                                            finalMyRef.child("C1").setValue(String.valueOf(strc1));
+                                            finalMyRef.child("C2").setValue(String.valueOf(strc2));
+                                            break;
+                                        case 4:
+
+                                            AlertDialog.Builder alert = new AlertDialog.Builder(MaintankOil_output.this);
+
+                                            String st="null";
+                                            if(map.containsKey(strc1))
+                                            st=map.get(strc1)+"";
+
+
+
+                                            alert.setTitle("CMS INDEX");
+                                            alert.setMessage("OLD MAPPING : "+strc1+"="+st);
+
+                                            final EditText input = new EditText(MaintankOil_output.this);
+                                            alert.setView(input);
+
+
+                                            alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int whichButton) {
+                                             finalMyRef1.child(strc1).setValue(Double.valueOf(input.getText().toString()));
+
+                                                }
+                                            });
+
+                                            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int whichButton) {
+                                                    // Canceled.
+                                                }
+                                            });
+
+                                            alert.show();
+
+                                            break;
+
+                                    }
+
+
+
+
+                                }
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+
+        // create alert dialog
+        final AlertDialog alertDialog = alertDialogBuilder.create();
+        // show it
+
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                switch (sel){
+                    case 0:
+                        Log.d("TAGCON", "onDataChange: "+dataSnapshot.child("BLACKDES").getValue(Double.class));
+                        c1.setText(dataSnapshot.child("BLACKDES").getValue(Double.class)+"");
+                        c2.setText(dataSnapshot.child("BLUEDES").getValue(Double.class)+"");
+                        break;
+                    case 1:
+                        c1.setText(dataSnapshot.child("C1").getValue(Double.class)+"");
+                        c2.setText(dataSnapshot.child("C2").getValue(Double.class)+"");
+                        break;
+                    case 2:
+                        c1.setText(dataSnapshot.child("C1").getValue(Double.class)+"");
+                        c2.setText(dataSnapshot.child("C2").getValue(Double.class)+"");
+                        break;
+                    case 3:
+                        c1.setText(dataSnapshot.child("C1").getValue(Double.class)+"");
+                        c2.setText(dataSnapshot.child("C2").getValue(Double.class)+"");
+                        break;
+                    case 4:
+                        for (DataSnapshot dayIter : dataSnapshot.getChildren()){
+                            map.put(dayIter.getKey(),dayIter.getValue(Integer.class));
+                        }
+
+
+
+                        break;
+
+                }
+
+                alertDialog.show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
+    }
 
 
     public void onClick(View view) {
@@ -195,7 +465,7 @@ public class MaintankOil_output extends AppCompatActivity {
                         break;
                     case 2:
                         res = "PARTICULAR";
-                        ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(400, 80));
+                        ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(600, 80));
                         break;
                     case 3:
                         res = "PURCHASE" ;
@@ -239,7 +509,7 @@ public class MaintankOil_output extends AppCompatActivity {
                         break;
                     case 2:
                         res = ob.getBparticular();
-                        ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(400, 80));
+                        ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(600, 80));
                         break;
                     case 3:
                         res = "" + ob.getCpurchase();
@@ -338,19 +608,20 @@ public class MaintankOil_output extends AppCompatActivity {
 
                     if (date1.after(date2)) {
                         Toast.makeText(MaintankOil_output.this, "Please Check the dates!", Toast.LENGTH_SHORT).show();
+                        summaryget();
                     } else {
                         Calendar calendar1 = new GregorianCalendar();
                         calendar1.setTime(date1);
                         Calendar calendar2 = new GregorianCalendar();
                         calendar2.setTime(date2);
                         final int year1 = calendar1.get(Calendar.YEAR);
-                        int month1 = calendar1.get(Calendar.MONTH) + 1;
-                        int day1 = calendar1.get(Calendar.DAY_OF_MONTH);
+                        final int month1 = calendar1.get(Calendar.MONTH) + 1;
+                        final int day1 = calendar1.get(Calendar.DAY_OF_MONTH);
 
 
                         final int year2 = calendar2.get(Calendar.YEAR);
-                        int month2 = calendar2.get(Calendar.MONTH) + 1;
-                        int day2 = calendar2.get(Calendar.DAY_OF_MONTH);
+                        final int month2 = calendar2.get(Calendar.MONTH) + 1;
+                        final int day2 = calendar2.get(Calendar.DAY_OF_MONTH);
                         final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                         final DatabaseReference myRef1 = database1.getReference("OILMAINTANK").child("VALUES");
                         myRef1.addValueEventListener(new ValueEventListener() {
@@ -367,24 +638,33 @@ public class MaintankOil_output extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 for (DataSnapshot yearIter : dataSnapshot.getChildren()) {
-                                                    Log.d("RangeDate", "onDataChange: " + yearIter.getKey().toString());
 
-                                                    for (DataSnapshot monthIter : yearIter.getChildren()) {
 
-                                                        for (DataSnapshot dayIter : monthIter.getChildren()) {
+                                                    if(Integer.valueOf(yearIter.getKey().toString())>=month1&&Integer.valueOf(yearIter.getKey().toString())<=month2) {
 
-                                                            Maintankobject obj=dayIter.getValue(Maintankobject.class);
-                                                            arr1.add(obj);
-                                                            Log.d("dayIIII", "onDataChange: " + arr1);
-                                                            sasuke = findViewById(R.id.sasuke);
-                                                            sasuke.setStickColumnHead(true);
-                                                            sasuke.setStickRowHead(true);
-                                                            sasuke.setStickColumnHead(true);
-                                                            sasuke.setStickRowHead(false);
-                                                            sasuke.setAdapter(new MySasukeAdapter());
+                                                        Log.d("RangeDate", "onDataChange: " + yearIter.getKey().toString());
 
+                                                        for (DataSnapshot monthIter : yearIter.getChildren()) {
+
+                                                            //if (Integer.valueOf(monthIter.getKey().toString()) >= day1 && Integer.valueOf(monthIter.getKey().toString()) <= day2) {
+
+                                                                for (DataSnapshot dayIter : monthIter.getChildren()) {
+
+                                                                    Maintankobject obj = dayIter.getValue(Maintankobject.class);
+
+                                                                    arr1.add(obj);
+                                                                    Log.d("dayIIII", "onDataChange: " + arr1);
+                                                                    sasuke = findViewById(R.id.sasuke);
+                                                                    sasuke.setStickColumnHead(true);
+                                                                    sasuke.setStickRowHead(true);
+                                                                    sasuke.setStickColumnHead(true);
+                                                                    sasuke.setStickRowHead(false);
+                                                                    sasuke.setAdapter(new MySasukeAdapter());
+
+                                                                //}
+
+                                                            }
                                                         }
-
                                                     }
                                                 }
 
@@ -411,6 +691,7 @@ public class MaintankOil_output extends AppCompatActivity {
                     }
                 } catch (ParseException e) {
                     Toast.makeText(MaintankOil_output.this, "Dates could not be parsed, Please try again!", Toast.LENGTH_SHORT).show();
+                    summaryget();
                 }
 
 

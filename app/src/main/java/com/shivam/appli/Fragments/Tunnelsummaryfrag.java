@@ -2,7 +2,10 @@ package com.shivam.appli.Fragments;
 
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,18 +13,30 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.shashank.sony.fancytoastlib.FancyToast;
+import com.shivam.appli.ADMIN.Tunneloverwrite;
 import com.shivam.appli.Java_objects.Tunneltank_object;
+import com.shivam.appli.Java_objects.Tunneltankconstant;
 import com.shivam.appli.R;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +47,7 @@ public class Tunnelsummaryfrag extends Fragment {
     Context context;
     double from,to;
     String pathway="";
+    Tunneltankconstant[] constant = new Tunneltankconstant[1];
 
     public Tunnelsummaryfrag() {
         // Required empty public constructor
@@ -65,6 +81,19 @@ public class Tunnelsummaryfrag extends Fragment {
         final TextView output2=rootview.findViewById(R.id.output2);
         final TextView time=rootview.findViewById(R.id.time);
 
+
+        final Button overwrite=rootview.findViewById(R.id.overwrite);
+        overwrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(context, Tunneloverwrite.class);
+                i.putExtra("DATE",strdate);
+                i.putExtra("PATHWAY",pathway);
+                startActivity(i);
+
+
+            }
+        });
 
 
 
@@ -132,5 +161,7 @@ public class Tunnelsummaryfrag extends Fragment {
 
         return  rootview;
     }
+
+
 
 }

@@ -41,15 +41,41 @@ public class electricityoverwrite extends AppCompatActivity {
         setContentView(R.layout.activity_electricityoverwrite);
 
 
-
-
-
-
         date=getIntent().getStringExtra("DATE");
         path=getIntent().getStringExtra("PATHWAY");
 
         getallobjects();
         getprevoiusdata();
+
+
+
+
+
+
+        SimpleDateFormat myFormat = new SimpleDateFormat("yyyyMMdd");
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, 1);
+
+        try {
+            Date overwritedate =myFormat.parse(date);
+            Date currentDate = c.getTime();
+            long diff = TimeUnit.MILLISECONDS.toDays(currentDate.getTime() - overwritedate.getTime());
+
+            if(diff>=7) {
+                FancyToast.makeText(electricityoverwrite.this,"PERMISSION DENIED (older than 7 days)  ", Toast.LENGTH_SHORT,FancyToast.ERROR,false).show();
+                onBackPressed();
+            }
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
 
         TextView headpath=findViewById(R.id.path);
         TextView datetime=findViewById(R.id.datetime);

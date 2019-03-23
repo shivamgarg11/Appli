@@ -161,7 +161,7 @@ public class electricity_output extends AppCompatActivity {
                 arrayList.add("Oct");
                 arrayList.add("Nov");
                 arrayList.add("Dec");
-                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(electricity_output.this, android.R.layout.simple_spinner_item, arrayList);
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(electricity_output.this, R.layout.spinnerdropdown, arrayList);
                 adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
 
@@ -322,7 +322,7 @@ public class electricity_output extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
-                writeCSV[0] += "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
+                writeCSV[0] += "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n\n";
                 final String spinnerval=String.valueOf(spinner.getSelectedItem().toString());
                 final DatabaseReference myRef1 = database1.getReference("ELECTRICITY"+pathway).child(spinnerval);
                 myRef1.addValueEventListener(new ValueEventListener() {
@@ -420,7 +420,7 @@ public class electricity_output extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
+                            String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n\n";
                             String str="";
                             str += " / "+spinner2.getSelectedItem().toString() ;
                             str += " / "+spinner.getSelectedItem().toString() ;
@@ -470,7 +470,7 @@ public class electricity_output extends AppCompatActivity {
     String dateStart = "";
 
     String dateEnd = "";
-    String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n";
+    String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n\n";
 
     public void selRange() {
         Toast.makeText(this, "" + gasDownload[selected], Toast.LENGTH_SHORT).show();
@@ -582,7 +582,7 @@ public class electricity_output extends AppCompatActivity {
                                                         }
                                                         csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                         csvWrite += "\n";
-                                                        csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";
+                                                        //csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";
                                                     }
                                                 }
                                                 csvWrite=csvWrite.substring(0,csvWrite.length()-6);

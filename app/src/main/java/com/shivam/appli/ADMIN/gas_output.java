@@ -605,7 +605,7 @@ public class gas_output extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
+                            String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n\n";
                             String str="";
                             str += " / "+spinner2.getSelectedItem().toString() ;
                             str += " / "+spinner.getSelectedItem().toString() ;
@@ -655,7 +655,7 @@ public class gas_output extends AppCompatActivity {
     String dateStart = "";
 
     String dateEnd = "";
-    String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n";
+    String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n\n";
 
     public void selRange() {
         Toast.makeText(this, "" + gasDownload[selected], Toast.LENGTH_SHORT).show();

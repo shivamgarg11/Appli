@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shashank.sony.fancytoastlib.FancyToast;
 import com.shivam.appli.R;
+import com.shivam.appli.Java_objects.electricity_object;
+import com.shivam.appli.Java_objects.electricityconstants;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,43 +27,40 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import com.shivam.appli.Java_objects.gas_object;
-import com.shivam.appli.Java_objects.gasconstants;
+public class electricityoverwrite extends AppCompatActivity {
 
-
-
-
-public class gasoverwrite extends AppCompatActivity {
-
-
-    ArrayList<gas_object> arr=new ArrayList<>();
+    ArrayList<electricity_object> arr=new ArrayList<>();
     ArrayList<String> arr1=new ArrayList<>();
     String date="";
-    gasconstants[] constant = new gasconstants[1];
+    String path="";
+    electricityconstants[] constant = new electricityconstants[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gasoverwrite);
+        setContentView(R.layout.activity_electricityoverwrite);
+
 
 
 
 
 
         date=getIntent().getStringExtra("DATE");
-
-        Log.d("DATES", "onCreate: "+date);
+        path=getIntent().getStringExtra("PATHWAY");
 
         getallobjects();
         getprevoiusdata();
 
+        TextView headpath=findViewById(R.id.path);
         TextView datetime=findViewById(R.id.datetime);
-        final EditText oilinput1=findViewById(R.id.gasinput);
+        final EditText oilinput1=findViewById(R.id.oilinput1);
+        final EditText oilinput2=findViewById(R.id.oilinput2);
 
         Button submit=findViewById(R.id.done);
         Button close=findViewById(R.id.close);
 
 
+        headpath.setText("ADMIN/ELECTRICITY/"+path+"/Change");
         datetime.setText(date.substring(6)+"/"+date.substring(4,6)+"/"+date.substring(0,4));
 
 
@@ -79,13 +78,30 @@ public class gasoverwrite extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                String strreading=oilinput1.getText().toString();
+                EditText electricityinput1 = findViewById(R.id.electricityinput1);
+                String datastr1=electricityinput1.getText().toString()+"";
 
-                Double reading=Double.valueOf(strreading);
+
+                EditText electricityinput2 = findViewById(R.id.electricityinput2);
+                String datastr2=electricityinput2.getText().toString()+"";
 
 
-                gas_object mainobj=arr.remove(1);
-                gas_object old=arr.remove(0);
+                EditText electricityinput3 = findViewById(R.id.electricityinput3);
+                String datastr3=electricityinput3.getText().toString()+"";
+
+
+                EditText electricityinput4 = findViewById(R.id.electricityinput4);
+                String datastr4=electricityinput4.getText().toString()+"";
+
+
+                final double data1 = Double.valueOf(datastr1);
+                final double data2 = Double.valueOf(datastr2);
+                final double data3 = Double.valueOf(datastr3);
+                final double data4 = Double.valueOf(datastr4);
+
+
+                electricity_object mainobj=arr.remove(1);
+                electricity_object old=arr.remove(0);
 
                 String startdate=arr1.remove(0)+" "+old.getTime();
                 String enddate=arr1.remove(0)+" "+mainobj.getTime();
@@ -95,10 +111,9 @@ public class gasoverwrite extends AppCompatActivity {
                     SimpleDateFormat myFormat = new SimpleDateFormat("yyyyMMdd HH:mm");
                     Date date1 = myFormat.parse(startdate);
                     Date date2 = myFormat.parse(enddate);
-                    diff = TimeUnit.MILLISECONDS.toHours(date2.getTime() - date1.getTime());
+                    diff = TimeUnit.MILLISECONDS.toMinutes(date2.getTime() - date1.getTime());
                     if(diff==0)
                         diff=1;
-
 
 
 
@@ -109,26 +124,32 @@ public class gasoverwrite extends AppCompatActivity {
 
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("GASMUKTA").child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
+                DatabaseReference myRef = database.getReference("ELECTRICITY"+path).child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
 
-                gas_object obj = new gas_object();
-                obj.setAinput(reading);
-                obj.setBdifference(reading-old.getAinput());
-                obj.setCscm(obj.getBdifference()*constant[0].getC1());
-                obj.setDmmbto((obj.getCscm()*constant[0].getC2()*constant[0].getC3())/constant[0].getC5());
-                obj.setEride(obj.getDmmbto()*constant[0].getC4());
+                electricity_object obj = new electricity_object();
+                obj.setAkwh(data1);
+                obj.setCkvah(data2);
+                obj.setEmpf(data3);
+                obj.setFppf(data4);
+                obj.setGcal_pf( (data1-old.getAkwh())/(data2-old.getCkvah()));
+                obj.setBdiffkwh( (data1-old.getAkwh()));
+
+                double diffkvah=data2-old.getCkvah();
+
+                obj.setDdiffkvah((diffkvah));
                 obj.setTime(mainobj.getTime());
-                obj.setFbill((obj.getEride()*15*24)/diff);
+
+                    obj.setHamount1( (diffkvah*constant[0].getC1()*constant[0].getC3()));
+                    obj.setIamount2( ((diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
 
 
-
-               myRef.setValue(obj);
+                myRef.setValue(obj);
 
 
 
 
                 if(arr.size()>0) {
-                    gas_object temp=arr.remove(0);
+                    electricity_object temp=arr.remove(0);
                     startdate=enddate;
                     enddate=arr1.remove(0)+" "+temp.getTime();
 
@@ -140,10 +161,9 @@ public class gasoverwrite extends AppCompatActivity {
                         SimpleDateFormat myFormat = new SimpleDateFormat("yyyyMMdd HH:mm");
                         Date date1 = myFormat.parse(startdate);
                         Date date2 = myFormat.parse(enddate);
-                        diff = TimeUnit.MILLISECONDS.toHours(date2.getTime() - date1.getTime());
+                        diff = TimeUnit.MILLISECONDS.toMinutes(date2.getTime() - date1.getTime());
                         if(diff==0)
                             diff=1;
-
 
 
 
@@ -151,35 +171,39 @@ public class gasoverwrite extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
+                    electricity_object obj1 = new electricity_object();
+                    obj1.setAkwh(temp.getAkwh());
+                    obj1.setCkvah(temp.getCkvah());
+                    obj1.setEmpf(temp.getEmpf());
+                    obj1.setFppf(temp.getFppf());
+                    obj1.setGcal_pf( (temp.getAkwh()-obj.getAkwh())/(temp.getCkvah()-obj.getCkvah()));
+                    obj1.setBdiffkwh( (temp.getAkwh()-obj.getAkwh()));
 
+                    diffkvah=temp.getCkvah()-obj1.getCkvah();
 
-                    gas_object obj1 = new gas_object();
-                    obj1.setAinput(temp.getAinput());
-                    obj1.setBdifference(temp.getAinput()-obj.getAinput());
-                    obj1.setCscm(obj1.getBdifference()*constant[0].getC1());
-                    obj1.setDmmbto((obj1.getCscm()*constant[0].getC2()*constant[0].getC3())/constant[0].getC5());
-                    obj1.setEride(obj1.getDmmbto()*constant[0].getC4());
+                    obj1.setDdiffkvah((diffkvah));
                     obj1.setTime(temp.getTime());
-                    obj1.setFbill((obj1.getEride()*15*24)/diff);
+
+                    obj1.setHamount1( (diffkvah*constant[0].getC1()*constant[0].getC3()));
+                    obj1.setIamount2( ((diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
 
 
+                    myRef = database.getReference("ELECTRICITY"+path).child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
 
-                    myRef = database.getReference("GASMUKTA").child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
+
+                    Log.d("DATES", "onClick: "+obj.getAkwh()+" "+obj.getBdiffkwh()+" "+obj.getCkvah()+" "+obj.getDdiffkvah()+" "+obj.getEmpf()+" "+obj.getFppf()+" "+obj.getGcal_pf()+" "+obj.getHamount1()+" "+obj.getIamount2()+" ");
+                    Log.d("DATES", "onClick: "+obj1.getAkwh()+" "+obj1.getBdiffkwh()+" "+obj1.getCkvah()+" "+obj1.getDdiffkvah()+" "+obj1.getEmpf()+" "+obj1.getFppf()+" "+obj1.getGcal_pf()+" "+obj1.getHamount1()+" "+obj1.getIamount2()+" ");
+
+
 
                     myRef.setValue(obj1);
-
-
-                    Log.d("DATES", "onClick: "+obj.getTime()+" "+obj.getAinput()+" "+obj.getBdifference()+" "+obj.getCscm()+" "+obj.getDmmbto()+" "+obj.getEride()+" "+obj.getFbill()+" ");
-
-                    Log.d("DATES", "onClick: "+obj1.getTime()+" "+obj1.getAinput()+" "+obj1.getBdifference()+" "+obj1.getCscm()+" "+obj1.getDmmbto()+" "+obj1.getEride()+" "+obj1.getFbill()+" ");
-
 
 
 
 
                 }
 
-                FancyToast.makeText(gasoverwrite.this,"SUCCESSFUL OVERWRITING", Toast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
+                FancyToast.makeText(electricityoverwrite.this,"SUCCESSFUL OVERWRITING", Toast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
 
                 onBackPressed();
 
@@ -200,14 +224,14 @@ public class gasoverwrite extends AppCompatActivity {
     public void getprevoiusdata() {
 
         final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef1 = database1.getReference("GASMUKTA").child("CONSTANTS");
+        final DatabaseReference myRef1 = database1.getReference("ELECTRICITY" + path).child("CONSTANTS");
 
 
         myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                constant[0] = dataSnapshot.getValue(gasconstants.class);
+                constant[0] = dataSnapshot.getValue(electricityconstants.class);
             }
 
             @Override
@@ -239,8 +263,9 @@ public class gasoverwrite extends AppCompatActivity {
             String getdate=myFormat.format(newDate);
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("GASMUKTA");
+            DatabaseReference myRef = database.getReference("ELECTRICITY"+path);
 
+            Log.d("DATES", "getallobjects: "+path);
 
 
             while (getdate.compareTo(today)!=0){
@@ -267,7 +292,7 @@ public class gasoverwrite extends AppCompatActivity {
                                 if (dataSnapshot.child(Integer.valueOf(getstrdate.substring(6))+"").exists()) {
                                     dataSnapshot = dataSnapshot.child(Integer.valueOf(getstrdate.substring(6))+"");
 
-                                    gas_object obj=dataSnapshot.getValue(gas_object.class);
+                                    electricity_object obj=dataSnapshot.getValue(electricity_object.class);
                                     arr.add(obj);
                                     arr1.add(getstrdate);
 
@@ -322,7 +347,7 @@ public class gasoverwrite extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(gasoverwrite.this, admin.class));
+        startActivity(new Intent(electricityoverwrite.this, admin.class));
         finish();
     }
 

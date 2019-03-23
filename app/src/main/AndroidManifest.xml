@@ -20,7 +20,8 @@
         android:roundIcon="@drawable/logoo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ADMIN.gasoverwrite"></activity>
+        <activity android:name=".ADMIN.electricityoverwrite"></activity>
+        <activity android:name=".ADMIN.gasoverwrite" />
         <activity android:name=".ADMIN.Tunneloverwrite" />
         <activity android:name=".ADMIN.MaintankOil_output" />
         <activity

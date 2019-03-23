@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shashank.sony.fancytoastlib.FancyToast;
 import com.shivam.appli.ADMIN.admin;
+import com.shivam.appli.ADMIN.electricityoverwrite;
 import com.shivam.appli.Java_objects.electricity_object;
 import com.shivam.appli.Java_objects.electricityconstants;
 import com.shivam.appli.R;
@@ -62,6 +64,20 @@ double from,to;
         int date=Integer.valueOf(strdate.substring(6));
         TextView datetime=rootview.findViewById(R.id.datetime);
         datetime.setText(date+"/"+month+"/"+year);
+
+
+        final Button overwrite=rootview.findViewById(R.id.overwrite);
+        overwrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(context, electricityoverwrite.class);
+                i.putExtra("DATE",strdate);
+                i.putExtra("PATHWAY",pathway);
+                startActivity(i);
+
+
+            }
+        });
 
 
         final TextView KWH=rootview.findViewById(R.id.KWH);

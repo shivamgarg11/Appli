@@ -149,12 +149,15 @@ public class Tunneloverwrite extends AppCompatActivity {
 
            myRef.setValue(obj1);
 
-           FancyToast.makeText(Tunneloverwrite.this,"SUCCESSFUL OVERWRITING", Toast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
 
-           onBackPressed();
 
 
        }
+
+
+                FancyToast.makeText(Tunneloverwrite.this,"SUCCESSFUL OVERWRITING", Toast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
+
+                onBackPressed();
 
         }
             });

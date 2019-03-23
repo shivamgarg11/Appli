@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ADMIN.gasoverwrite"
+    android:background="@drawable/background">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/path"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ADMIN/GAS/MUKTA/CHANGE"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:background="#8A000000"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logoo"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DATE AND TIME "
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:textStyle="bold"
+            android:background="#bfffffff"
+            android:padding="2dp"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/datetime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:textStyle="bold"
+            android:background="#84ffffff"
+            android:padding="2dp"/>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="#bfffffff">
+            <EditText
+                android:id="@+id/gasinput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ENTER READING"
+                android:gravity="center"
+                android:inputType="numberDecimal"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
+            android:background="#88ffffff"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_marginLeft="50dp"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="#555"/>
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/close"/>
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="#555"/>
+
+
+            <TextView
+                android:layout_marginLeft="100dp"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="#555"/>
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/done"/>
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="#555"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:background="#88ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
+
+            <TextView
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginLeft="70dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CLOSE" />
+
+
+            <TextView
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginLeft="120dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SUBMIT"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>

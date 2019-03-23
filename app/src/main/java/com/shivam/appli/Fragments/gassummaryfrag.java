@@ -3,6 +3,7 @@ package com.shivam.appli.Fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,7 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.shivam.appli.ADMIN.gasoverwrite;
 import com.shivam.appli.Java_objects.gas_object;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,6 +67,18 @@ double from,to;
         final TextView bill=rootview.findViewById(R.id.bill);
         final TextView time=rootview.findViewById(R.id.time);
 
+
+        final Button overwrite=rootview.findViewById(R.id.overwrite);
+        overwrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(context, gasoverwrite.class);
+                i.putExtra("DATE",strdate);
+                startActivity(i);
+
+
+            }
+        });
 
 
 

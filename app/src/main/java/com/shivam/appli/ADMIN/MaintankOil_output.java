@@ -95,6 +95,17 @@ public class MaintankOil_output extends AppCompatActivity {
 
 
 
+        Button overwrite=findViewById(R.id.overwrite);
+        overwrite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MaintankOil_output.this,maintankoverwrite.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+
         Button goback=findViewById(R.id.goback);
         goback.setOnClickListener(new View.OnClickListener() {
             @Override

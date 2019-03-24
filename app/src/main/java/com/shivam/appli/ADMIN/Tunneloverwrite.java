@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.shashank.sony.fancytoastlib.FancyToast;
 import com.shivam.appli.Java_objects.Tunneltank_object;
 import com.shivam.appli.Java_objects.Tunneltankconstant;
+import com.shivam.appli.Java_objects.Tunneltanklastvalue;
 import com.shivam.appli.R;
 
 import java.text.ParseException;
@@ -182,6 +183,14 @@ public class Tunneloverwrite extends AppCompatActivity {
 
            myRef.setValue(obj1);
 
+
+
+
+       }else{
+
+           Tunneltanklastvalue last=new Tunneltanklastvalue(enddate.substring(6,8)+"/"+enddate.substring(4,6)+"/"+enddate.substring(0,4)+mainobj.getAtime(),obj.getBreading());
+           myRef = database.getReference("OIL"+path).child("LASTVALUE");
+           myRef.setValue(last);
 
 
 

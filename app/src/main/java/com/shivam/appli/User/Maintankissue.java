@@ -93,14 +93,16 @@ public class Maintankissue extends AppCompatActivity {
 
             String strissuetype="";
             int selectedId = tankissue.getCheckedRadioButtonId();
-            if (selectedId==R.id.tunnel1)
-                strissuetype="Tunnel Tank 1";
-            else if (selectedId==R.id.tunnel2)
-                strissuetype="Tunnel Tank 2";
-            else
-                strissuetype="Tunnel Tank 3";
-
-            tank=strissuetype;
+            if (selectedId==R.id.tunnel1) {
+                strissuetype = "Tunnel Tank 1";
+                tank = "tunnel1";
+            }else if (selectedId==R.id.tunnel2) {
+                strissuetype = "Tunnel Tank 2";
+                tank="tunnel2";
+            }else {
+                strissuetype = "Tunnel Tank 3";
+                tank="tunnel3";
+            }
 
             final String finalstrissuetype = strissuetype;
 
@@ -159,8 +161,6 @@ public class Maintankissue extends AppCompatActivity {
         final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
         final DatabaseReference myRef1 = database1.getReference("OILMAINTANK").child("ISSUE").child(tank).child("CONSTANTS");
 
-myRef1.child("C1").setValue(40);
-myRef1.child("C2").setValue(0.35);
 
         myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

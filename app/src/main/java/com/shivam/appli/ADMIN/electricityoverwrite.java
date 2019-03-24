@@ -19,6 +19,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import com.shivam.appli.R;
 import com.shivam.appli.Java_objects.electricity_object;
 import com.shivam.appli.Java_objects.electricityconstants;
+import com.shivam.appli.Java_objects.electricitylastvalue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -227,6 +228,10 @@ public class electricityoverwrite extends AppCompatActivity {
 
 
 
+                }else{
+                    electricitylastvalue last=new electricitylastvalue(enddate.substring(6,8)+" "+enddate.substring(4,6)+" "+enddate.substring(0,4)+mainobj.getTime(),obj.getAkwh(),obj.getCkvah());
+                    myRef = database.getReference("ELECTRICITY"+path).child("LASTVALUE");
+                    myRef.setValue(last);
                 }
 
                 FancyToast.makeText(electricityoverwrite.this,"SUCCESSFUL OVERWRITING", Toast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();

@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.shivam.appli.Java_objects.gas_object;
 import com.shivam.appli.Java_objects.gasconstants;
-
+import com.shivam.appli.Java_objects.gaslastvalue;
 
 
 
@@ -204,6 +204,14 @@ public class gasoverwrite extends AppCompatActivity {
                     Log.d("DATES", "onClick: "+obj1.getTime()+" "+obj1.getAinput()+" "+obj1.getBdifference()+" "+obj1.getCscm()+" "+obj1.getDmmbto()+" "+obj1.getEride()+" "+obj1.getFbill()+" ");
 
 
+
+
+
+                }else{
+
+                    gaslastvalue last=new gaslastvalue(enddate.substring(6,8)+" "+enddate.substring(4,6)+" "+enddate.substring(0,4)+mainobj.getTime(),obj.getAinput());
+                    myRef = database.getReference("GASMUKTA").child("LASTVALUE");
+                    myRef.setValue(last);
 
 
 

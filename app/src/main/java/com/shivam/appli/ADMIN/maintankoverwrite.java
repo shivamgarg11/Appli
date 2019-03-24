@@ -209,7 +209,7 @@ public class maintankoverwrite extends AppCompatActivity {
             }
 
 
-           particular=finalStroiltype1 +" "+strname+" "+strgatepass+" "+strweight+" "+ finalStrunit1;
+           particular=finalStroiltype1 +"-"+strname+"-"+strgatepass+"-"+strweight+"-"+ finalStrunit1;
 
             purchase=pur;
 

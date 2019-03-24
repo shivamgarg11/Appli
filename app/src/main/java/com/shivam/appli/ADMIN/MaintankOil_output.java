@@ -469,7 +469,6 @@ public class MaintankOil_output extends AppCompatActivity {
                 switch (column) {
                     case 0:
                         res = "DATE";
-                        ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(200, 80));
                         break;
                     case 1:
                         res = "TIME";
@@ -513,7 +512,6 @@ public class MaintankOil_output extends AppCompatActivity {
                 switch (column) {
                     case 0:
                         res = ob.getAadate();
-                        ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(200, 80));
                         break;
                     case 1:
                         res = ob.getAbtime();
@@ -548,7 +546,9 @@ public class MaintankOil_output extends AppCompatActivity {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             TextView tv = new TextView(parent.getContext());
-            tv.setLayoutParams(new ViewGroup.LayoutParams(280, 80));
+            tv.setLayoutParams(new ViewGroup.LayoutParams(300, 80));
+            tv.setTextColor(Color.BLACK);
+            tv.setTextSize(15);
             return new VH(tv);
         }
 

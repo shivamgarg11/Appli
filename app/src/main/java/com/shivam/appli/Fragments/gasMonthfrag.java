@@ -157,7 +157,7 @@ Context context;
                 holder = (ViewHolder) v.getTag();
             }
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
-            holder.uDesignation.setText(String.format("%.2f",(float)listData.get(position).getAinput())+"");
+            holder.uDesignation.setText(String.format("%.2f",(float)listData.get(position).getAinput())+"m³");
 
             NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
             String moneyString = formatter.format((float)listData.get(position).getFbill());

@@ -173,9 +173,11 @@ public class electricitymonthfrag extends Fragment {
             if((float)listData.get(position).getGcal_pf()>=from&&(float)listData.get(position).getGcal_pf()<=to){
                 holder.gridframecolor.setBackgroundColor(Color.rgb(14,131,19));
                 holder.uLocation.setTextColor(Color.rgb(14,131,19));
+                holder.uDesignation.setTextColor(Color.rgb(14,131,19));
             }else{
                 holder.gridframecolor.setBackgroundColor(Color.RED);
                 holder.uLocation.setTextColor(Color.RED);
+                holder.uDesignation.setTextColor(Color.RED);
             }
 
 

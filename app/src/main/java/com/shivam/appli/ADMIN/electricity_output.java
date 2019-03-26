@@ -37,6 +37,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import com.shivam.appli.Fragments.electricitysummaryfrag;
 import com.shivam.appli.Fragments.electricitymonthfrag;
 import com.shivam.appli.Fragments.gasMonthfrag;
+import com.shivam.appli.Java_objects.electricity_object;
 import com.shivam.appli.Java_objects.electricityconstants;
 import com.shivam.appli.R;
 
@@ -336,11 +337,11 @@ public class electricity_output extends AppCompatActivity {
                                 str = " / "+ yearIter.getKey() + str;
                                 for (DataSnapshot monthIter : yearIter.getChildren()) {
                                     writeCSV[0] += monthIter.getKey()+str + ",";
-                                    for (DataSnapshot dayIter : monthIter.getChildren()) {
-                                        writeCSV[0] += dayIter.getValue() + ",";
-                                    }
 
-                                    writeCSV[0]=writeCSV[0].substring(0,writeCSV[0].length()-6);
+                                    electricity_object obj=monthIter.getValue(electricity_object.class);
+
+                                    writeCSV[0] +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getGcal_pf()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getHamount1()+","+obj.getIamount2();
+
                                     writeCSV[0] += "\n";
                                 }
                                 csvPart(writeCSV[0], "Year"+spinnerval);
@@ -427,12 +428,10 @@ public class electricity_output extends AppCompatActivity {
 
                             for (DataSnapshot datesIter : dataSnapshot.getChildren()) {
                                 csvWrite += datesIter.getKey() +str+ ",";
-                                for (DataSnapshot dayIter : datesIter.getChildren()) {
-                                    csvWrite += dayIter.getValue() + ",";
-                                    Log.d("dateIter", "onDataChange: " + dayIter.getValue());
+                                electricity_object obj=datesIter.getValue(electricity_object.class);
 
-                                }
-                                csvWrite=csvWrite.substring(0,csvWrite.length()-6);
+                                csvWrite +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getGcal_pf()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getHamount1()+","+obj.getIamount2();
+
                                 csvWrite += "\n";
 
                             }
@@ -573,14 +572,10 @@ public class electricity_output extends AppCompatActivity {
                                                         Log.d("monthIIII", "onDataChange: " + monthIter.getKey());
                                                         Log.d("monthIIII", "onDataChange: " + monthIter.getValue());
 
-                                                        for (DataSnapshot dayIter : monthIter.getChildren()) {
-                                                            csvWrite += dayIter.getValue() + ",";
-                                                            Log.d("dayIIII", "onDataChange: " + dayIter.getKey());
-                                                            Log.d("dayIIII", "onDataChange: " + dayIter.getValue());
+                                                        electricity_object obj=monthIter.getValue(electricity_object.class);
 
+                                                        csvWrite +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getGcal_pf()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getHamount1()+","+obj.getIamount2();
 
-                                                        }
-                                                        csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                         csvWrite += "\n";
                                                         //csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";
                                                     }

@@ -36,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.shashank.sony.fancytoastlib.FancyToast;
 import com.shivam.appli.Fragments.gasMonthfrag;
 import com.shivam.appli.Fragments.gassummaryfrag;
+import com.shivam.appli.Java_objects.gas_object;
 import com.shivam.appli.Java_objects.gasconstants;
 import com.shivam.appli.R;
 
@@ -327,7 +328,6 @@ public class gas_output extends AppCompatActivity {
     }
 
 
-
     public void changerange() {
 
         LayoutInflater li = LayoutInflater.from(gas_output.this);
@@ -400,9 +400,6 @@ public class gas_output extends AppCompatActivity {
 
 
     }
-
-
-
 
 
     public void changeconstant() {
@@ -506,7 +503,7 @@ public class gas_output extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
-                writeCSV[0] += "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n\n";
+                writeCSV[0] += "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RATE,BILL,\n\n";
                 final String spinnerval=String.valueOf(spinner.getSelectedItem().toString());
                 final DatabaseReference myRef1 = database1.getReference("GASMUKTA").child(spinnerval);
                 myRef1.addValueEventListener(new ValueEventListener() {
@@ -520,11 +517,19 @@ public class gas_output extends AppCompatActivity {
                                 str = " / "+ yearIter.getKey() + str;
                                 for (DataSnapshot monthIter : yearIter.getChildren()) {
                                     writeCSV[0] += monthIter.getKey()+str + ",";
-                                    for (DataSnapshot dayIter : monthIter.getChildren()) {
+
+                                    // for (DataSnapshot dayIter : monthIter.getChildren()) {
 //                                            writeCSV += dayIter.
-                                        writeCSV[0] += dayIter.getValue() + ",";
-                                    }
-                                    writeCSV[0]=writeCSV[0].substring(0,writeCSV[0].length()-6);
+                                  //      writeCSV[0] += dayIter.getValue() + ",";
+                                  //  }
+                                  //  writeCSV[0]=writeCSV[0].substring(0,writeCSV[0].length()-6);
+
+                                    gas_object obj=monthIter.getValue(gas_object.class);
+                                    writeCSV[0] +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill();
+
+
+
+
                                     writeCSV[0] += "\n";
                                 }
 
@@ -605,19 +610,17 @@ public class gas_output extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n\n";
+                            String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RATE,BILL,\n\n";
                             String str="";
                             str += " / "+spinner2.getSelectedItem().toString() ;
                             str += " / "+spinner.getSelectedItem().toString() ;
 
                             for (DataSnapshot datesIter : dataSnapshot.getChildren()) {
                                 csvWrite += datesIter.getKey() +str+ ",";
-                                for (DataSnapshot dayIter : datesIter.getChildren()) {
-                                    csvWrite += dayIter.getValue() + ",";
-                                    Log.d("dateIter", "onDataChange: " + dayIter.getValue());
 
-                                }
-                                csvWrite=csvWrite.substring(0,csvWrite.length()-6);
+                                gas_object obj=datesIter.getValue(gas_object.class);
+                                csvWrite +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill();
+
                                 csvWrite += "\n";
 
                             }
@@ -655,7 +658,7 @@ public class gas_output extends AppCompatActivity {
     String dateStart = "";
 
     String dateEnd = "";
-    String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RIDE,BILL,\n\n";
+    String csvWrite = "DATE,TIME,INPUT,DIFFERENCE,SCM,MMBTO,RATE,BILL,\n\n";
 
     public void selRange() {
         Toast.makeText(this, "" + gasDownload[selected], Toast.LENGTH_SHORT).show();
@@ -758,14 +761,9 @@ public class gas_output extends AppCompatActivity {
                                                         Log.d("monthIIII", "onDataChange: " + monthIter.getKey());
                                                         Log.d("monthIIII", "onDataChange: " + monthIter.getValue());
 
-                                                        for (DataSnapshot dayIter : monthIter.getChildren()) {
-                                                            csvWrite += dayIter.getValue() + ",";
-                                                            Log.d("dayIIII", "onDataChange: " + dayIter.getKey());
-                                                            Log.d("dayIIII", "onDataChange: " + dayIter.getValue());
+                                                        gas_object obj=monthIter.getValue(gas_object.class);
+                                                        csvWrite +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill();
 
-
-                                                        }
-                                                        csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                         csvWrite += "\n";
                                                         //csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";
                                                     }

@@ -115,6 +115,14 @@ public class electricity_output extends AppCompatActivity {
         summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyy");
+                String datee=dateformat.format(c.getTime());
+                int dayofmonth=Integer.valueOf(datee.substring(0,2));
+                int monthofmonth=Integer.valueOf(datee.substring(2,4));
+                int yearofmonth=Integer.valueOf(datee.substring(4));
+
                 new DatePickerDialog(electricity_output.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -126,7 +134,7 @@ public class electricity_output extends AppCompatActivity {
                         electricitysummaryfrag frag = new electricitysummaryfrag(date[0],electricity_output.this,pathway);
                         fragmentManager.beginTransaction().replace(R.id.frame, frag).commit();
                     }
-                }, 2019, 01, 01).show();
+                }, yearofmonth, monthofmonth-1, dayofmonth).show();
             }
         });
 
@@ -323,7 +331,7 @@ public class electricity_output extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
-                writeCSV[0] += "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n\n";
+                writeCSV[0] += "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,METER PF,PANEL PF,CALCULATED PF,AMOUNT 1,AMOUNT 2\n\n";
                 final String spinnerval=String.valueOf(spinner.getSelectedItem().toString());
                 final DatabaseReference myRef1 = database1.getReference("ELECTRICITY"+pathway).child(spinnerval);
                 myRef1.addValueEventListener(new ValueEventListener() {
@@ -340,7 +348,7 @@ public class electricity_output extends AppCompatActivity {
 
                                     electricity_object obj=monthIter.getValue(electricity_object.class);
 
-                                    writeCSV[0] +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getGcal_pf()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getHamount1()+","+obj.getIamount2();
+                                    writeCSV[0] +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getGcal_pf()+","+obj.getHamount1()+","+obj.getIamount2();
 
                                     writeCSV[0] += "\n";
                                 }
@@ -421,7 +429,7 @@ public class electricity_output extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n\n";
+                            String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,METER PF,PANEL PF,CALCULATED PF,AMOUNT 1,AMOUNT 2\n\n";
                             String str="";
                             str += " / "+spinner2.getSelectedItem().toString() ;
                             str += " / "+spinner.getSelectedItem().toString() ;
@@ -430,7 +438,7 @@ public class electricity_output extends AppCompatActivity {
                                 csvWrite += datesIter.getKey() +str+ ",";
                                 electricity_object obj=datesIter.getValue(electricity_object.class);
 
-                                csvWrite +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getGcal_pf()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getHamount1()+","+obj.getIamount2();
+                                csvWrite +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getGcal_pf()+","+obj.getHamount1()+","+obj.getIamount2();
 
                                 csvWrite += "\n";
 
@@ -469,7 +477,7 @@ public class electricity_output extends AppCompatActivity {
     String dateStart = "";
 
     String dateEnd = "";
-    String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,EMPF,PF,CAL PF,AMOUNT 1,AMOUNT 2\n\n";
+    String csvWrite = "DATE,TIME,KWH,DIFF KWH,KVAH,DIFF KVAH,METER PF,PANEL PF,CALCULATED PF,AMOUNT 1,AMOUNT 2\n\n";
 
     public void selRange() {
         Toast.makeText(this, "" + gasDownload[selected], Toast.LENGTH_SHORT).show();
@@ -477,6 +485,11 @@ public class electricity_output extends AppCompatActivity {
         View view = getLayoutInflater().inflate(R.layout.date_range, null);
         ImageView date1Im = view.findViewById(R.id.date_1_im);
         ImageView date2Im = view.findViewById(R.id.date_2_im);
+
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyy");
+        final String datee=dateformat.format(c.getTime());
 
         final TextView tvDateStart = view.findViewById(R.id.date_1_tv);
         final TextView tvDateEnd = view.findViewById(R.id.date_2_tv);
@@ -493,7 +506,7 @@ public class electricity_output extends AppCompatActivity {
                         tvDateStart.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }
@@ -512,7 +525,7 @@ public class electricity_output extends AppCompatActivity {
                         tvDateEnd.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }
@@ -574,7 +587,7 @@ public class electricity_output extends AppCompatActivity {
 
                                                         electricity_object obj=monthIter.getValue(electricity_object.class);
 
-                                                        csvWrite +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getGcal_pf()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getHamount1()+","+obj.getIamount2();
+                                                        csvWrite +=obj.getTime()+","+obj.getAkwh()+","+obj.getBdiffkwh()+","+obj.getCkvah()+","+obj.getDdiffkvah()+","+obj.getEmpf()+","+obj.getFppf()+","+obj.getGcal_pf()+","+obj.getHamount1()+","+obj.getIamount2();
 
                                                         csvWrite += "\n";
                                                         //csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";

@@ -176,7 +176,6 @@ getrange();
 
 
 
-                            //Writing lastvalue
                             FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef1 = database1.getReference("ELECTRICITY" + pathway).child("LASTVALUE");
 
@@ -186,11 +185,8 @@ getrange();
                                     if (!dataSnapshot.hasChild(date + "")) {
                                         electricity_object obj = insertvalues(data1, data2, data3, data4);
                                         myRef.child(date + "").setValue(obj);
-                                       // FancyToast.makeText(electricity_input.this, "Calculated P.F : "+obj.getGcal_pf()+" ", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
-
 
                                         LayoutInflater inflater = getLayoutInflater();
-                                        // Inflate the Layout
                                         View layout = inflater.inflate(R.layout.my_custom_toast,
                                                 (ViewGroup) findViewById(R.id.custom_toast_layout));
 

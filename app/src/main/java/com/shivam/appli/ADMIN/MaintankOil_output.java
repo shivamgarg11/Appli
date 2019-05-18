@@ -563,6 +563,10 @@ public class MaintankOil_output extends AppCompatActivity {
         ImageView date1Im = view.findViewById(R.id.date_1_im);
         ImageView date2Im = view.findViewById(R.id.date_2_im);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyy");
+        final String datee=dateformat.format(c.getTime());
+
         final TextView tvDateStart = view.findViewById(R.id.date_1_tv);
         final TextView tvDateEnd = view.findViewById(R.id.date_2_tv);
         date1Im.setOnClickListener(new View.OnClickListener() {
@@ -578,7 +582,7 @@ public class MaintankOil_output extends AppCompatActivity {
                         tvDateStart.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }
@@ -597,7 +601,7 @@ public class MaintankOil_output extends AppCompatActivity {
                         tvDateEnd.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }
@@ -908,6 +912,11 @@ public class MaintankOil_output extends AppCompatActivity {
         ImageView date1Im = view.findViewById(R.id.date_1_im);
         ImageView date2Im = view.findViewById(R.id.date_2_im);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyy");
+        final String datee=dateformat.format(c.getTime());
+
+
         final TextView tvDateStart = view.findViewById(R.id.date_1_tv);
         final TextView tvDateEnd = view.findViewById(R.id.date_2_tv);
         date1Im.setOnClickListener(new View.OnClickListener() {
@@ -923,7 +932,7 @@ public class MaintankOil_output extends AppCompatActivity {
                         tvDateStart.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                },  Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }
@@ -942,7 +951,7 @@ public class MaintankOil_output extends AppCompatActivity {
                         tvDateEnd.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                },  Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }

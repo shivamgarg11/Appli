@@ -127,7 +127,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RIDE = MMBTO *"
+            android:text="RATE = MMBTO *"
             android:textStyle="bold"
             style="@style/TextAppearance.AppCompat.Subhead"/>
 

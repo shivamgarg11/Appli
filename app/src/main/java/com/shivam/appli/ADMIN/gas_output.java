@@ -112,6 +112,12 @@ public class gas_output extends AppCompatActivity {
         summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyy");
+                String datee=dateformat.format(c.getTime());
+
+
                 new DatePickerDialog(gas_output.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -123,7 +129,7 @@ public class gas_output extends AppCompatActivity {
                         gassummaryfrag frag = new gassummaryfrag(date[0],gas_output.this);
                         fragmentManager.beginTransaction().replace(R.id.frame, frag).commit();
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
             }
         });
 
@@ -667,6 +673,10 @@ public class gas_output extends AppCompatActivity {
         ImageView date1Im = view.findViewById(R.id.date_1_im);
         ImageView date2Im = view.findViewById(R.id.date_2_im);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyy");
+        final String datee=dateformat.format(c.getTime());
+
         final TextView tvDateStart = view.findViewById(R.id.date_1_tv);
         final TextView tvDateEnd = view.findViewById(R.id.date_2_tv);
         date1Im.setOnClickListener(new View.OnClickListener() {
@@ -682,7 +692,7 @@ public class gas_output extends AppCompatActivity {
                         tvDateStart.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }
@@ -701,7 +711,7 @@ public class gas_output extends AppCompatActivity {
                         tvDateEnd.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }

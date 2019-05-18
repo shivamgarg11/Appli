@@ -114,6 +114,16 @@ public class oil_output extends AppCompatActivity {
         summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyy");
+                String datee=dateformat.format(c.getTime());
+                int dayofmonth=Integer.valueOf(datee.substring(0,2));
+                int monthofmonth=Integer.valueOf(datee.substring(2,4));
+                int yearofmonth=Integer.valueOf(datee.substring(4));
+
+
+
                 new DatePickerDialog(oil_output.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -125,7 +135,7 @@ public class oil_output extends AppCompatActivity {
                         Tunnelsummaryfrag frag = new Tunnelsummaryfrag(date[0],oil_output.this,pathway);
                         fragmentManager.beginTransaction().replace(R.id.frame, frag).commit();
                     }
-                }, 2019, 01, 01).show();
+                }, yearofmonth, monthofmonth-1, dayofmonth).show();
             }
         });
 
@@ -647,6 +657,10 @@ public class oil_output extends AppCompatActivity {
         ImageView date1Im = view.findViewById(R.id.date_1_im);
         ImageView date2Im = view.findViewById(R.id.date_2_im);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateformat = new SimpleDateFormat("ddMMyyyy");
+        final String datee=dateformat.format(c.getTime());
+
         final TextView tvDateStart = view.findViewById(R.id.date_1_tv);
         final TextView tvDateEnd = view.findViewById(R.id.date_2_tv);
         date1Im.setOnClickListener(new View.OnClickListener() {
@@ -662,7 +676,7 @@ public class oil_output extends AppCompatActivity {
                         tvDateStart.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }
@@ -681,7 +695,7 @@ public class oil_output extends AppCompatActivity {
                         tvDateEnd.setText(String.valueOf(dayOfMonth) + "/0" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year));
 
                     }
-                }, 2019, 01, 01).show();
+                }, Integer.valueOf(datee.substring(4)), Integer.valueOf(datee.substring(2,4))-1, Integer.valueOf(datee.substring(0,2))).show();
 
 
             }

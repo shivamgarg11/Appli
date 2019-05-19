@@ -28,7 +28,7 @@ public class MaintankCMS extends AppCompatActivity {
 
     String timeoil;
     AlertDialog alertDialog;
-    double lastvalue;
+    String lastvalue;
     double c1;
 
     @Override
@@ -99,10 +99,8 @@ public class MaintankCMS extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            double pur=lastvalue-c1;
 
-
-                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), "CMS "+strreadingcms,0,0,lastvalue,c1,lastvalue-c1);
+                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), "CMS "+strreadingcms,String.valueOf(0),String.valueOf(0),String.format("%.2f",Double.valueOf(lastvalue)),String.format("%.2f",c1),String.format("%.2f",Double.valueOf(lastvalue)-c1));
                             final FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference("OILMAINTANK").child("VALUES").child(timeoil.substring(6,10)).child(timeoil.substring(3,5)).child(timeoil.substring(0,2));
                             myRef.child(timeoil.substring(10)).setValue(obj);
@@ -162,7 +160,7 @@ public class MaintankCMS extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                lastvalue=dataSnapshot.getValue(Double.class);
+                lastvalue=dataSnapshot.getValue(String.class);
                 alertDialog.show();
 
             }

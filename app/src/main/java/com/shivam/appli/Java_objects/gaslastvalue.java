@@ -2,13 +2,13 @@ package com.shivam.appli.Java_objects;
 
 public class gaslastvalue {
     String date;
-    double value;
+    String value;
 
     public gaslastvalue(){
 
     }
 
-    public gaslastvalue(String date, double value) {
+    public gaslastvalue(String date, String value) {
         this.date = date;
         this.value = value;
     }
@@ -17,7 +17,7 @@ public class gaslastvalue {
         return date;
     }
 
-    public double getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -25,7 +25,7 @@ public class gaslastvalue {
         this.date = date;
     }
 
-    public void setValue(double value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

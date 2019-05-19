@@ -2,17 +2,17 @@ package com.shivam.appli.Java_objects;
 
 public class Tunneltank_object {
     String atime;
-    double breading;
-    double ctrolly;
-    double ddiff;
-    double eoutput1;
-    double foutput2;
+    String breading;
+    String ctrolly;
+    String ddiff;
+    String eoutput1;
+    String foutput2;
 
     public Tunneltank_object(){
 
     }
 
-    public Tunneltank_object(String atime, double breading, double ctrolly, double ddiff, double eoutput1, double foutput2) {
+    public Tunneltank_object(String atime, String breading, String ctrolly, String ddiff, String eoutput1, String foutput2) {
         this.atime = atime;
         this.breading = breading;
         this.ctrolly = ctrolly;
@@ -29,43 +29,43 @@ public class Tunneltank_object {
         this.atime = atime;
     }
 
-    public double getBreading() {
+    public String getBreading() {
         return breading;
     }
 
-    public void setBreading(double breading) {
+    public void setBreading(String breading) {
         this.breading = breading;
     }
 
-    public double getCtrolly() {
+    public String getCtrolly() {
         return ctrolly;
     }
 
-    public void setCtrolly(double ctrolly) {
+    public void setCtrolly(String ctrolly) {
         this.ctrolly = ctrolly;
     }
 
-    public double getDdiff() {
+    public String getDdiff() {
         return ddiff;
     }
 
-    public void setDdiff(double ddiff) {
+    public void setDdiff(String ddiff) {
         this.ddiff = ddiff;
     }
 
-    public double getEoutput1() {
+    public String getEoutput1() {
         return eoutput1;
     }
 
-    public void setEoutput1(double eoutput1) {
+    public void setEoutput1(String eoutput1) {
         this.eoutput1 = eoutput1;
     }
 
-    public double getFoutput2() {
+    public String getFoutput2() {
         return foutput2;
     }
 
-    public void setFoutput2(double foutput2) {
+    public void setFoutput2(String foutput2) {
         this.foutput2 = foutput2;
     }
 }

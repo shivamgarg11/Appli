@@ -176,7 +176,7 @@ public class oil_input extends AppCompatActivity {
                                         Tunneltank_object obj = insertvalues(Double.valueOf(data1),Double.valueOf(data2));
                                         myRef.child(date + "").setValue(obj);
 
-                                        if(obj.getFoutput2()<from||obj.getFoutput2()>to) {
+                                        if(Double.valueOf(obj.getFoutput2())<from||Double.valueOf(obj.getFoutput2())>to) {
                                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                                             final DatabaseReference myRef = database.getReference("NOTIFY");
                                             myRef.addValueEventListener(new ValueEventListener() {
@@ -198,7 +198,7 @@ public class oil_input extends AppCompatActivity {
 
 
                                         FancyToast.makeText(oil_input.this, "THANK YOU FOR UPDATING \n\n YOU HAVE BEEN LOGGED OUT", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
-                                        Tunneltanklastvalue obj1 = new Tunneltanklastvalue(timeoil, Double.valueOf(data1));
+                                        Tunneltanklastvalue obj1 = new Tunneltanklastvalue(timeoil, (data1));
                                         myRef1.setValue(obj1);
                                         startActivity(new Intent(oil_input.this, MainActivity.class));
                                         finish();
@@ -311,16 +311,15 @@ public class oil_input extends AppCompatActivity {
 
     public  Tunneltank_object insertvalues(double input,double trolly){
 
-        DecimalFormat df = new DecimalFormat("#.000");
 
         Tunneltank_object obj = new Tunneltank_object();
 
-        obj.setCtrolly(Float.valueOf(df.format(trolly)));
-        obj.setBreading(Float.valueOf(df.format(input)));
+        obj.setCtrolly(String.format("%.2f",trolly));
+        obj.setBreading(String.format("%.2f",(input)));
 
-        obj.setDdiff(Float.valueOf(df.format(input-lastvalue[0].getReading())));
+        obj.setDdiff(String.format("%.2f",(input-Double.valueOf(lastvalue[0].getReading()))));
 
-        obj.setEoutput1(Float.valueOf(df.format(input-lastvalue[0].getReading()))*constant[0].getA());
+        obj.setEoutput1(String.format("%.2f",input-Double.valueOf(lastvalue[0].getReading())*constant[0].getA()));
         obj.setAtime(timeoil.substring(10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -334,7 +333,7 @@ public class oil_input extends AppCompatActivity {
             if(diff==0)
                 diff=1;
 
-            obj.setFoutput2(Float.valueOf(df.format((obj.getEoutput1()*60*24)/diff)));
+            obj.setFoutput2(String.format("%.2f",((Double.valueOf(obj.getEoutput1())*60*24)/diff)));
 
         } catch (ParseException e) {
             e.printStackTrace();

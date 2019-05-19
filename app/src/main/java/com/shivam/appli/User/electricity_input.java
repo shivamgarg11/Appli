@@ -192,7 +192,7 @@ getrange();
 
                                         TextView text = (TextView) layout.findViewById(R.id.textToShow);
 
-                                        text.setText("Calculated P.F : "+String.format("PF: "+"%.2f",obj.getGcal_pf()));
+                                        text.setText("Calculated P.F : "+String.format("PF: "+"%.2f",Double.valueOf(obj.getGcal_pf())));
 
                                         Toast toast = new Toast(getApplicationContext());
                                         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
@@ -203,7 +203,7 @@ getrange();
 
 
 
-                                        if (obj.getGcal_pf() < from || obj.getGcal_pf() > to) {
+                                        if (Double.valueOf(obj.getGcal_pf()) < from || Double.valueOf(obj.getGcal_pf()) > to) {
                                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                                             final DatabaseReference myRef = database.getReference("NOTIFY");
                                             myRef.addValueEventListener(new ValueEventListener() {
@@ -224,7 +224,7 @@ getrange();
                                         }
 
                                         FancyToast.makeText(electricity_input.this, "THANK YOU FOR UPDATING \n\n YOU HAVE BEEN LOGGED OUT", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
-                                        electricitylastvalue obj1 = new electricitylastvalue(timeelectricity, data1, data2);
+                                        electricitylastvalue obj1 = new electricitylastvalue(timeelectricity, String.format("%.2f",data1), String.format("%.2f",data2));
                                         myRef1.setValue(obj1);
                                         startActivity(new Intent(electricity_input.this, MainActivity.class));
                                         finish();
@@ -337,14 +337,14 @@ getrange();
         DecimalFormat df = new DecimalFormat("#.000");
 
 
-        obj.setAkwh( Float.valueOf(df.format(input1)));
-        obj.setCkvah( Float.valueOf(df.format(input2)));
-        obj.setEmpf( Float.valueOf(df.format(input3)));
-        obj.setFppf( Float.valueOf(df.format(input4)));
-        obj.setGcal_pf( Float.valueOf(df.format((input1-lastvalue[0].getKwh())/(input2-lastvalue[0].getKvah()))));
-        obj.setBdiffkwh( Float.valueOf(df.format(input1-lastvalue[0].getKwh())));
-        double diffkvah=input2-lastvalue[0].getKvah();
-        obj.setDdiffkvah( Float.valueOf(df.format(diffkvah)));
+        obj.setAkwh( String.format("%.2f",input1));
+        obj.setCkvah( String.format("%.2f",input2));
+        obj.setEmpf( String.format("%.2f",input3));
+        obj.setFppf( String.format("%.2f",input4));
+        obj.setGcal_pf( String.format("%.2f",(input1-Double.valueOf(lastvalue[0].getKwh())/(input2-Double.valueOf(lastvalue[0].getKvah())))));
+        obj.setBdiffkwh( String.format("%.2f",input1-Double.valueOf(lastvalue[0].getKwh())));
+        double diffkvah=input2-Double.valueOf(lastvalue[0].getKvah());
+        obj.setDdiffkvah( String.format("%.2f",diffkvah));
         obj.setTime(timeelectricity.substring(10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
@@ -358,8 +358,8 @@ getrange();
             if(diff==0)
                 diff=1;
 
-            obj.setHamount1( Float.valueOf(df.format(diffkvah*constant[0].getC1()*constant[0].getC3())));
-            obj.setIamount2( Float.valueOf(df.format((diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff)));
+            obj.setHamount1( String.format("%.2f",diffkvah*constant[0].getC1()*constant[0].getC3()));
+            obj.setIamount2( String.format("%.2f",(diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
 
         } catch (ParseException e) {
             e.printStackTrace();

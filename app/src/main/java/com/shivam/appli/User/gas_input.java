@@ -169,7 +169,7 @@ public class gas_input extends AppCompatActivity {
                                         gas_object obj = insertvalues(Double.valueOf(data));
                                         myRef.child(date + "").setValue(obj);
 
-                                        if(obj.getFbill()<from||obj.getFbill()>to) {
+                                        if(Double.valueOf(obj.getFbill())<from||Double.valueOf(obj.getFbill())>to) {
                                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                                             final DatabaseReference myRef = database.getReference("NOTIFY");
                                             myRef.addValueEventListener(new ValueEventListener() {
@@ -191,7 +191,7 @@ public class gas_input extends AppCompatActivity {
 
 
                                         FancyToast.makeText(gas_input.this, "THANK YOU FOR UPDATING \n\n YOU HAVE BEEN LOGGED OUT", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
-                                        gaslastvalue obj1 = new gaslastvalue(timegas, Double.valueOf(data));
+                                        gaslastvalue obj1 = new gaslastvalue(timegas, Double.valueOf(data).toString());
                                         myRef1.setValue(obj1);
                                         startActivity(new Intent(gas_input.this, MainActivity.class));
                                         finish();
@@ -302,14 +302,12 @@ public class gas_input extends AppCompatActivity {
 
     public  gas_object insertvalues(double input){
 
-        DecimalFormat df = new DecimalFormat("#.000");
-
            gas_object obj = new gas_object();
-           obj.setAinput(Float.valueOf(df.format(input)));
-           obj.setBdifference(Float.valueOf(df.format(input-lastvalue[0].getValue())));
-           obj.setCscm(Float.valueOf(df.format(obj.getBdifference()*constant[0].getC1())));
-           obj.setDmmbto(Float.valueOf(df.format((obj.getCscm()*constant[0].getC2()*constant[0].getC3())/constant[0].getC5())));
-           obj.setEride(Float.valueOf(df.format(obj.getDmmbto()*constant[0].getC4())));
+           obj.setAinput(String.format("%.2f",input));
+           obj.setBdifference(String.format("%.2f",input-Double.valueOf(lastvalue[0].getValue())));
+           obj.setCscm(String.format("%.2f",Double.valueOf(obj.getBdifference())*constant[0].getC1()));
+           obj.setDmmbto(String.format("%.2f",(Double.valueOf(obj.getCscm())*constant[0].getC2()*constant[0].getC3())/constant[0].getC5()));
+           obj.setEride(String.format("%.2f",Double.valueOf(obj.getDmmbto())*constant[0].getC4()));
            obj.setTime(timegas.substring(10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
@@ -322,7 +320,7 @@ public class gas_input extends AppCompatActivity {
             long diff = TimeUnit.MILLISECONDS.toHours(date2.getTime() - date1.getTime());
            if(diff==0)
             diff=1;
-            obj.setFbill(Float.valueOf(df.format((obj.getEride()*15*24)/diff)));
+            obj.setFbill(String.format("%.2f",(Double.valueOf(obj.getEride())*15*24)/diff));
 
         } catch (ParseException e) {
             e.printStackTrace();

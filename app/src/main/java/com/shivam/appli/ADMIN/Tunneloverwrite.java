@@ -142,9 +142,9 @@ public class Tunneloverwrite extends AppCompatActivity {
                 DatabaseReference myRef = database.getReference("OIL"+path).child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
 
 
-            Tunneltank_object obj = new Tunneltank_object(mainobj.getAtime(), reading, trolly, reading - old.getBreading(), (reading - old.getBreading()) * constant[0].getA(), (((reading - old.getBreading()) * constant[0].getA()) * 24 * 60)/diff);
+            Tunneltank_object obj = new Tunneltank_object(String.format("%.2f",mainobj.getAtime()), String.format("%.2f",reading), String.format("%.2f",trolly), String.format("%.2f",reading - Double.valueOf(old.getBreading())), String.format("%.2f",(reading - Double.valueOf(old.getBreading())) * constant[0].getA()), String.format("%.2f",(((reading - Double.valueOf(old.getBreading())) * constant[0].getA()) * 24 * 60)/diff));
 
-                Log.d("DATES", "onClick: "+mainobj.getAtime()+" "+ reading+" "+ trolly+" "+ (reading - old.getBreading())+" "+ (reading - old.getBreading()) * constant[0].getA()+" "+ (((reading - old.getBreading()) * constant[0].getA()) * 24 * 60)/diff);
+               // Log.d("DATES", "onClick: "+mainobj.getAtime()+" "+ reading+" "+ trolly+" "+ (reading - old.getBreading())+" "+ (reading - old.getBreading()) * constant[0].getA()+" "+ (((reading - old.getBreading()) * constant[0].getA()) * 24 * 60)/diff);
 
                 myRef.setValue(obj);
 
@@ -174,7 +174,7 @@ public class Tunneloverwrite extends AppCompatActivity {
                e.printStackTrace();
            }
 
-           Tunneltank_object obj1 = new Tunneltank_object(temp.getAtime(),temp.getBreading(),temp.getCtrolly(),temp.getBreading()-obj.getBreading(),(temp.getBreading() - obj.getBreading()) * constant[0].getA(), (((temp.getBreading() - obj.getBreading()) * constant[0].getA()) * 24 * 60)/diff);
+           Tunneltank_object obj1 = new Tunneltank_object(temp.getAtime(),temp.getBreading(),temp.getCtrolly(),String.format("%.2f",Double.valueOf(temp.getBreading())- Double.valueOf(obj.getBreading())),String.format("%.2f",(Double.valueOf(temp.getBreading()) - Double.valueOf(obj.getBreading())) * constant[0].getA()), String.format("%.2f",(((Double.valueOf(temp.getBreading()) - Double.valueOf(obj.getBreading())) * constant[0].getA()) * 24 * 60)/diff));
 
            Log.d("DATES", "onClick: "+obj1.getAtime()+" "+obj1.getBreading()+" "+obj1.getCtrolly()+" "+obj1.getDdiff()+" "+obj1.getEoutput1()+" "+obj1.getFoutput2());
 

@@ -31,7 +31,7 @@ public class Maintankissue extends AppCompatActivity {
     AlertDialog alertDialog;
     RadioGroup tankissue;
     double c1,c2;
-    double lastvalue;
+    String lastvalue;
     String tank;
 
     @Override
@@ -120,17 +120,17 @@ public class Maintankissue extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                           double pur=(Double.valueOf(strafterissue)-Double.valueOf(strbeforeissue))*c1 + (c2*Integer.valueOf(strtime));
+                           double pur=(Double.valueOf(strafterissue)-Double.valueOf(strbeforeissue))*c1 + (c2*Integer.valueOf(strtime))*-1;
 
 
-                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), "ISSUE TO :"+finalstrissuetype,0,pur,lastvalue-pur,0,0);
+                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), "ISSUE TO :"+finalstrissuetype,String.valueOf(0),String.format("%.2f",pur),String.format("%.2f",Double.valueOf(lastvalue)-pur),String.valueOf(0),String.valueOf(0));
                             final FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference("OILMAINTANK").child("VALUES").child(timeoil.substring(6,10)).child(timeoil.substring(3,5)).child(timeoil.substring(0,2));
                             myRef.child(timeoil.substring(10)).setValue(obj);
 
 
                             final DatabaseReference myRef1 = database.getReference("OILMAINTANK").child("LASTVALUE");
-                            myRef1.setValue(lastvalue-pur);
+                            myRef1.setValue(String.format("%.2f",Double.valueOf(lastvalue)-pur));
 
                             FancyToast.makeText(Maintankissue.this, "THANK YOU FOR UPDATING \n\n YOU HAVE BEEN LOGGED OUT", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                             startActivity(new Intent(Maintankissue.this, MainActivity.class));
@@ -186,7 +186,7 @@ public class Maintankissue extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                lastvalue=dataSnapshot.getValue(Double.class);
+                lastvalue=dataSnapshot.getValue(String.class);
                 alertDialog.show();
 
             }

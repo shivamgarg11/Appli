@@ -1,19 +1,19 @@
 package com.shivam.appli.Java_objects;
 
 public class gas_object {
-    double ainput;
-    double bdifference;
-    double cscm;
-    double dmmbto;
-    double eride;
-    double fbill;
+    String ainput;
+    String bdifference;
+    String cscm;
+    String dmmbto;
+    String eride;
+    String fbill;
     String aatime;
 
     public gas_object(){
 
     }
 
-    public gas_object(double ainput, double bdifference, double cscm, double dmmbto, double eride, double fbill,String aatime) {
+    public gas_object(String ainput, String bdifference, String cscm, String dmmbto, String eride, String fbill,String aatime) {
         this.ainput = ainput;
         this.bdifference = bdifference;
         this.cscm = cscm;
@@ -24,51 +24,51 @@ public class gas_object {
     }
 
 
-    public double getAinput() {
+    public String getAinput() {
         return ainput;
     }
 
-    public void setAinput(double ainput) {
+    public void setAinput(String ainput) {
         this.ainput = ainput;
     }
 
-    public double getBdifference() {
+    public String getBdifference() {
         return bdifference;
     }
 
-    public void setBdifference(double bdifference) {
+    public void setBdifference(String bdifference) {
         this.bdifference = bdifference;
     }
 
-    public double getCscm() {
+    public String getCscm() {
         return cscm;
     }
 
-    public void setCscm(double cscm) {
+    public void setCscm(String cscm) {
         this.cscm = cscm;
     }
 
-    public double getDmmbto() {
+    public String getDmmbto() {
         return dmmbto;
     }
 
-    public void setDmmbto(double dmmbto) {
+    public void setDmmbto(String dmmbto) {
         this.dmmbto = dmmbto;
     }
 
-    public double getEride() {
+    public String getEride() {
         return eride;
     }
 
-    public void setEride(double eride) {
+    public void setEride(String eride) {
         this.eride = eride;
     }
 
-    public double getFbill() {
+    public String getFbill() {
         return fbill;
     }
 
-    public void setFbill(double fbill) {
+    public void setFbill(String fbill) {
         this.fbill = fbill;
     }
 

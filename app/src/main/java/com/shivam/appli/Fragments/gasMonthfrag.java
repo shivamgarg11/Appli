@@ -92,7 +92,7 @@ Context context;
 
                 datastr=new String[dataarray.size()];
                 for(int i=0;i<dataarray.size();i++) {
-                    datastr[i]= dates.get(i)+"/" + month + "/" + year + "          " + dataarray.get(i).getAinput() + "           " + (float) dataarray.get(i).getFbill();
+                    datastr[i]= dates.get(i)+"/" + month + "/" + year + "          " + dataarray.get(i).getAinput() + "           " +  dataarray.get(i).getFbill();
                     Log.e("TAGhvb", "onDataChange: "+datastr[i]);
                 }
                 //String[] users = { "Suresh Dasari", "Rohini Alavala", "Trishika Dasari", "Praveen Alavala", "Madav Sai"};
@@ -157,13 +157,13 @@ Context context;
                 holder = (ViewHolder) v.getTag();
             }
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
-            holder.uDesignation.setText(String.format("%.2f",(float)listData.get(position).getAinput())+"m³");
+            holder.uDesignation.setText(listData.get(position).getAinput()+"m³");
 
             NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-            String moneyString = formatter.format((float)listData.get(position).getFbill());
+            String moneyString = formatter.format(Double.valueOf(listData.get(position).getFbill()));
             holder.uLocation.setText(moneyString);
 
-            if((float)listData.get(position).getFbill()>=from&&(float)listData.get(position).getFbill()<=to){
+            if(Double.valueOf(listData.get(position).getFbill())>=from&&Double.valueOf(listData.get(position).getFbill())<=to){
                 holder.gridframecolor.setBackgroundColor(Color.rgb(14,131,19));
                 holder.uLocation.setTextColor(Color.rgb(14,131,19));
             }else{

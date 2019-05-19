@@ -357,26 +357,26 @@ public class maintankoverwrite extends AppCompatActivity {
                                         Log.w("DATESs", "OBJECTS : "+obj.getAadate()+obj.getAbtime());
 
                                         if(match[0]){
-                                            obj.setEbalance(balance-obj.getDissue()+obj.getCpurchase());
-                                            balance=obj.getEbalance();
+                                            obj.setEbalance(String.format("%.2f",balance-Double.valueOf(obj.getDissue())+Double.valueOf(obj.getCpurchase())));
+                                            balance=Double.valueOf(obj.getEbalance());
 
-                                            if(obj.getfCMS()!=0)
-                                                obj.setGdifference(balance-obj.getfCMS());
+                                            if(Double.valueOf(obj.getfCMS())!=0)
+                                                obj.setGdifference(String.format("%.2f",balance-Double.valueOf(obj.getfCMS())+""));
 
                                         }else{
 
                                             if(dayIter.getKey().compareTo(time.substring(12))==0){
                                                 match[0] =true;
-                                                obj.setCpurchase(purchase);
-                                                obj.setDissue(issue);
-                                                obj.setfCMS(cms);
-                                                obj.setEbalance(balance-obj.getDissue()+obj.getCpurchase());
+                                                obj.setCpurchase(String.format("%.2f",purchase));
+                                                obj.setDissue(String.format("%.2f",issue));
+                                                obj.setfCMS(String.format("%.2f",cms));
+                                                obj.setEbalance(String.format("%.2f",balance-Double.valueOf(obj.getDissue())+Double.valueOf(obj.getCpurchase())));
                                                 obj.setBparticular(particular);
                                                 if(cms!=0)
-                                                obj.setGdifference(obj.getEbalance()-cms);
+                                                obj.setGdifference(String.format("%.2f",Double.valueOf(obj.getEbalance())-cms));
 
 
-                                                balance=obj.getEbalance();
+                                                balance=Double.valueOf(obj.getEbalance());
 
                                             }
 
@@ -465,7 +465,7 @@ public class maintankoverwrite extends AppCompatActivity {
                                dataSnapshot=dataSnapshot.child(time.substring(12));
 
                                 overwriteobj=dataSnapshot.getValue(Maintankobject.class);
-                                balance=overwriteobj.getEbalance()-overwriteobj.getCpurchase()+overwriteobj.getDissue();
+                                balance=Double.valueOf(overwriteobj.getEbalance())-Double.valueOf(overwriteobj.getCpurchase())+Double.valueOf(overwriteobj.getDissue());
 
 
 

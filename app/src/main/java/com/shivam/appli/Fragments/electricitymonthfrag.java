@@ -99,12 +99,9 @@ public class electricitymonthfrag extends Fragment {
 
                 datastr=new String[dataarray.size()];
                 for(int i=0;i<dataarray.size();i++) {
-                    datastr[i]= dates.get(i)+"/" + month + "/" + year + "     " + (float)dataarray.get(i).getGcal_pf() + "       " + (float) dataarray.get(i).getIamount2();
+                    datastr[i]= dates.get(i)+"/" + month + "/" + year + "     " + Double.valueOf(dataarray.get(i).getGcal_pf()) + "       " + Double.valueOf( dataarray.get(i).getIamount2());
                     Log.e("TAGhvb", "onDataChange: "+datastr[i]);
                 }
-                //String[] users = { "Suresh Dasari", "Rohini Alavala", "Trishika Dasari", "Praveen Alavala", "Madav Sai"};
-
-               // ArrayAdapter itemsAdapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1,datastr);
 
                 GridView listView = rootview.findViewById(R.id.electricitylist);
                 listView.setAdapter(new electricitymonthfrag.CustomListAdapter(context, dataarray));
@@ -164,13 +161,13 @@ public class electricitymonthfrag extends Fragment {
                 holder = (ViewHolder) v.getTag();
             }
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
-            holder.uDesignation.setText(String.format("PF: "+"%.2f",(float)listData.get(position).getGcal_pf())+"");
+            holder.uDesignation.setText(listData.get(position).getGcal_pf()+"");
 
             NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-            String moneyString = formatter.format((float)listData.get(position).getIamount2());
+            String moneyString = formatter.format(Double.valueOf(listData.get(position).getIamount2()));
             holder.uLocation.setText(moneyString);
 
-            if((float)listData.get(position).getGcal_pf()>=from&&(float)listData.get(position).getGcal_pf()<=to){
+            if(Double.valueOf(listData.get(position).getGcal_pf())>=from&&Double.valueOf(listData.get(position).getGcal_pf())<=to){
                 holder.gridframecolor.setBackgroundColor(Color.rgb(14,131,19));
                 holder.uLocation.setTextColor(Color.rgb(14,131,19));
                 holder.uDesignation.setTextColor(Color.rgb(14,131,19));

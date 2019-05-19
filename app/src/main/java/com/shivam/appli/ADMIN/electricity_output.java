@@ -593,7 +593,7 @@ public class electricity_output extends AppCompatActivity {
                                                         //csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";
                                                     }
                                                 }
-                                                csvWrite=csvWrite.substring(0,csvWrite.length()-6);
+                                               // csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                 csvWrite += "\n";
 
                                                 Log.d("CSV", "selRange: " + csvWrite);

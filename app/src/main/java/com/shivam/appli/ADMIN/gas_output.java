@@ -531,7 +531,7 @@ public class gas_output extends AppCompatActivity {
                                   //  writeCSV[0]=writeCSV[0].substring(0,writeCSV[0].length()-6);
 
                                     gas_object obj=monthIter.getValue(gas_object.class);
-                                    writeCSV[0] +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill();
+                                    writeCSV[0] +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill()+",";
 
 
 
@@ -625,7 +625,7 @@ public class gas_output extends AppCompatActivity {
                                 csvWrite += datesIter.getKey() +str+ ",";
 
                                 gas_object obj=datesIter.getValue(gas_object.class);
-                                csvWrite +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill();
+                                csvWrite +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill()+",";
 
                                 csvWrite += "\n";
 
@@ -772,13 +772,13 @@ public class gas_output extends AppCompatActivity {
                                                         Log.d("monthIIII", "onDataChange: " + monthIter.getValue());
 
                                                         gas_object obj=monthIter.getValue(gas_object.class);
-                                                        csvWrite +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill();
+                                                        csvWrite +=obj.getTime()+","+obj.getAinput()+","+obj.getBdifference()+","+obj.getCscm()+","+obj.getDmmbto()+","+obj.getEride()+","+obj.getFbill()+",";
 
                                                         csvWrite += "\n";
                                                         //csvWrite += String.valueOf(dataSnapshot.getKey()) + ",";
                                                     }
                                                 }
-                                                csvWrite=csvWrite.substring(0,csvWrite.length()-6);
+                                               // csvWrite=csvWrite.substring(0,csvWrite.length()-6);
                                                 csvWrite += "\n";
 
                                                 Log.d("CSV", "selRange: " + csvWrite);

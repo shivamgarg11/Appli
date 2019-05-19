@@ -142,13 +142,13 @@ public class gasoverwrite extends AppCompatActivity {
                 DatabaseReference myRef = database.getReference("GASMUKTA").child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
 
                 gas_object obj = new gas_object();
-                obj.setAinput(reading);
-                obj.setBdifference(reading-old.getAinput());
-                obj.setCscm(obj.getBdifference()*constant[0].getC1());
-                obj.setDmmbto((obj.getCscm()*constant[0].getC2()*constant[0].getC3())/constant[0].getC5());
-                obj.setEride(obj.getDmmbto()*constant[0].getC4());
+                obj.setAinput(String.format("%.2f",reading));
+                obj.setBdifference(String.format("%.2f",reading-Double.valueOf(old.getAinput())));
+                obj.setCscm(String.format("%.2f",Double.valueOf(obj.getBdifference())*constant[0].getC1()));
+                obj.setDmmbto(String.format("%.2f",(Double.valueOf(obj.getCscm())*constant[0].getC2()*constant[0].getC3())/constant[0].getC5()));
+                obj.setEride(String.format("%.2f",Double.valueOf(obj.getDmmbto())*constant[0].getC4()));
                 obj.setTime(mainobj.getTime());
-                obj.setFbill((obj.getEride()*15*24)/diff);
+                obj.setFbill(String.format("%.2f",(Double.valueOf(obj.getEride())*15*24)/diff));
 
 
 
@@ -185,12 +185,12 @@ public class gasoverwrite extends AppCompatActivity {
 
                     gas_object obj1 = new gas_object();
                     obj1.setAinput(temp.getAinput());
-                    obj1.setBdifference(temp.getAinput()-obj.getAinput());
-                    obj1.setCscm(obj1.getBdifference()*constant[0].getC1());
-                    obj1.setDmmbto((obj1.getCscm()*constant[0].getC2()*constant[0].getC3())/constant[0].getC5());
-                    obj1.setEride(obj1.getDmmbto()*constant[0].getC4());
+                    obj1.setBdifference(String.format("%.2f",Double.valueOf(temp.getAinput())- Double.valueOf(obj.getAinput())));
+                    obj1.setCscm(String.format("%.2f",Double.valueOf(obj1.getBdifference())*constant[0].getC1()));
+                    obj1.setDmmbto(String.format("%.2f",(Double.valueOf(obj1.getCscm())*constant[0].getC2()*constant[0].getC3())/constant[0].getC5()));
+                    obj1.setEride(String.format("%.2f",Double.valueOf(obj1.getDmmbto())*constant[0].getC4()));
                     obj1.setTime(temp.getTime());
-                    obj1.setFbill((obj1.getEride()*15*24)/diff);
+                    obj1.setFbill(String.format("%.2f",(Double.valueOf(obj1.getEride())*15*24)/diff));
 
 
 

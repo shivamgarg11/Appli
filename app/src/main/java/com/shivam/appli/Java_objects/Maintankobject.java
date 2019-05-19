@@ -5,17 +5,17 @@ public class Maintankobject {
     String aadate;
     String abtime;
     String bparticular;
-    double cpurchase;
-    double dissue;
-    double ebalance;
-    double fCMS;
-    double gdifference;
+    String cpurchase;
+    String dissue;
+    String ebalance;
+    String fCMS;
+    String gdifference;
 
     public Maintankobject(){
 
     }
 
-    public Maintankobject(String aadate,String abtime, String bparticular, double cpurchase, double dissue, double ebalance, double fCMS, double gdifference) {
+    public Maintankobject(String aadate,String abtime, String bparticular, String cpurchase, String dissue, String ebalance, String fCMS, String gdifference) {
         this.abtime=abtime;
         this.aadate = aadate;
         this.bparticular = bparticular;
@@ -51,43 +51,43 @@ public class Maintankobject {
         this.bparticular = bparticular;
     }
 
-    public double getCpurchase() {
+    public String getCpurchase() {
         return cpurchase;
     }
 
-    public void setCpurchase(double cpurchase) {
+    public void setCpurchase(String cpurchase) {
         this.cpurchase = cpurchase;
     }
 
-    public double getDissue() {
+    public String getDissue() {
         return dissue;
     }
 
-    public void setDissue(double dissue) {
+    public void setDissue(String dissue) {
         this.dissue = dissue;
     }
 
-    public double getEbalance() {
+    public String getEbalance() {
         return ebalance;
     }
 
-    public void setEbalance(double ebalance) {
+    public void setEbalance(String ebalance) {
         this.ebalance = ebalance;
     }
 
-    public double getfCMS() {
+    public String getfCMS() {
         return fCMS;
     }
 
-    public void setfCMS(double fCMS) {
+    public void setfCMS(String fCMS) {
         this.fCMS = fCMS;
     }
 
-    public double getGdifference() {
+    public String getGdifference() {
         return gdifference;
     }
 
-    public void setGdifference(double gdifference) {
+    public void setGdifference(String gdifference) {
         this.gdifference = gdifference;
     }
 }

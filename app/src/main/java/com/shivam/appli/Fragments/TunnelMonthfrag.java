@@ -96,7 +96,7 @@ public class TunnelMonthfrag extends Fragment {
 
                 datastr=new String[dataarray.size()];
                 for(int i=0;i<dataarray.size();i++) {
-                    datastr[i]= dates.get(i)+"/" + month + "/" + year + "          " + dataarray.get(i).getBreading() + "           " + (float) dataarray.get(i).getFoutput2();
+                    datastr[i]= dates.get(i)+"/" + month + "/" + year + "          " + dataarray.get(i).getBreading() + "           " + Double.valueOf( dataarray.get(i).getFoutput2());
                     Log.e("TAGhvb", "onDataChange: "+datastr[i]);
                 }
 
@@ -158,13 +158,13 @@ public class TunnelMonthfrag extends Fragment {
                 holder = (ViewHolder) v.getTag();
             }
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
-            holder.uDesignation.setText(String.format("%.2f",(float)listData.get(position).getBreading())+"");
+            holder.uDesignation.setText(listData.get(position).getBreading()+"");
 
             NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-            String moneyString = formatter.format((float)listData.get(position).getFoutput2());
+            String moneyString = formatter.format(Double.valueOf(listData.get(position).getFoutput2()));
             holder.uLocation.setText(moneyString);
 
-            if((float)listData.get(position).getFoutput2()>=from&&(float)listData.get(position).getFoutput2()<=to){
+            if(Double.valueOf(listData.get(position).getFoutput2())>=from&&Double.valueOf(listData.get(position).getFoutput2())<=to){
                 holder.gridframecolor.setBackgroundColor(Color.rgb(14,131,19));
                 holder.uLocation.setTextColor(Color.rgb(14,131,19));
             }else{

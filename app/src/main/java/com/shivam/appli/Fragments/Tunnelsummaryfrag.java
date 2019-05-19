@@ -125,18 +125,18 @@ public class Tunnelsummaryfrag extends Fragment {
 
                 if(dataSnapshot.exists()) {
                     Tunneltank_object obj=dataSnapshot.getValue(Tunneltank_object.class);
-                    input.setText(String.format("%.2f",(float)obj.getBreading()) + "");
-                    difference.setText(String.format("%.2f",(float)obj.getDdiff()) + "");
-                    trolly.setText(String.format("%.2f",(float)obj.getCtrolly()) + "");
-                    output1.setText(String.format("%.2f",(float)obj.getEoutput1()) + "");
+                    input.setText((obj.getBreading()) + "");
+                    difference.setText((obj.getDdiff()) + "");
+                    trolly.setText((obj.getCtrolly()) + "");
+                    output1.setText((obj.getEoutput1()) + "");
 
                     NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-                    String moneyString = formatter.format((float)obj.getFoutput2());
+                    String moneyString = formatter.format(Double.valueOf(obj.getFoutput2()));
                     output2.setText(moneyString);
 
                     time.setText(obj.getAtime());
 
-                    if((float)obj.getFoutput2()>=from&&(float)obj.getFoutput2()<=to){
+                    if(Double.valueOf(obj.getFoutput2())>=from&&Double.valueOf(obj.getFoutput2())<=to){
                         output2.setTextColor(Color.rgb(14,131,19));
                         input.setTextColor(Color.rgb(14,131,19));
                     }else {

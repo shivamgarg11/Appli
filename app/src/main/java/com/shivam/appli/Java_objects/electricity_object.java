@@ -1,22 +1,22 @@
 package com.shivam.appli.Java_objects;
 
 public class electricity_object {
-    double akwh;
-    double ckvah;
-    double bdiffkwh;
-    double ddiffkvah;
-    double empf;
-    double fppf;
-    double gcal_pf;
-    double hamount1;
-    double iamount2;
+    String akwh;
+    String ckvah;
+    String bdiffkwh;
+    String ddiffkvah;
+    String empf;
+    String fppf;
+    String gcal_pf;
+    String hamount1;
+    String iamount2;
     String aatime;
 
     public electricity_object(){
 
     }
 
-    public electricity_object(double akwh, double ckvah, double bdiffkwh, double ddiffkvah, double empf, double fppf, double gcal_pf, double hamount1, double iamount2,String aatime) {
+    public electricity_object(String akwh, String ckvah, String bdiffkwh, String ddiffkvah, String empf, String fppf, String gcal_pf, String hamount1, String iamount2,String aatime) {
         this.akwh = akwh;
         this.ckvah = ckvah;
         this.bdiffkwh = bdiffkwh;
@@ -30,75 +30,75 @@ public class electricity_object {
     }
 
 
-    public double getAkwh() {
+    public String getAkwh() {
         return akwh;
     }
 
-    public void setAkwh(double akwh) {
+    public void setAkwh(String akwh) {
         this.akwh = akwh;
     }
 
-    public double getCkvah() {
+    public String getCkvah() {
         return ckvah;
     }
 
-    public void setCkvah(double ckvah) {
+    public void setCkvah(String ckvah) {
         this.ckvah = ckvah;
     }
 
-    public double getBdiffkwh() {
+    public String getBdiffkwh() {
         return bdiffkwh;
     }
 
-    public void setBdiffkwh(double bdiffkwh) {
+    public void setBdiffkwh(String bdiffkwh) {
         this.bdiffkwh = bdiffkwh;
     }
 
-    public double getDdiffkvah() {
+    public String getDdiffkvah() {
         return ddiffkvah;
     }
 
-    public void setDdiffkvah(double ddiffkvah) {
+    public void setDdiffkvah(String ddiffkvah) {
         this.ddiffkvah = ddiffkvah;
     }
 
-    public double getEmpf() {
+    public String getEmpf() {
         return empf;
     }
 
-    public void setEmpf(double empf) {
+    public void setEmpf(String empf) {
         this.empf = empf;
     }
 
-    public double getFppf() {
+    public String getFppf() {
         return fppf;
     }
 
-    public void setFppf(double fppf) {
+    public void setFppf(String fppf) {
         this.fppf = fppf;
     }
 
-    public double getGcal_pf() {
+    public String getGcal_pf() {
         return gcal_pf;
     }
 
-    public void setGcal_pf(double gcal_pf) {
+    public void setGcal_pf(String gcal_pf) {
         this.gcal_pf = gcal_pf;
     }
 
-    public double getHamount1() {
+    public String getHamount1() {
         return hamount1;
     }
 
-    public void setHamount1(double hamount1) {
+    public void setHamount1(String hamount1) {
         this.hamount1 = hamount1;
     }
 
-    public double getIamount2() {
+    public String getIamount2() {
         return iamount2;
     }
 
-    public void setIamount2(double iamount2) {
+    public void setIamount2(String iamount2) {
         this.iamount2 = iamount2;
     }
 

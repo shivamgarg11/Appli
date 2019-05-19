@@ -30,7 +30,7 @@ public class Maintankpurchase extends AppCompatActivity {
     AlertDialog alertDialog;
     RadioGroup oiltype,oilunit;
     double blackdes,bluedes;
-    double lastvalue;
+    String lastvalue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,14 +141,14 @@ public class Maintankpurchase extends AppCompatActivity {
                             }
 
 
-                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), finalStroiltype1 +"-"+strname+"-"+strgatepass+"-"+strweight+" "+ finalStrunit1,pur,0,lastvalue+pur,0,0);
+                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), finalStroiltype1 +"-"+strname+"-"+strgatepass+"-"+strweight+" "+ finalStrunit1,String.format("%.2f",pur),String.valueOf(0),String.format("%.2f",Double.valueOf(lastvalue)+pur),String.valueOf(0),String.valueOf(0));
                             final FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference("OILMAINTANK").child("VALUES").child(timeoil.substring(6,10)).child(timeoil.substring(3,5)).child(timeoil.substring(0,2));
                             myRef.child(timeoil.substring(10)).setValue(obj);
 
 
                             final DatabaseReference myRef1 = database.getReference("OILMAINTANK").child("LASTVALUE");
-                            myRef1.setValue(lastvalue+pur);
+                            myRef1.setValue(String.format("%.2f",Double.valueOf(lastvalue)+pur));
 
                             FancyToast.makeText(Maintankpurchase.this, "THANK YOU FOR UPDATING \n\n YOU HAVE BEEN LOGGED OUT", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                             startActivity(new Intent(Maintankpurchase.this, MainActivity.class));
@@ -204,7 +204,7 @@ public class Maintankpurchase extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                lastvalue=dataSnapshot.getValue(Double.class);
+                lastvalue=dataSnapshot.getValue(String.class);
                 alertDialog.show();
 
             }

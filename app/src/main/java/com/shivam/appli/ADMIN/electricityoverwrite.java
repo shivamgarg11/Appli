@@ -154,20 +154,20 @@ public class electricityoverwrite extends AppCompatActivity {
                 DatabaseReference myRef = database.getReference("ELECTRICITY"+path).child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
 
                 electricity_object obj = new electricity_object();
-                obj.setAkwh(data1);
-                obj.setCkvah(data2);
-                obj.setEmpf(data3);
-                obj.setFppf(data4);
-                obj.setGcal_pf( (data1-old.getAkwh())/(data2-old.getCkvah()));
-                obj.setBdiffkwh( (data1-old.getAkwh()));
+                obj.setAkwh(String.format("%.2f",data1));
+                obj.setCkvah(String.format("%.2f",data2));
+                obj.setEmpf(String.format("%.2f",data3));
+                obj.setFppf(String.format("%.2f",data4));
+                obj.setGcal_pf( String.format("%.2f",(data1- Double.valueOf(old.getAkwh()))/(data2- Double.valueOf(old.getCkvah()))));
+                obj.setBdiffkwh( String.format("%.2f",(data1- Double.valueOf(old.getAkwh()))));
 
-                double diffkvah=data2-old.getCkvah();
+                double diffkvah=data2- Double.valueOf(old.getCkvah());
 
-                obj.setDdiffkvah((diffkvah));
+                obj.setDdiffkvah(String.format("%.2f",diffkvah));
                 obj.setTime(mainobj.getTime());
 
-                    obj.setHamount1( (diffkvah*constant[0].getC1()*constant[0].getC3()));
-                    obj.setIamount2( ((diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
+                    obj.setHamount1( String.format("%.2f",diffkvah*constant[0].getC1()*constant[0].getC3()));
+                    obj.setIamount2( String.format("%.2f",(diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
 
 
                 myRef.setValue(obj);
@@ -203,16 +203,16 @@ public class electricityoverwrite extends AppCompatActivity {
                     obj1.setCkvah(temp.getCkvah());
                     obj1.setEmpf(temp.getEmpf());
                     obj1.setFppf(temp.getFppf());
-                    obj1.setGcal_pf( (temp.getAkwh()-obj.getAkwh())/(temp.getCkvah()-obj.getCkvah()));
-                    obj1.setBdiffkwh( (temp.getAkwh()-obj.getAkwh()));
+                    obj1.setGcal_pf( String.format("%.2f",(Double.valueOf(temp.getAkwh())- Double.valueOf(obj.getAkwh()))/(Double.valueOf(temp.getCkvah())- Double.valueOf(obj.getCkvah()))));
+                    obj1.setBdiffkwh(String.valueOf (Double.valueOf(temp.getAkwh())- Double.valueOf(obj.getAkwh())));
 
-                    diffkvah=temp.getCkvah()-obj1.getCkvah();
+                    diffkvah=Double.valueOf(temp.getCkvah())- Double.valueOf(obj1.getCkvah());
 
-                    obj1.setDdiffkvah((diffkvah));
+                    obj1.setDdiffkvah(String.format("%.2f",diffkvah));
                     obj1.setTime(temp.getTime());
 
-                    obj1.setHamount1( (diffkvah*constant[0].getC1()*constant[0].getC3()));
-                    obj1.setIamount2( ((diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
+                    obj1.setHamount1( String.format("%.2f",diffkvah*constant[0].getC1()*constant[0].getC3()));
+                    obj1.setIamount2( String.format("%.2f",(diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
 
 
                     myRef = database.getReference("ELECTRICITY"+path).child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");

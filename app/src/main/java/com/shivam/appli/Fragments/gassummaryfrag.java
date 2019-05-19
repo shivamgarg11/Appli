@@ -110,18 +110,18 @@ double from,to;
 
                 if(dataSnapshot.exists()) {
                     gas_object obj=dataSnapshot.getValue(gas_object.class);
-                    input.setText(String.format("%.2f",(float)obj.getAinput()) + "");
-                    difference.setText(String.format("%.2f",(float)obj.getBdifference()) + "");
-                    scm.setText(String.format("%.2f",(float)obj.getCscm()) + "");
-                    mmbto.setText(String.format("%.2f",(float)obj.getDmmbto()) + "");
-                    ride.setText(String.format("%.2f",(float)obj.getEride()) + "");
+                    input.setText((obj.getAinput()) + "");
+                    difference.setText((obj.getBdifference()) + "");
+                    scm.setText((obj.getCscm()) + "");
+                    mmbto.setText((obj.getDmmbto()) + "");
+                    ride.setText((obj.getEride()) + "");
 
                     NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-                    String moneyString = formatter.format((float)obj.getFbill());
+                    String moneyString = formatter.format(Double.valueOf(obj.getFbill()));
                     bill.setText(moneyString);
 
                     time.setText(obj.getTime());
-                    if((float)obj.getFbill()>=from&&(float)obj.getFbill()<=to){
+                    if(Double.valueOf(obj.getFbill())>=from&&Double.valueOf(obj.getFbill())<=to){
                         ride.setTextColor(Color.rgb(14,131,19));
                         bill.setTextColor(Color.rgb(14,131,19));
                     }else{

@@ -147,23 +147,23 @@ double from,to;
 
                 if(dataSnapshot.exists()) {
                     electricity_object obj=dataSnapshot.getValue(electricity_object.class);
-                    diffKWH.setText(String.format("%.2f",(float)obj.getBdiffkwh())+"");
-                    diffKVAH.setText(String.format("%.2f",(float)obj.getDdiffkvah())+"");
-                    KWH.setText(String.format("%.2f",(float)obj.getAkwh())+"");
-                    KVAH.setText(String.format("%.2f",(float)obj.getCkvah())+"");
-                    CALPF.setText(String.format("%.2f",(float)obj.getGcal_pf())+"");
-                    MPF.setText(String.format("%.2f",(float)obj.getEmpf())+"");
-                    PF.setText(String.format("%.2f",(float)obj.getFppf())+"");
+                    diffKWH.setText((obj.getBdiffkwh())+"");
+                    diffKVAH.setText((obj.getDdiffkvah())+"");
+                    KWH.setText((obj.getAkwh())+"");
+                    KVAH.setText((obj.getCkvah())+"");
+                    CALPF.setText((obj.getGcal_pf())+"");
+                    MPF.setText((obj.getEmpf())+"");
+                    PF.setText((obj.getFppf())+"");
 
                     NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-                    String moneyString1 = formatter.format((float)obj.getHamount1());
-                    String moneyString2 = formatter.format((float)obj.getIamount2());
+                    String moneyString1 = formatter.format(Double.valueOf(obj.getHamount1()));
+                    String moneyString2 = formatter.format(Double.valueOf(obj.getIamount2()));
                     amount1.setText(moneyString1);
                     amount2.setText(moneyString2);
 
                     time.setText(obj.getTime());
 
-                    if((float)obj.getGcal_pf()>=from&&(float)obj.getGcal_pf()<=to){
+                    if(Double.valueOf(obj.getGcal_pf())>=from&&Double.valueOf(obj.getGcal_pf())<=to){
                         CALPF.setTextColor(Color.rgb(14,131,19));
                         amount2.setTextColor(Color.rgb(14,131,19));
                         amount1.setTextColor(Color.rgb(14,131,19));

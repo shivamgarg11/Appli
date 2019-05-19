@@ -75,7 +75,7 @@ public class MaintankOil_output extends AppCompatActivity {
     private SasukeView sasuke;
     private int count = 0;
     int it=0;
-    final  ArrayList<Maintankobject> arr1=new ArrayList<>();
+    static ArrayList<Maintankobject> arr1=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,7 @@ public class MaintankOil_output extends AppCompatActivity {
         summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                arr1=new ArrayList<>();
                 summaryget();
             }
         });
@@ -468,29 +469,29 @@ public class MaintankOil_output extends AppCompatActivity {
 
                 switch (column) {
                     case 0:
-                        res = "DATE";
+                        res = "Date";
                         break;
                     case 1:
-                        res = "TIME";
+                        res = "Time";
                         break;
                     case 2:
-                        res = "PARTICULAR";
+                        res = "Particular";
                         ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(600, 80));
                         break;
                     case 3:
-                        res = "PURCHASE" ;
+                        res = "Purchase" ;
                         break;
                     case 4:
-                        res = "ISSUE";
+                        res = "Issue";
                         break;
                     case 5:
-                        res = "BALANCE";
+                        res = "Balance";
                         break;
                     case 6:
                         res = "C M S";
                         break;
                     case 7:
-                        res = "DIFFERENCE";
+                        res = "Difference";
                         break;
                 }
 
@@ -498,10 +499,10 @@ public class MaintankOil_output extends AppCompatActivity {
                 ((VH) holder).t.setText(res);
                 ((VH) holder).t.setTextColor(Color.BLACK);
                 ((VH) holder).t.setTextSize(20);
-                ((VH) holder).t.setBackgroundColor(Color.LTGRAY);
-
-
-
+                ((VH) holder).t.setBackgroundColor(Color.DKGRAY);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    ((VH) holder).t.setTextAppearance(R.style.Widget_AppCompat_Light_ActionBar_Solid);
+                }
 
 
             }else {
@@ -511,7 +512,7 @@ public class MaintankOil_output extends AppCompatActivity {
 
                 switch (column) {
                     case 0:
-                        res = ob.getAadate();
+                        res = ob.getAadate().substring(0,2)+"/"+ob.getAadate().substring(3,5)+"/"+ob.getAadate().substring(6);
                         break;
                     case 1:
                         res = ob.getAbtime();

@@ -8,12 +8,15 @@ public class gas_object {
     String eride;
     String fbill;
     String aatime;
+    String glastval;
+
+
 
     public gas_object(){
 
     }
 
-    public gas_object(String ainput, String bdifference, String cscm, String dmmbto, String eride, String fbill,String aatime) {
+    public gas_object(String ainput, String bdifference, String cscm, String dmmbto, String eride, String fbill,String aatime,String glastval) {
         this.ainput = ainput;
         this.bdifference = bdifference;
         this.cscm = cscm;
@@ -21,6 +24,7 @@ public class gas_object {
         this.eride = eride;
         this.fbill = fbill;
         this.aatime=aatime;
+        this.glastval=glastval;
     }
 
 
@@ -78,5 +82,13 @@ public class gas_object {
 
     public void setTime(String aatime) {
         this.aatime = aatime;
+    }
+
+    public String getGlastval() {
+        return glastval;
+    }
+
+    public void setGlastval(String glastval) {
+        this.glastval = glastval;
     }
 }

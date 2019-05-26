@@ -21,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="DATE "
-        style="@style/TextAppearance.AppCompat.Subhead"
+        style="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#000"
         android:textStyle="bold"
         android:background="#bfffffff" />
 
@@ -281,7 +282,7 @@
             android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
-            android:textSize="20dp"
+            android:textSize="24dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Amount@ :"/>
@@ -291,8 +292,8 @@
             android:textColor="#100006"
             android:textStyle="bold"
             android:gravity="right"
-            android:layout_marginRight="5dp"
-            android:textSize="14dp"
+            android:layout_marginRight="3dp"
+            android:textSize="18dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

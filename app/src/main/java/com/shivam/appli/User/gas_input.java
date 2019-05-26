@@ -307,7 +307,7 @@ public class gas_input extends AppCompatActivity {
            obj.setBdifference(String.format("%.2f",input-Double.valueOf(lastvalue[0].getValue())));
            obj.setCscm(String.format("%.2f",Double.valueOf(obj.getBdifference())*constant[0].getC1()));
            obj.setDmmbto(String.format("%.2f",(Double.valueOf(obj.getCscm())*constant[0].getC2()*constant[0].getC3())/constant[0].getC5()));
-           obj.setEride(String.format("%.2f",Double.valueOf(obj.getDmmbto())*constant[0].getC4()));
+           obj.setGlastval(lastvalue[0].getDate().substring(0,10));
            obj.setTime(timegas.substring(10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
@@ -320,7 +320,8 @@ public class gas_input extends AppCompatActivity {
             long diff = TimeUnit.MILLISECONDS.toHours(date2.getTime() - date1.getTime());
            if(diff==0)
             diff=1;
-            obj.setFbill(String.format("%.2f",(Double.valueOf(obj.getEride())*15*24)/diff));
+            obj.setEride(String.format("%.2f",(Double.valueOf(obj.getDmmbto())*constant[0].getC4()*24)/diff));
+            obj.setFbill(String.format("%.2f",(Double.valueOf(obj.getEride())*15)));
 
         } catch (ParseException e) {
             e.printStackTrace();

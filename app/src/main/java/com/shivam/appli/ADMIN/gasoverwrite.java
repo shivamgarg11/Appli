@@ -38,6 +38,8 @@ public class gasoverwrite extends AppCompatActivity {
     ArrayList<String> arr1=new ArrayList<>();
     String date="";
     gasconstants[] constant = new gasconstants[1];
+    final String[] lastdate = {""};
+    final String[] over = {""};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +54,28 @@ public class gasoverwrite extends AppCompatActivity {
 
         Log.d("DATES", "onCreate: "+date);
 
-        getallobjects();
-        getprevoiusdata();
 
 
 
+        FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+        DatabaseReference myRef1 = database1.getReference("GASMUKTA").child(Integer.valueOf(date.substring(0,4))+"").child(Integer.valueOf(date.substring(4,6))+"").child(Integer.valueOf(date.substring(6))+"");
+        myRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                gas_object obj=dataSnapshot.getValue(gas_object.class);
+                over[0] =obj.getGlastval();
+                lastdate[0]=over[0];
+                Log.d("TAG", "onDataChange: "+over[0]);
+                getallobjects();
+                getprevoiusdata();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
 
 
 
@@ -149,6 +168,7 @@ public class gasoverwrite extends AppCompatActivity {
                 obj.setEride(String.format("%.2f",Double.valueOf(obj.getDmmbto())*constant[0].getC4()));
                 obj.setTime(mainobj.getTime());
                 obj.setFbill(String.format("%.2f",(Double.valueOf(obj.getEride())*15*24)/diff));
+                obj.setGlastval(lastdate[0]);
 
 
 
@@ -191,6 +211,7 @@ public class gasoverwrite extends AppCompatActivity {
                     obj1.setEride(String.format("%.2f",Double.valueOf(obj1.getDmmbto())*constant[0].getC4()));
                     obj1.setTime(temp.getTime());
                     obj1.setFbill(String.format("%.2f",(Double.valueOf(obj1.getEride())*15*24)/diff));
+                    obj1.setGlastval(temp.getGlastval());
 
 
 
@@ -268,10 +289,16 @@ public class gasoverwrite extends AppCompatActivity {
 
 
         try {
-            Date overwritedate =myFormat.parse(date);
+
+
+
+
+
+            over[0]=over[0].substring(6)+over[0].substring(3,5)+over[0].substring(0,2);
+            Date overwritedate =myFormat.parse(over[0]);
 
             c.setTime(overwritedate);
-            c.add(Calendar.DATE, -1);
+            c.add(Calendar.DATE, 0);
 
             Date newDate = c.getTime();
             String getdate=myFormat.format(newDate);

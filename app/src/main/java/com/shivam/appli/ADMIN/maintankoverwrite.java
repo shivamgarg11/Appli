@@ -361,7 +361,7 @@ public class maintankoverwrite extends AppCompatActivity {
                                             balance=Double.valueOf(obj.getEbalance());
 
                                             if(Double.valueOf(obj.getfCMS())!=0)
-                                                obj.setGdifference(String.format("%.2f",balance-Double.valueOf(obj.getfCMS())+""));
+                                                obj.setGdifference(String.format("%.2f",balance-Double.valueOf(obj.getfCMS())));
 
                                         }else{
 
@@ -387,6 +387,7 @@ public class maintankoverwrite extends AppCompatActivity {
                                             myRef.child(getstrdate.substring(0, 4)).child(getstrdate.substring(5, 7)).child(getstrdate.substring(8, 10)).child(dayIter.getKey()).setValue(obj);
                                             final DatabaseReference myRef1 = database.getReference("OILMAINTANK").child("LASTVALUE");
                                             myRef1.setValue(balance);
+                                            Log.w("DATESs", "onDataChange: "+balance );
                                         }
 
 

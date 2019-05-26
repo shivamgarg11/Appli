@@ -82,6 +82,7 @@ public class MaintankOil_output extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintank_oil_output);
 
+        arr1=new ArrayList<>();
         summaryget();
 
 

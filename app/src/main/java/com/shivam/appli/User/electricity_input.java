@@ -358,7 +358,7 @@ getrange();
             if(diff==0)
                 diff=1;
 
-            obj.setHamount1( String.format("%.2f",diffkvah*constant[0].getC1()*constant[0].getC3()));
+            obj.setHamount1( String.format("%.2f",(diffkvah*constant[0].getC1()*constant[0].getC3()*24)/diff));
             obj.setIamount2( String.format("%.2f",(diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
 
         } catch (ParseException e) {

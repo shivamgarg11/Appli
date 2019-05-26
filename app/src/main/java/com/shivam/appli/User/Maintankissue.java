@@ -123,7 +123,7 @@ public class Maintankissue extends AppCompatActivity {
                            double pur=(Double.valueOf(strafterissue)-Double.valueOf(strbeforeissue))*c1 + (c2*Integer.valueOf(strtime))*-1;
 
 
-                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), "ISSUE TO :"+finalstrissuetype,String.valueOf(0),String.format("%.2f",pur),String.format("%.2f",Double.valueOf(lastvalue)-pur),String.valueOf(0),String.valueOf(0));
+                            Maintankobject obj=new Maintankobject(timeoil.substring(0,10),timeoil.substring(10), "ISSUE TO : "+finalstrissuetype.toUpperCase(),String.valueOf(0),String.format("%.2f",pur),String.format("%.2f",Double.valueOf(lastvalue)-pur),String.valueOf(0),String.valueOf(0));
                             final FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference("OILMAINTANK").child("VALUES").child(timeoil.substring(6,10)).child(timeoil.substring(3,5)).child(timeoil.substring(0,2));
                             myRef.child(timeoil.substring(10)).setValue(obj);

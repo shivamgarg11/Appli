@@ -83,7 +83,7 @@
                     android:textSize="20dp"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Reading(m³) :"/>
+                    android:text="Reading (inch) :"/>
 
                 <TextView
                     android:id="@+id/input"
@@ -142,7 +142,7 @@
                     android:textSize="20dp"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Difference(m³) :"/>
+                    android:text="Difference (inch) :"/>
 
                 <TextView
                     android:id="@+id/difference"

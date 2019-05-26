@@ -346,6 +346,7 @@ getrange();
         double diffkvah=input2-Double.valueOf(lastvalue[0].getKvah());
         obj.setDdiffkvah( String.format("%.2f",diffkvah));
         obj.setTime(timeelectricity.substring(10));
+        obj.setGlastval(lastvalue[0].getDate().substring(0,10));
 
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy HH:mm");
         String inputString1 = lastvalue[0].getDate();

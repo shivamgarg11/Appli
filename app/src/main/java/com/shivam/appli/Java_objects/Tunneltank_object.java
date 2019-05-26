@@ -7,18 +7,28 @@ public class Tunneltank_object {
     String ddiff;
     String eoutput1;
     String foutput2;
+    String glastval;
 
     public Tunneltank_object(){
 
     }
 
-    public Tunneltank_object(String atime, String breading, String ctrolly, String ddiff, String eoutput1, String foutput2) {
+    public Tunneltank_object(String atime, String breading, String ctrolly, String ddiff, String eoutput1, String foutput2,String glastval) {
         this.atime = atime;
         this.breading = breading;
         this.ctrolly = ctrolly;
         this.ddiff = ddiff;
         this.eoutput1 = eoutput1;
         this.foutput2 = foutput2;
+        this.glastval=glastval;
+    }
+
+    public String getGlastval() {
+        return glastval;
+    }
+
+    public void setGlastval(String glastval) {
+        this.glastval = glastval;
     }
 
     public String getAtime() {

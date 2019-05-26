@@ -35,6 +35,8 @@ public class Tunneloverwrite extends AppCompatActivity {
     String date="";
     String path="";
     Tunneltankconstant[] constant = new Tunneltankconstant[1];
+    final String[] lastdate = {""};
+    final String[] over = {""};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,27 @@ public class Tunneloverwrite extends AppCompatActivity {
         date=getIntent().getStringExtra("DATE");
         path=getIntent().getStringExtra("PATHWAY");
 
-        getallobjects();
-        getprevoiusdata();
+
+
+        FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+        DatabaseReference myRef1 = database1.getReference("OIL"+path).child(Integer.valueOf(date.substring(0,4))+"").child(Integer.valueOf(date.substring(4,6))+"").child(Integer.valueOf(date.substring(6))+"");
+        myRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Tunneltank_object obj=dataSnapshot.getValue(Tunneltank_object.class);
+                over[0] =obj.getGlastval();
+                lastdate[0]=over[0];
+                Log.d("TAG", "onDataChange: "+over[0]);
+                getallobjects();
+                getprevoiusdata();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
 
 
 
@@ -142,7 +163,7 @@ public class Tunneloverwrite extends AppCompatActivity {
                 DatabaseReference myRef = database.getReference("OIL"+path).child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
 
 
-            Tunneltank_object obj = new Tunneltank_object(String.format("%.2f",mainobj.getAtime()), String.format("%.2f",reading), String.format("%.2f",trolly), String.format("%.2f",reading - Double.valueOf(old.getBreading())), String.format("%.2f",(reading - Double.valueOf(old.getBreading())) * constant[0].getA()), String.format("%.2f",(((reading - Double.valueOf(old.getBreading())) * constant[0].getA()) * 24 * 60)/diff));
+            Tunneltank_object obj = new Tunneltank_object(mainobj.getAtime(), String.format("%.2f",reading), String.format("%.2f",trolly), String.format("%.2f",(reading - Double.valueOf(old.getBreading()))), String.format("%.2f",((reading - Double.valueOf(old.getBreading())) * constant[0].getA())), String.format("%.2f",((((reading - Double.valueOf(old.getBreading())) * constant[0].getA()) * 24 * 60)/diff)),lastdate[0]);
 
                // Log.d("DATES", "onClick: "+mainobj.getAtime()+" "+ reading+" "+ trolly+" "+ (reading - old.getBreading())+" "+ (reading - old.getBreading()) * constant[0].getA()+" "+ (((reading - old.getBreading()) * constant[0].getA()) * 24 * 60)/diff);
 
@@ -174,7 +195,7 @@ public class Tunneloverwrite extends AppCompatActivity {
                e.printStackTrace();
            }
 
-           Tunneltank_object obj1 = new Tunneltank_object(temp.getAtime(),temp.getBreading(),temp.getCtrolly(),String.format("%.2f",Double.valueOf(temp.getBreading())- Double.valueOf(obj.getBreading())),String.format("%.2f",(Double.valueOf(temp.getBreading()) - Double.valueOf(obj.getBreading())) * constant[0].getA()), String.format("%.2f",(((Double.valueOf(temp.getBreading()) - Double.valueOf(obj.getBreading())) * constant[0].getA()) * 24 * 60)/diff));
+           Tunneltank_object obj1 = new Tunneltank_object(temp.getAtime(),temp.getBreading(),temp.getCtrolly(),String.format("%.2f",(Double.valueOf(temp.getBreading())- Double.valueOf(obj.getBreading()))),String.format("%.2f",((Double.valueOf(temp.getBreading()) - Double.valueOf(obj.getBreading())) * constant[0].getA())), String.format("%.2f",((((Double.valueOf(temp.getBreading()) - Double.valueOf(obj.getBreading())) * constant[0].getA()) * 24 * 60)/diff)),temp.getGlastval());
 
            Log.d("DATES", "onClick: "+obj1.getAtime()+" "+obj1.getBreading()+" "+obj1.getCtrolly()+" "+obj1.getDdiff()+" "+obj1.getEoutput1()+" "+obj1.getFoutput2());
 
@@ -248,10 +269,13 @@ public class Tunneloverwrite extends AppCompatActivity {
 
 
         try {
-            Date overwritedate =myFormat.parse(date);
+
+
+            over[0]=over[0].substring(6)+over[0].substring(3,5)+over[0].substring(0,2);
+            Date overwritedate =myFormat.parse(over[0]);
 
             c.setTime(overwritedate);
-            c.add(Calendar.DATE, -1);
+            c.add(Calendar.DATE, 0);
 
         Date newDate = c.getTime();
         String getdate=myFormat.format(newDate);

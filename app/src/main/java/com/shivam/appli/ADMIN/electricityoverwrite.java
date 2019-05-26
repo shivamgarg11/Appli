@@ -35,6 +35,8 @@ public class electricityoverwrite extends AppCompatActivity {
     String date="";
     String path="";
     electricityconstants[] constant = new electricityconstants[1];
+    final String[] lastdate = {""};
+    final String[] over = {""};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,28 @@ public class electricityoverwrite extends AppCompatActivity {
         date=getIntent().getStringExtra("DATE");
         path=getIntent().getStringExtra("PATHWAY");
 
-        getallobjects();
-        getprevoiusdata();
+
+        FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+        DatabaseReference myRef1 = database1.getReference("ELECTRICITY"+path).child(Integer.valueOf(date.substring(0,4))+"").child(Integer.valueOf(date.substring(4,6))+"").child(Integer.valueOf(date.substring(6))+"");
+        myRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                electricity_object obj=dataSnapshot.getValue(electricity_object.class);
+                over[0] =obj.getGlastval();
+                lastdate[0]=over[0];
+                Log.d("TAG", "onDataChange: "+over[0]);
+                getallobjects();
+                getprevoiusdata();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
+
+
 
 
 
@@ -160,8 +182,9 @@ public class electricityoverwrite extends AppCompatActivity {
                 obj.setFppf(String.format("%.2f",data4));
                 obj.setGcal_pf( String.format("%.2f",(data1- Double.valueOf(old.getAkwh()))/(data2- Double.valueOf(old.getCkvah()))));
                 obj.setBdiffkwh( String.format("%.2f",(data1- Double.valueOf(old.getAkwh()))));
+                obj.setGlastval(lastdate[0]);
 
-                double diffkvah=data2- Double.valueOf(old.getCkvah());
+                double diffkvah=data2 - Double.valueOf(old.getCkvah());
 
                 obj.setDdiffkvah(String.format("%.2f",diffkvah));
                 obj.setTime(mainobj.getTime());
@@ -204,15 +227,16 @@ public class electricityoverwrite extends AppCompatActivity {
                     obj1.setEmpf(temp.getEmpf());
                     obj1.setFppf(temp.getFppf());
                     obj1.setGcal_pf( String.format("%.2f",(Double.valueOf(temp.getAkwh())- Double.valueOf(obj.getAkwh()))/(Double.valueOf(temp.getCkvah())- Double.valueOf(obj.getCkvah()))));
-                    obj1.setBdiffkwh(String.valueOf (Double.valueOf(temp.getAkwh())- Double.valueOf(obj.getAkwh())));
+                    obj1.setBdiffkwh(String.format("%.2f",(Double.valueOf(temp.getAkwh())- Double.valueOf(obj.getAkwh()))));
 
-                    diffkvah=Double.valueOf(temp.getCkvah())- Double.valueOf(obj1.getCkvah());
+                    diffkvah=Double.valueOf(temp.getCkvah())- Double.valueOf(obj.getCkvah());
 
                     obj1.setDdiffkvah(String.format("%.2f",diffkvah));
                     obj1.setTime(temp.getTime());
 
                     obj1.setHamount1( String.format("%.2f",diffkvah*constant[0].getC1()*constant[0].getC3()));
                     obj1.setIamount2( String.format("%.2f",(diffkvah*constant[0].getC2()*constant[0].getC3()*24)/diff));
+                    obj1.setGlastval(temp.getGlastval());
 
 
                     myRef = database.getReference("ELECTRICITY"+path).child(enddate.substring(0,4)).child(Integer.valueOf(enddate.substring(4,6))+"").child(Integer.valueOf(enddate.substring(6,8))+"");
@@ -285,10 +309,13 @@ public class electricityoverwrite extends AppCompatActivity {
 
 
         try {
-            Date overwritedate =myFormat.parse(date);
+
+
+            over[0]=over[0].substring(6)+over[0].substring(3,5)+over[0].substring(0,2);
+            Date overwritedate =myFormat.parse(over[0]);
 
             c.setTime(overwritedate);
-            c.add(Calendar.DATE, -1);
+            c.add(Calendar.DATE, 0);
 
             Date newDate = c.getTime();
             String getdate=myFormat.format(newDate);

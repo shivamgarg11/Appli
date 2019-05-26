@@ -11,12 +11,15 @@ public class electricity_object {
     String hamount1;
     String iamount2;
     String aatime;
+    String glastval;
+
+
 
     public electricity_object(){
 
     }
 
-    public electricity_object(String akwh, String ckvah, String bdiffkwh, String ddiffkvah, String empf, String fppf, String gcal_pf, String hamount1, String iamount2,String aatime) {
+    public electricity_object(String akwh, String ckvah, String bdiffkwh, String ddiffkvah, String empf, String fppf, String gcal_pf, String hamount1, String iamount2,String aatime,String glastval) {
         this.akwh = akwh;
         this.ckvah = ckvah;
         this.bdiffkwh = bdiffkwh;
@@ -27,6 +30,7 @@ public class electricity_object {
         this.hamount1 = hamount1;
         this.iamount2 = iamount2;
         this.aatime=aatime;
+        this.glastval=glastval;
     }
 
 
@@ -108,5 +112,13 @@ public class electricity_object {
 
     public void setTime(String aatime) {
         this.aatime = aatime;
+    }
+
+    public String getGlastval() {
+        return glastval;
+    }
+
+    public void setGlastval(String glastval) {
+        this.glastval = glastval;
     }
 }

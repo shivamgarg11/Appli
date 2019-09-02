@@ -49,13 +49,13 @@ public class maintankoverwrite extends AppCompatActivity {
     Button submit;
     int i=0;
 
-    boolean done=false;
+   public static boolean done=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintankoverwrite);
-
+        done=false;
 
         linearpurchase=findViewById(R.id.linearpurchase);
         linearissue=findViewById(R.id.linearissue);
@@ -209,7 +209,7 @@ public class maintankoverwrite extends AppCompatActivity {
             }
 
 
-           particular=finalStroiltype1 +"-"+strname+"-"+strgatepass+"-"+strweight+"-"+ finalStrunit1;
+            particular=finalStroiltype1 +"-"+strname+"-"+strgatepass+"-"+strweight+"-"+ finalStrunit1;
 
             purchase=pur;
 
@@ -299,7 +299,7 @@ public class maintankoverwrite extends AppCompatActivity {
 
 
 
-        }
+    }
 
 
 
@@ -328,7 +328,7 @@ public class maintankoverwrite extends AppCompatActivity {
             Date newDate = c.getTime();
             String getdate=myFormat.format(newDate);
 
-            Log.d("DATES", "getallobjects: "+getdate);
+           // Log.d("DATES", "getallobjects: "+getdate);
 
 
             while (getdate.substring(0,11).compareTo(today.substring(0,11))<=0){
@@ -354,43 +354,45 @@ public class maintankoverwrite extends AppCompatActivity {
                                     for (DataSnapshot dayIter : dataSnapshot.getChildren()) {
 
                                         Maintankobject obj = dayIter.getValue(Maintankobject.class);
-                                        Log.w("DATESs", "OBJECTS : "+obj.getAadate()+obj.getAbtime());
+                                       // Log.w("DATESs", "OBJECTS 123: "+obj.getAadate()+obj.getAbtime());
 
-                                        if(match[0]){
-                                            obj.setEbalance(String.format("%.2f",balance-Double.valueOf(obj.getDissue())+Double.valueOf(obj.getCpurchase())));
-                                            balance=Double.valueOf(obj.getEbalance());
+                                        if(!done) {
 
-                                            if(Double.valueOf(obj.getfCMS())!=0)
-                                                obj.setGdifference(String.format("%.2f",balance-Double.valueOf(obj.getfCMS())));
+                                            if (match[0]) {
+                                                obj.setEbalance(String.format("%.2f", balance - Double.valueOf(obj.getDissue()) + Double.valueOf(obj.getCpurchase())));
+                                                balance = Double.valueOf(obj.getEbalance());
 
-                                        }else{
+                                                if (Double.valueOf(obj.getfCMS()) != 0)
+                                                    obj.setGdifference(String.format("%.2f", balance - Double.valueOf(obj.getfCMS())));
 
-                                            if(dayIter.getKey().compareTo(time.substring(12))==0){
-                                                match[0] =true;
-                                                obj.setCpurchase(String.format("%.2f",purchase));
-                                                obj.setDissue(String.format("%.2f",issue));
-                                                obj.setfCMS(String.format("%.2f",cms));
-                                                obj.setEbalance(String.format("%.2f",balance-Double.valueOf(obj.getDissue())+Double.valueOf(obj.getCpurchase())));
-                                                obj.setBparticular(particular);
-                                                if(cms!=0)
-                                                obj.setGdifference(String.format("%.2f",Double.valueOf(obj.getEbalance())-cms));
+                                            } else {
+
+                                                if (dayIter.getKey().compareTo(time.substring(12)) == 0) {
+                                                    match[0] = true;
+                                                    obj.setCpurchase(String.format("%.2f", purchase));
+                                                    obj.setDissue(String.format("%.2f", issue));
+                                                    obj.setfCMS(String.format("%.2f", cms));
+                                                    obj.setEbalance(String.format("%.2f", balance - Double.valueOf(obj.getDissue()) + Double.valueOf(obj.getCpurchase())));
+                                                    obj.setBparticular(particular);
+                                                    if (cms != 0)
+                                                        obj.setGdifference(String.format("%.2f", Double.valueOf(obj.getEbalance()) - cms));
 
 
-                                                balance=Double.valueOf(obj.getEbalance());
+                                                    balance = Double.valueOf(obj.getEbalance());
+
+                                                }
+
 
                                             }
 
 
-                                        }
-
-                                        if(!done) {
+                                            Log.d("DATESs", "OBJECTS 123:123 "+balance);
                                             myRef.child(getstrdate.substring(0, 4)).child(getstrdate.substring(5, 7)).child(getstrdate.substring(8, 10)).child(dayIter.getKey()).setValue(obj);
                                             final DatabaseReference myRef1 = database.getReference("OILMAINTANK").child("LASTVALUE");
-                                            myRef1.setValue(balance);
-                                            Log.w("DATESs", "onDataChange: "+balance );
+                                            myRef1.setValue(String.format("%.2f",balance));
+
+
                                         }
-
-
                                     }
 
                                 }
@@ -401,6 +403,7 @@ public class maintankoverwrite extends AppCompatActivity {
 
 
                     }
+
 
                     @Override
                     public void onCancelled(DatabaseError error) {
@@ -416,7 +419,7 @@ public class maintankoverwrite extends AppCompatActivity {
 
 
 
-                Log.d("DATES", "getallobjects: "+getdate);
+              //  Log.d("DATES", "getallobjects: "+getdate);
 
                 c.add(Calendar.DATE, 1);
                 newDate = c.getTime();
@@ -425,13 +428,19 @@ public class maintankoverwrite extends AppCompatActivity {
 
             }
 
+            balance=0;
+            //done=true;
+            FancyToast.makeText(maintankoverwrite.this,"SUCCESSFUL OVERWRITING", Toast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
+            startActivity(new Intent(maintankoverwrite.this, admin.class));
+            finishAffinity();
+
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
 
-        done=true;
+        //done=true;
         FancyToast.makeText(maintankoverwrite.this,"SUCCESSFUL OVERWRITING", Toast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
         onBackPressed();
 
@@ -463,7 +472,7 @@ public class maintankoverwrite extends AppCompatActivity {
 
 
                             if(dataSnapshot.child(time.substring(12)).exists()){
-                               dataSnapshot=dataSnapshot.child(time.substring(12));
+                                dataSnapshot=dataSnapshot.child(time.substring(12));
 
                                 overwriteobj=dataSnapshot.getValue(Maintankobject.class);
                                 balance=Double.valueOf(overwriteobj.getEbalance())-Double.valueOf(overwriteobj.getCpurchase())+Double.valueOf(overwriteobj.getDissue());
@@ -472,7 +481,7 @@ public class maintankoverwrite extends AppCompatActivity {
 
                                 if(overwriteobj.getBparticular().charAt(0)=='B'){
                                     linearpurchase.setVisibility(View.VISIBLE);
-                                     i=1;
+                                    i=1;
 
                                 }else  if(overwriteobj.getBparticular().charAt(0)=='I'){
                                     linearissue.setVisibility(View.VISIBLE);

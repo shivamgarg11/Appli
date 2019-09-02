@@ -26,6 +26,7 @@ public class admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+        maintankoverwrite.done=true;
 
         ////////////getting from firebase/////////////////////////
         final String[] oilarray={"MAIN TANK","TUNNEL TANK 1","TUNNEL TANK 2","TUNNEL TANK 3"};

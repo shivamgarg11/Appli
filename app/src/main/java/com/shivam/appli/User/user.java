@@ -22,7 +22,7 @@ public class user extends AppCompatActivity {
 
         ////////////getting from firebase/////////////////////////
         final String[] oilarray={"MAIN TANK","TUNNEL TANK 1","TUNNEL TANK 2","TUNNEL TANK 3"};
-        final String[] maintankoilarray={"PURCHASE","ISSUE","VOLUME"};
+        final String[] maintankoilarray={"PURCHASE","ISSUE","VOLUME CHECK"};
         final String[] gasarray={"MUKTA"};
         final String[] electricityarray={"MUKTA","MEENA"};
         //////////////////////////////////////////////////////////

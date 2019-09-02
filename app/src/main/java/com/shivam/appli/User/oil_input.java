@@ -319,7 +319,7 @@ public class oil_input extends AppCompatActivity {
 
         obj.setDdiff(String.format("%.2f",(input-Double.valueOf(lastvalue[0].getReading()))));
 
-        obj.setEoutput1(String.format("%.2f",input-Double.valueOf(lastvalue[0].getReading())*constant[0].getA()));
+        obj.setEoutput1(String.format("%.2f",(input-Double.valueOf(lastvalue[0].getReading()))*constant[0].getA()));
         obj.setAtime(timeoil.substring(10));
         obj.setGlastval(lastvalue[0].getDate().substring(0,10));
 

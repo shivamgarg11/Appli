@@ -90,8 +90,11 @@ public class MaintankOil_output extends AppCompatActivity {
         summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(MaintankOil_output.this, MaintankOil_output.class));
+                finish();
+                /*arr1.clear();
                 arr1=new ArrayList<>();
-                summaryget();
+                summaryget();*/
             }
         });
 
@@ -480,19 +483,19 @@ public class MaintankOil_output extends AppCompatActivity {
                         ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(600, 80));
                         break;
                     case 3:
-                        res = "Purchase" ;
+                        res = "Purchase (L)" ;
                         break;
                     case 4:
-                        res = "Issue";
+                        res = "Issue (L)";
                         break;
                     case 5:
                         res = "Balance";
                         break;
                     case 6:
-                        res = "C M S";
+                        res = "Volume check";
                         break;
                     case 7:
-                        res = "Difference";
+                        res = "Difference (L)";
                         break;
                 }
 
@@ -500,7 +503,7 @@ public class MaintankOil_output extends AppCompatActivity {
                 ((VH) holder).t.setText(res);
                 ((VH) holder).t.setTextColor(Color.BLACK);
                 ((VH) holder).t.setTextSize(20);
-                ((VH) holder).t.setBackgroundColor(Color.DKGRAY);
+                ((VH) holder).t.setBackgroundColor(Color.WHITE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     ((VH) holder).t.setTextAppearance(R.style.Widget_AppCompat_Light_ActionBar_Solid);
                 }
@@ -627,9 +630,9 @@ public class MaintankOil_output extends AppCompatActivity {
                         Toast.makeText(MaintankOil_output.this, "Please Check the dates!", Toast.LENGTH_SHORT).show();
                         summaryget();
                     } else {
-                        Calendar calendar1 = new GregorianCalendar();
+                        final Calendar calendar1 = new GregorianCalendar();
                         calendar1.setTime(date1);
-                        Calendar calendar2 = new GregorianCalendar();
+                        final Calendar calendar2 = new GregorianCalendar();
                         calendar2.setTime(date2);
                         final int year1 = calendar1.get(Calendar.YEAR);
                         final int month1 = calendar1.get(Calendar.MONTH) + 1;
@@ -663,9 +666,22 @@ public class MaintankOil_output extends AppCompatActivity {
 
                                                         for (DataSnapshot monthIter : yearIter.getChildren()) {
 
-                                                            //if (Integer.valueOf(monthIter.getKey().toString()) >= day1 && Integer.valueOf(monthIter.getKey().toString()) <= day2) {
+                                                            Log.d("RangeDate month", "onDataChange: " + monthIter.getKey().toString());
+
+///////////////////
+                                                            String currentdate=monthIter.getKey()+"/"+yearIter.getKey()+"/"+dataSnapshot.getKey();
+                                                            try {
+                                                                Date currdate = new SimpleDateFormat("dd/MM/yyyy").parse(currentdate);
+
+                                                                // if (Integer.valueOf(monthIter.getKey().toString()) >= day1 && Integer.valueOf(monthIter.getKey().toString()) <= day2)
+
+                                                                Log.d("month", "onDataChange: " +date2+"  "+currdate+"  "+ date2.after(currdate)+"  "+date1.before(currdate)+"  "+date1.equals(currdate)+"  "+date2.equals(currdate));
+
+                                                                if((date2.after(currdate)&&date1.before(currdate))||(date1.equals(currdate))||(date2.equals(currdate)))
+                                                                {
 
                                                                 for (DataSnapshot dayIter : monthIter.getChildren()) {
+
 
                                                                     Maintankobject obj = dayIter.getValue(Maintankobject.class);
 
@@ -678,8 +694,12 @@ public class MaintankOil_output extends AppCompatActivity {
                                                                     sasuke.setStickRowHead(false);
                                                                     sasuke.setAdapter(new MySasukeAdapter());
 
-                                                                //}
+                                                                }
 
+                                                            }
+
+                                                            } catch (ParseException e) {
+                                                                e.printStackTrace();
                                                             }
                                                         }
                                                     }

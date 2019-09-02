@@ -341,7 +341,7 @@ getrange();
         obj.setCkvah( String.format("%.2f",input2));
         obj.setEmpf( String.format("%.2f",input3));
         obj.setFppf( String.format("%.2f",input4));
-        obj.setGcal_pf( String.format("%.2f",(input1-Double.valueOf(lastvalue[0].getKwh())/(input2-Double.valueOf(lastvalue[0].getKvah())))));
+        obj.setGcal_pf( String.format("%.2f",((input1-Double.valueOf(lastvalue[0].getKwh()))/(input2-Double.valueOf(lastvalue[0].getKvah())))));
         obj.setBdiffkwh( String.format("%.2f",input1-Double.valueOf(lastvalue[0].getKwh())));
         double diffkvah=input2-Double.valueOf(lastvalue[0].getKvah());
         obj.setDdiffkvah( String.format("%.2f",diffkvah));

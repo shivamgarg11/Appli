@@ -128,11 +128,11 @@ public class Tunnelsummaryfrag extends Fragment {
                     input.setText((obj.getBreading()) + "");
                     difference.setText((obj.getDdiff()) + "");
                     trolly.setText((obj.getCtrolly()) + "");
-                    output1.setText((obj.getEoutput1()) + " l");
+                    output1.setText((obj.getEoutput1()) + " ");
 
                     NumberFormat formatter = NumberFormat.getNumberInstance(new Locale("en", "IN"));
                     String moneyString = formatter.format(Double.valueOf(obj.getFoutput2()));
-                    output2.setText(moneyString+" l");
+                    output2.setText(moneyString+" ");
 
                     time.setText(obj.getAtime());
 

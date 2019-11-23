@@ -282,7 +282,7 @@
             android:textColor="#FD180101"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
-            android:textSize="24dp"
+            android:textSize="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Amount@ :"/>
@@ -293,7 +293,7 @@
             android:textStyle="bold"
             android:gravity="right"
             android:layout_marginRight="3dp"
-            android:textSize="18dp"
+            android:textSize="14dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

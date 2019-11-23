@@ -526,19 +526,19 @@ public class MaintankOil_output extends AppCompatActivity {
                         ((VH) holder).t.setLayoutParams(new ViewGroup.LayoutParams(600, 80));
                         break;
                     case 3:
-                        res = "" + ob.getCpurchase();
+                        res = "     " + ob.getCpurchase();
                         break;
                     case 4:
-                        res = "" + ob.getDissue();
+                        res = "   " + String.format("%.2f",Math.abs(Double.valueOf(ob.getDissue())));
                         break;
                     case 5:
-                        res = "" + ob.getEbalance();
+                        res = "   " + ob.getEbalance();
                         break;
                     case 6:
-                        res = "" + ob.getfCMS();
+                        res = "      " + ob.getfCMS();
                         break;
                     case 7:
-                        res = "" + ob.getGdifference();
+                        res = "      " + ob.getGdifference();
                         break;
                 }
 
@@ -763,7 +763,7 @@ public class MaintankOil_output extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 final FirebaseDatabase database1 = FirebaseDatabase.getInstance();
 
-                writeCSV[0] += "DATE,TIME,PARTICULAR,PURCHASE,ISSUE,BALANCE,CMS,DIFFERENCE,\n\n";
+                writeCSV[0] += "DATE,TIME,PARTICULAR,PURCHASE,ISSUE,BALANCE,Volume check,DIFFERENCE,\n\n";
                 final String spinnerval=String.valueOf(spinner.getSelectedItem().toString());
                 final DatabaseReference myRef1 = database1.getReference("OILMAINTANK").child("VALUES").child(spinnerval);
                 myRef1.addValueEventListener(new ValueEventListener() {
@@ -779,9 +779,16 @@ public class MaintankOil_output extends AppCompatActivity {
                                     for (DataSnapshot dayIter : monthIter.getChildren()) {
 //                                            writeCSV += dayIter.
 
+                                                boolean flag=false;
                                         for (DataSnapshot val : dayIter.getChildren()) {
-
-                                               writeCSV[0] += val.getValue() + ",";
+                                                String value=val.getValue()+"";
+                                                if(!flag) {
+                                                    writeCSV[0] += value.substring(0, 2) + "/" + value.substring(3, 5) + "/" + (Integer.valueOf(value.substring(6, 8))-1) + ",";
+                                                    flag=true;
+                                                }else{
+                                                    writeCSV[0] += value+",";
+                                                }
+                                               Log.d("TAGGON", "onDataChange: "+val.getValue());
 
                                         }
                                         writeCSV[0] += "\n";
@@ -873,7 +880,7 @@ public class MaintankOil_output extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            String csvWrite = "DATE,TIME,PARTICULAR,PURCHASE,ISSUE,BALANCE,CMS,DIFFERENCE,\n\n";
+                            String csvWrite = "DATE,TIME,PARTICULAR,PURCHASE,ISSUE,BALANCE,Volume check,DIFFERENCE,\n\n";
                             String str="";
 //                            str += " / "+spinner2.getSelectedItem().toString() ;
 //                            str += " / "+spinner.getSelectedItem().toString() ;
@@ -883,9 +890,17 @@ public class MaintankOil_output extends AppCompatActivity {
 
                                 for (DataSnapshot dayIter : datesIter.getChildren()) {
 
+                                    boolean flag=false;
                                     for (DataSnapshot val : dayIter.getChildren()) {
 
-                                            csvWrite += val.getValue() + ",";
+
+                                        String value=val.getValue()+"";
+                                        if(!flag) {
+                                            csvWrite += value.substring(0, 2) + "/" + value.substring(3, 5) + "/" + (Integer.valueOf(value.substring(6, 8))-1) + ",";
+                                            flag=true;
+                                        }else{
+                                            csvWrite += value+",";
+                                        }
                                             Log.d("dateIter", "onDataChange: " + dayIter.getValue());
 
                                     }
@@ -925,7 +940,7 @@ public class MaintankOil_output extends AppCompatActivity {
 
     }
 
-    String csvWrite = "DATE,TIME,PARTICULAR,PURCHASE,ISSUE,BALANCE,CMS,DIFFERENCE,\n\n";
+    String csvWrite = "DATE,TIME,PARTICULAR,PURCHASE,ISSUE,BALANCE,Volume check,DIFFERENCE,\n\n";
 
     public void selRange() {
         Toast.makeText(this, "" + gasDownload[selected], Toast.LENGTH_SHORT).show();
@@ -1033,12 +1048,20 @@ public class MaintankOil_output extends AppCompatActivity {
                                                         Log.d("monthIIII", "onDataChange: " + monthIter.getKey());
                                                         Log.d("monthIIII", "onDataChange: " + monthIter.getValue());
 
+                                                        boolean flag=false;
                                                         for (DataSnapshot dayIter : monthIter.getChildren()) {
 
                                                             int count=0;
                                                             for (DataSnapshot val : dayIter.getChildren()) {
                                                                 if(count!=1) {
-                                                                    csvWrite += val.getValue() + ",";
+
+                                                                    String value=val.getValue()+"";
+                                                                    if(!flag) {
+                                                                        csvWrite += value.substring(0, 2) + "/" + value.substring(3, 5) + "/" + (Integer.valueOf(value.substring(6, 8))-1) + ",";
+                                                                        flag=true;
+                                                                    }else{
+                                                                        csvWrite += value+",";
+                                                                    }
                                                                     Log.d("dayIIII", "onDataChange: " + dayIter.getKey());
                                                                     Log.d("dayIIII", "onDataChange: " + dayIter.getValue());
                                                                 }

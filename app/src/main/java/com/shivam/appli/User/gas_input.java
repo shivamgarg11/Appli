@@ -321,7 +321,7 @@ public class gas_input extends AppCompatActivity {
            if(diff==0)
             diff=1;
             obj.setEride(String.format("%.2f",(Double.valueOf(obj.getDmmbto())*constant[0].getC4()*24)/diff));
-            obj.setFbill(String.format("%.2f",(Double.valueOf(obj.getEride())*15)));
+            obj.setFbill(String.format("%.2f",(Double.valueOf(obj.getEride())*15*24)/diff));
 
         } catch (ParseException e) {
             e.printStackTrace();

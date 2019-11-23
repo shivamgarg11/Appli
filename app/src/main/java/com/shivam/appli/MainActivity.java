@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                             String time = dateformat.format(c.getTime());
 
                             SharedPreferences sp = getSharedPreferences("appkakaam" , Context.MODE_PRIVATE);
-                            String sc  = sp.getString("adminlastlogin","0");
+                            String sc  = sp.getString("adminlastlogin","01 01 2000 00:00:00");
 
 
                             try {
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                             String time = dateformat.format(c.getTime());
 
                             SharedPreferences sp = getSharedPreferences("appkakaam" ,Context.MODE_PRIVATE);
-                            String sc  = sp.getString("userlastlogin","0");
+                            String sc  = sp.getString("userlastlogin","01 01 2000 00:00:00");
 
 
                             try {

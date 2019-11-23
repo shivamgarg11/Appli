@@ -160,9 +160,9 @@ public class TunnelMonthfrag extends Fragment {
             holder.uName.setText(dates.get(position)+"/"+month+"/"+year);
             holder.uDesignation.setText(listData.get(position).getBreading()+"");
 
-            NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+            NumberFormat formatter = NumberFormat.getNumberInstance(new Locale("en", "IN"));
             String moneyString = formatter.format(Double.valueOf(listData.get(position).getFoutput2()));
-            holder.uLocation.setText(moneyString);
+            holder.uLocation.setText(moneyString+" l");
 
             if(Double.valueOf(listData.get(position).getFoutput2())>=from&&Double.valueOf(listData.get(position).getFoutput2())<=to){
                 holder.gridframecolor.setBackgroundColor(Color.rgb(14,131,19));

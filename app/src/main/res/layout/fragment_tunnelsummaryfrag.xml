@@ -173,7 +173,7 @@
                     android:textSize="20dp"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Output 1:"/>
+                    android:text="Output 1 (litre):"/>
 
                 <TextView
                     android:id="@+id/output1"
@@ -202,7 +202,7 @@
                     android:textSize="20dp"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="Output 2"/>
+                    android:text="Output 2 (litre):"/>
 
                 <TextView
                     android:id="@+id/output2"
